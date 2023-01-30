@@ -16885,8 +16885,6 @@ struct ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144  : public MonoB
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ____touchPosition_6;
 	// UnityEngine.GameObject ProgrammManager::ObjToSpawn
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___ObjToSpawn_7;
-	// System.Boolean ProgrammManager::ChooseObject
-	bool ___ChooseObject_8;
 };
 
 // UnityEngine.SpatialTracking.TrackedPoseDriver
@@ -21736,9 +21734,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4536[3] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4539[4] = 
 {
 	0,static_cast<int32_t>(offsetof(ConformanceAutomationFeature_t0C2E5D391DBCC81F1B86F2D7E34719B7D292BFF7_StaticFields, ___xrInstance_17)),static_cast<int32_t>(offsetof(ConformanceAutomationFeature_t0C2E5D391DBCC81F1B86F2D7E34719B7D292BFF7_StaticFields, ___xrSession_18)),0,};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4542[5] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4542[4] = 
 {
-	static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____planeMarkerPrefab_4)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____arRaycastManagerScript_5)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____touchPosition_6)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ObjToSpawn_7)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ChooseObject_8)),};
+	static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____planeMarkerPrefab_4)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____arRaycastManagerScript_5)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____touchPosition_6)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ObjToSpawn_7)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4546[4] = 
 {
 	static_cast<int32_t>(sizeof(RuntimeObject)),0,0,0,};

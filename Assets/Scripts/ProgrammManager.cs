@@ -15,8 +15,6 @@ public class ProgrammManager : MonoBehaviour
 
     public GameObject ObjToSpawn;
 
-    public bool ChooseObject = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +26,7 @@ public class ProgrammManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (ChooseObject == true)
-        {
-            ShowPlaneMarkerAndSetObject();
-        }
+        ShowPlaneMarkerAndSetObject();
     }
 
 

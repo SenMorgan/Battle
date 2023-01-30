@@ -472,8 +472,6 @@ struct ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144  : public MonoB
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ____touchPosition_6;
 	// UnityEngine.GameObject ProgrammManager::ObjToSpawn
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___ObjToSpawn_7;
-	// System.Boolean ProgrammManager::ChooseObject
-	bool ___ChooseObject_8;
 };
 
 // UnityEngine.XR.ARFoundation.ARTrackableManager`5<UnityEngine.XR.ARSubsystems.XRRaycastSubsystem,UnityEngine.XR.ARSubsystems.XRRaycastSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRRaycastSubsystem/Provider,UnityEngine.XR.ARSubsystems.XRRaycast,UnityEngine.XR.ARFoundation.ARRaycast>
