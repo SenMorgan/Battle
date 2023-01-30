@@ -17572,6 +17572,15 @@ struct ARTrackable_t1D98417758C08E98A333CDEC0C2C1688CE10B2E0  : public MonoBehav
 {
 };
 
+// AddObject
+struct AddObject_t16B8A5599AB7E854D3383E8E825840CD938BE0AB  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	// UnityEngine.UI.Button AddObject::_button
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ____button_4;
+	// ProgrammManager AddObject::_programmManagerScript
+	ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144* ____programmManagerScript_5;
+};
+
 // ChooseObject
 struct ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
@@ -17689,6 +17698,10 @@ struct ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144  : public MonoB
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ____touchPosition_6;
 	// UnityEngine.GameObject ProgrammManager::ObjToSpawn
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___ObjToSpawn_7;
+	// UnityEngine.GameObject ProgrammManager::ScrollView
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___ScrollView_8;
+	// System.Boolean ProgrammManager::ChooseObject
+	bool ___ChooseObject_9;
 };
 
 // UnityEngine.SpatialTracking.TrackedPoseDriver
@@ -22856,18 +22869,21 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4712[3] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4715[4] = 
 {
 	0,static_cast<int32_t>(offsetof(ConformanceAutomationFeature_t0C2E5D391DBCC81F1B86F2D7E34719B7D292BFF7_StaticFields, ___xrInstance_17)),static_cast<int32_t>(offsetof(ConformanceAutomationFeature_t0C2E5D391DBCC81F1B86F2D7E34719B7D292BFF7_StaticFields, ___xrSession_18)),0,};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4717[3] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4717[2] = 
+{
+	static_cast<int32_t>(offsetof(AddObject_t16B8A5599AB7E854D3383E8E825840CD938BE0AB, ____button_4)),static_cast<int32_t>(offsetof(AddObject_t16B8A5599AB7E854D3383E8E825840CD938BE0AB, ____programmManagerScript_5)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4718[3] = 
 {
 	static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ___ProgrammManagerScript_4)),static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ___button_5)),static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ___ChosenObject_6)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4718[4] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4719[6] = 
 {
-	static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____planeMarkerPrefab_4)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____arRaycastManagerScript_5)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____touchPosition_6)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ObjToSpawn_7)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4722[4] = 
+	static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____planeMarkerPrefab_4)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____arRaycastManagerScript_5)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____touchPosition_6)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ObjToSpawn_7)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ScrollView_8)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ChooseObject_9)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4723[4] = 
 {
 	static_cast<int32_t>(sizeof(RuntimeObject)),0,0,0,};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4730[5] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4731[5] = 
 {
 	static_cast<int32_t>(offsetof(RuntimeDebuggerOpenXRFeature_t1E3C60D2636DEC25D95E63BB3300DBFC5E9057BA_StaticFields, ___kEditorToPlayerRequestDebuggerOutput_16)),static_cast<int32_t>(offsetof(RuntimeDebuggerOpenXRFeature_t1E3C60D2636DEC25D95E63BB3300DBFC5E9057BA_StaticFields, ___kPlayerToEditorSendDebuggerOutput_17)),static_cast<int32_t>(offsetof(RuntimeDebuggerOpenXRFeature_t1E3C60D2636DEC25D95E63BB3300DBFC5E9057BA, ___cacheSize_18)),static_cast<int32_t>(offsetof(RuntimeDebuggerOpenXRFeature_t1E3C60D2636DEC25D95E63BB3300DBFC5E9057BA, ___perThreadCacheSize_19)),0,};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4732[1] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4733[1] = 
 {
 	0,};

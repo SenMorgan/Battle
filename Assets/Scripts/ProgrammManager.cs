@@ -17,6 +17,11 @@ public class ProgrammManager : MonoBehaviour
 
     public GameObject ObjToSpawn;
 
+    [Header("Put ScrollView here")]
+    public GameObject ScrollView;
+
+    public bool ChooseObject = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +29,16 @@ public class ProgrammManager : MonoBehaviour
         Assert.IsNotNull(_arRaycastManagerScript);
 
         _planeMarkerPrefab.SetActive(false);
+        ScrollView.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ShowPlaneMarkerAndSetObject();
+        if (ChooseObject)
+        {
+            ShowPlaneMarkerAndSetObject();
+        }
     }
 
 
@@ -58,6 +67,8 @@ public class ProgrammManager : MonoBehaviour
             }
             // Instantiate your object
             Instantiate(ObjToSpawn, hits[0].pose.position, ObjToSpawn.transform.rotation);
+            ChooseObject = false;
+            _planeMarkerPrefab.SetActive(false);
         }
     }
 }

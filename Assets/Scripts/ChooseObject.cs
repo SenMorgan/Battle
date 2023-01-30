@@ -25,5 +25,7 @@ public class ChooseObject : MonoBehaviour
     void ChooseObjectFunc()
     {
         ProgrammManagerScript.ObjToSpawn = ChosenObject;
+        ProgrammManagerScript.ChooseObject = true;
+        ProgrammManagerScript.ScrollView.SetActive(false);
     }
 }
