@@ -17586,12 +17586,12 @@ struct AddObject_t16B8A5599AB7E854D3383E8E825840CD938BE0AB  : public MonoBehavio
 // ChooseObject
 struct ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
-	// ProgrammManager ChooseObject::ProgrammManagerScript
-	ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144* ___ProgrammManagerScript_4;
-	// UnityEngine.UI.Button ChooseObject::button
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___button_5;
-	// UnityEngine.GameObject ChooseObject::ChosenObject
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___ChosenObject_6;
+	// ProgrammManager ChooseObject::_programmManagerScript
+	ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144* ____programmManagerScript_4;
+	// UnityEngine.UI.Button ChooseObject::_button
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ____button_5;
+	// UnityEngine.GameObject ChooseObject::chosenObject
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___chosenObject_6;
 };
 
 // UnityEngine.EventSystems.EventTrigger
@@ -17698,20 +17698,20 @@ struct ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144  : public MonoB
 	ARRaycastManager_tD9459374F0F5BD9E2E4A8A1C665E7F33F9C2EE44* ____arRaycastManagerScript_5;
 	// UnityEngine.Vector2 ProgrammManager::_touchPosition
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ____touchPosition_6;
-	// UnityEngine.GameObject ProgrammManager::ObjToSpawn
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___ObjToSpawn_7;
-	// UnityEngine.GameObject ProgrammManager::ScrollView
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___ScrollView_8;
-	// System.Boolean ProgrammManager::ChooseObject
-	bool ___ChooseObject_9;
-	// UnityEngine.Camera ProgrammManager::ARCamera
-	Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ___ARCamera_10;
-	// System.Collections.Generic.List`1<UnityEngine.XR.ARFoundation.ARRaycastHit> ProgrammManager::hits
-	List_1_t0754071572EFE7A5C92A59495D2524FC935364E3* ___hits_11;
-	// UnityEngine.GameObject ProgrammManager::SelectedObject
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___SelectedObject_12;
-	// System.Boolean ProgrammManager::Rotation
-	bool ___Rotation_13;
+	// UnityEngine.GameObject ProgrammManager::objToSpawn
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___objToSpawn_7;
+	// UnityEngine.GameObject ProgrammManager::scrollView
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___scrollView_8;
+	// System.Boolean ProgrammManager::chooseObject
+	bool ___chooseObject_9;
+	// UnityEngine.Camera ProgrammManager::_ARCamera
+	Camera_tA92CC927D7439999BC82DBEDC0AA45B470F9E184* ____ARCamera_10;
+	// System.Collections.Generic.List`1<UnityEngine.XR.ARFoundation.ARRaycastHit> ProgrammManager::_hits
+	List_1_t0754071572EFE7A5C92A59495D2524FC935364E3* ____hits_11;
+	// UnityEngine.GameObject ProgrammManager::_selectedObject
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ____selectedObject_12;
+	// System.Boolean ProgrammManager::rotation
+	bool ___rotation_13;
 	// UnityEngine.Quaternion ProgrammManager::_YRotation
 	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ____YRotation_14;
 };
@@ -22889,10 +22889,10 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4713[2] =
 	static_cast<int32_t>(offsetof(AddObject_t16B8A5599AB7E854D3383E8E825840CD938BE0AB, ____button_4)),static_cast<int32_t>(offsetof(AddObject_t16B8A5599AB7E854D3383E8E825840CD938BE0AB, ____programmManagerScript_5)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4714[3] = 
 {
-	static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ___ProgrammManagerScript_4)),static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ___button_5)),static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ___ChosenObject_6)),};
+	static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ____programmManagerScript_4)),static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ____button_5)),static_cast<int32_t>(offsetof(ChooseObject_t4989BEC6FED487BA460894D99A163B6C016C15CC, ___chosenObject_6)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4715[11] = 
 {
-	static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____planeMarkerPrefab_4)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____arRaycastManagerScript_5)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____touchPosition_6)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ObjToSpawn_7)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ScrollView_8)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ChooseObject_9)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___ARCamera_10)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___hits_11)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___SelectedObject_12)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___Rotation_13)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____YRotation_14)),};
+	static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____planeMarkerPrefab_4)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____arRaycastManagerScript_5)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____touchPosition_6)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___objToSpawn_7)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___scrollView_8)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___chooseObject_9)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____ARCamera_10)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____hits_11)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____selectedObject_12)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ___rotation_13)),static_cast<int32_t>(offsetof(ProgrammManager_t1E7F2A52482171D816A699241185A171566A1144, ____YRotation_14)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable4716[2] = 
 {
 	static_cast<int32_t>(offsetof(Rotation_tC15940D17696C7AD648E25C9185EFF70F45271C2, ____button_4)),static_cast<int32_t>(offsetof(Rotation_tC15940D17696C7AD648E25C9185EFF70F45271C2, ____programmManagerScript_5)),};

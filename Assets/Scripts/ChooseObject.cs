@@ -6,26 +6,26 @@ using UnityEngine.Assertions;
 
 public class ChooseObject : MonoBehaviour
 {
-    private ProgrammManager ProgrammManagerScript;
+    private ProgrammManager _programmManagerScript;
 
-    private Button button;
+    private Button _button;
 
-    public GameObject ChosenObject;
+    public GameObject chosenObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        ProgrammManagerScript = FindObjectOfType<ProgrammManager>();
-        Assert.IsNotNull(ProgrammManagerScript);
+        _programmManagerScript = FindObjectOfType<ProgrammManager>();
+        Assert.IsNotNull(_programmManagerScript);
 
-        button = GetComponent<Button>();
-        button.onClick.AddListener(ChooseObjectFunc);
+        _button = GetComponent<Button>();
+        _button.onClick.AddListener(ChooseObjectFunc);
     }
 
     void ChooseObjectFunc()
     {
-        ProgrammManagerScript.ObjToSpawn = ChosenObject;
-        ProgrammManagerScript.ChooseObject = true;
-        ProgrammManagerScript.ScrollView.SetActive(false);
+        _programmManagerScript.objToSpawn = chosenObject;
+        _programmManagerScript.chooseObject = true;
+        _programmManagerScript.scrollView.SetActive(false);
     }
 }

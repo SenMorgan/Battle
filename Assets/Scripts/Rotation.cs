@@ -22,9 +22,9 @@ public class Rotation : MonoBehaviour
 
     void RotationFunction()
     {
-        if (_programmManagerScript.Rotation)
+        if (_programmManagerScript.rotation)
         {
-            _programmManagerScript.Rotation = false;
+            _programmManagerScript.rotation = false;
 
             // Change the color of the button
             _button.GetComponent<Image>().color = Color.red;
@@ -32,7 +32,7 @@ public class Rotation : MonoBehaviour
         }
         else
         {
-            _programmManagerScript.Rotation = true;
+            _programmManagerScript.rotation = true;
 
             // Change the color of the button
             _button.GetComponent<Image>().color = Color.green;

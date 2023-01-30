@@ -15,21 +15,21 @@ public class ProgrammManager : MonoBehaviour
 
     private Vector2 _touchPosition = default;
 
-    public GameObject ObjToSpawn;
+    public GameObject objToSpawn;
 
-    [Header("Put ScrollView here")]
-    public GameObject ScrollView;
+    [Header("Put scrollView here")]
+    public GameObject scrollView;
 
-    public bool ChooseObject = false;
+    public bool chooseObject = false;
 
     [Header("Put your AR Camera here")]
-    [SerializeField] private Camera ARCamera;
+    [SerializeField] private Camera _ARCamera;
 
-    List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    private List<ARRaycastHit> _hits = new List<ARRaycastHit>();
 
-    private GameObject SelectedObject;
+    private GameObject _selectedObject;
 
-    public bool Rotation;
+    public bool rotation;
 
     private Quaternion _YRotation;
 
@@ -40,13 +40,13 @@ public class ProgrammManager : MonoBehaviour
         Assert.IsNotNull(_arRaycastManagerScript);
 
         _planeMarkerPrefab.SetActive(false);
-        ScrollView.SetActive(false);
+        scrollView.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ChooseObject)
+        if (chooseObject)
         {
             ShowPlaneMarkerAndSetObject();
         }
@@ -59,12 +59,12 @@ public class ProgrammManager : MonoBehaviour
     // Always positioned at the center of the screen
     void ShowPlaneMarkerAndSetObject()
     {
-        _arRaycastManagerScript.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.Planes);
+        _arRaycastManagerScript.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), _hits, TrackableType.Planes);
 
         // Show marker
-        if (hits.Count > 0)
+        if (_hits.Count > 0)
         {
-            _planeMarkerPrefab.transform.position = hits[0].pose.position;
+            _planeMarkerPrefab.transform.position = _hits[0].pose.position;
             _planeMarkerPrefab.SetActive(true);
         }
 
@@ -78,8 +78,8 @@ public class ProgrammManager : MonoBehaviour
                 return;
             }
             // Instantiate your object
-            Instantiate(ObjToSpawn, hits[0].pose.position, ObjToSpawn.transform.rotation);
-            ChooseObject = false;
+            Instantiate(objToSpawn, _hits[0].pose.position, objToSpawn.transform.rotation);
+            chooseObject = false;
             _planeMarkerPrefab.SetActive(false);
         }
     }
@@ -93,7 +93,7 @@ public class ProgrammManager : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began)
             {
-                Ray ray = ARCamera.ScreenPointToRay(_touchPosition);
+                Ray ray = _ARCamera.ScreenPointToRay(_touchPosition);
                 RaycastHit hitObject;
 
                 if (Physics.Raycast(ray, out hitObject))
@@ -109,8 +109,8 @@ public class ProgrammManager : MonoBehaviour
                 }
             }
 
-            SelectedObject = GameObject.FindWithTag("Selected");
-            if (SelectedObject == null)
+            _selectedObject = GameObject.FindWithTag("Selected");
+            if (_selectedObject == null)
             {
                 Debug.Log("No object found with tag 'Selected'");
                 return;
@@ -119,15 +119,15 @@ public class ProgrammManager : MonoBehaviour
             if (touch.phase == TouchPhase.Moved && Input.touchCount == 1)
             {
 
-                if (Rotation)
+                if (rotation)
                 {
                     _YRotation = Quaternion.Euler(0f, -touch.deltaPosition.x * 0.1f, 0f);
-                    SelectedObject.transform.rotation = _YRotation * SelectedObject.transform.rotation;
+                    _selectedObject.transform.rotation = _YRotation * _selectedObject.transform.rotation;
                 }
                 else
                 {
-                    _arRaycastManagerScript.Raycast(_touchPosition, hits, TrackableType.Planes);
-                    SelectedObject.transform.position = hits[0].pose.position;
+                    _arRaycastManagerScript.Raycast(_touchPosition, _hits, TrackableType.Planes);
+                    _selectedObject.transform.position = _hits[0].pose.position;
                 }
             }
             else if (touch.phase == TouchPhase.Moved && Input.touchCount == 2)
@@ -143,14 +143,14 @@ public class ProgrammManager : MonoBehaviour
 
                 float difference = currentMagnitude - prevMagnitude;
 
-                SelectedObject.transform.localScale += new Vector3(difference * 0.001f, difference * 0.001f, difference * 0.001f);
+                _selectedObject.transform.localScale += new Vector3(difference * 0.001f, difference * 0.001f, difference * 0.001f);
             }
 
             if (touch.phase == TouchPhase.Ended)
             {
-                if (SelectedObject.CompareTag("Selected"))
+                if (_selectedObject.CompareTag("Selected"))
                 {
-                    SelectedObject.tag = "Unselected";
+                    _selectedObject.tag = "Unselected";
                 }
 
             }

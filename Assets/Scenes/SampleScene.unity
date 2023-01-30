@@ -564,11 +564,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _planeMarkerPrefab: {fileID: 1308343892}
-  ObjToSpawn: {fileID: 5338307433757072509, guid: 0234da8558b9c304393d1d5d269c9b40, type: 3}
-  ScrollView: {fileID: 1468809653}
-  ChooseObject: 0
-  ARCamera: {fileID: 1828601336}
-  Rotation: 0
+  objToSpawn: {fileID: 5338307433757072509, guid: 0234da8558b9c304393d1d5d269c9b40, type: 3}
+  scrollView: {fileID: 1468809653}
+  chooseObject: 0
+  _ARCamera: {fileID: 1828601336}
+  rotation: 0
 --- !u!114 &223974231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1298,7 +1298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c7eb213f4cdeb42acf6a2d64aa5cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChosenObject: {fileID: 934400896193598192, guid: 089b654b6b964db4fa700c50d473ea4b, type: 3}
+  chosenObject: {fileID: 934400896193598192, guid: 089b654b6b964db4fa700c50d473ea4b, type: 3}
 --- !u!1 &1301258557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,7 +1852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c7eb213f4cdeb42acf6a2d64aa5cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChosenObject: {fileID: 5338307433757072509, guid: 0234da8558b9c304393d1d5d269c9b40, type: 3}
+  chosenObject: {fileID: 5338307433757072509, guid: 0234da8558b9c304393d1d5d269c9b40, type: 3}
 --- !u!1 &1667180761
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,6 +23,6 @@ public class AddObject : MonoBehaviour
 
     void AddObjectFunction()
     {
-        _programmManagerScript.ScrollView.SetActive(true);
+        _programmManagerScript.scrollView.SetActive(true);
     }
 }
