@@ -29,6 +29,10 @@ public class ProgrammManager : MonoBehaviour
 
     private GameObject SelectedObject;
 
+    public bool Rotation;
+
+    private Quaternion _YRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +51,7 @@ public class ProgrammManager : MonoBehaviour
             ShowPlaneMarkerAndSetObject();
         }
 
-        MoveObject();
+        MoveAndRotateObject();
 
     }
 
@@ -80,7 +84,7 @@ public class ProgrammManager : MonoBehaviour
         }
     }
 
-    void MoveObject()
+    void MoveAndRotateObject()
     {
         if (Input.touchCount > 0)
         {
@@ -98,26 +102,57 @@ public class ProgrammManager : MonoBehaviour
                     {
                         hitObject.collider.gameObject.tag = "Selected";
                     }
+                    else
+                    {
+                        Debug.Log("No object found with tag 'Unselected'");
+                    }
                 }
             }
 
-            if (touch.phase == TouchPhase.Moved)
+            SelectedObject = GameObject.FindWithTag("Selected");
+            if (SelectedObject == null)
             {
-                _arRaycastManagerScript.Raycast(_touchPosition, hits, TrackableType.Planes);
-                SelectedObject = GameObject.FindWithTag("Selected");
+                Debug.Log("No object found with tag 'Selected'");
+                return;
+            }
 
-                if (SelectedObject != null)
+            if (touch.phase == TouchPhase.Moved && Input.touchCount == 1)
+            {
+
+                if (Rotation)
                 {
+                    _YRotation = Quaternion.Euler(0f, -touch.deltaPosition.x * 0.1f, 0f);
+                    SelectedObject.transform.rotation = _YRotation * SelectedObject.transform.rotation;
+                }
+                else
+                {
+                    _arRaycastManagerScript.Raycast(_touchPosition, hits, TrackableType.Planes);
                     SelectedObject.transform.position = hits[0].pose.position;
                 }
+            }
+            else if (touch.phase == TouchPhase.Moved && Input.touchCount == 2)
+            {
+                Touch touchZero = Input.GetTouch(0);
+                Touch touchOne = Input.GetTouch(1);
+
+                Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+                Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+                float prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+                float currentMagnitude = (touchZero.position - touchOne.position).magnitude;
+
+                float difference = currentMagnitude - prevMagnitude;
+
+                SelectedObject.transform.localScale += new Vector3(difference * 0.001f, difference * 0.001f, difference * 0.001f);
             }
 
             if (touch.phase == TouchPhase.Ended)
             {
-                if(SelectedObject.CompareTag("Selected"))
+                if (SelectedObject.CompareTag("Selected"))
                 {
                     SelectedObject.tag = "Unselected";
                 }
+
             }
         }
     }

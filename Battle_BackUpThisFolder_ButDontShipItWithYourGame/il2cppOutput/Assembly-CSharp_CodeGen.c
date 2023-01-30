@@ -30,11 +30,17 @@ extern void ProgrammManager_Start_mF2FC6C93F9B10BE827DC246709C2F9BA929B8150 (voi
 extern void ProgrammManager_Update_m3CABB9EEFEFF62AC3A131BAE3207F2E59A392D1F (void);
 // 0x00000009 System.Void ProgrammManager::ShowPlaneMarkerAndSetObject()
 extern void ProgrammManager_ShowPlaneMarkerAndSetObject_m518A114912254F9FAF43580E10F659A074230792 (void);
-// 0x0000000A System.Void ProgrammManager::MoveObject()
-extern void ProgrammManager_MoveObject_m9B17C35661E797E8093020254DAA41FEE13970A0 (void);
+// 0x0000000A System.Void ProgrammManager::MoveAndRotateObject()
+extern void ProgrammManager_MoveAndRotateObject_m73933268CAFF2BF0970F5A2F13187413A88900F7 (void);
 // 0x0000000B System.Void ProgrammManager::.ctor()
 extern void ProgrammManager__ctor_mA707F40CEB0C8A3370391B6C2590087F9239632E (void);
-static Il2CppMethodPointer s_methodPointers[11] = 
+// 0x0000000C System.Void Rotation::Start()
+extern void Rotation_Start_m1BA3811BE9CEEDA009865CE62B8679DE8DA4DCD7 (void);
+// 0x0000000D System.Void Rotation::RotationFunction()
+extern void Rotation_RotationFunction_mCDFB9A99E07033C63B108553D11077CEFD1FB1D5 (void);
+// 0x0000000E System.Void Rotation::.ctor()
+extern void Rotation__ctor_mC51A8B2D3741FB75120E1D3690D504031D4D77D6 (void);
+static Il2CppMethodPointer s_methodPointers[14] = 
 {
 	AddObject_Start_m135064711CA9CC7F80E59282EC61546370A1BC22,
 	AddObject_AddObjectFunction_m083AB7F1850E06D9ECFE4C942B1D81C57044E8E7,
@@ -45,11 +51,17 @@ static Il2CppMethodPointer s_methodPointers[11] =
 	ProgrammManager_Start_mF2FC6C93F9B10BE827DC246709C2F9BA929B8150,
 	ProgrammManager_Update_m3CABB9EEFEFF62AC3A131BAE3207F2E59A392D1F,
 	ProgrammManager_ShowPlaneMarkerAndSetObject_m518A114912254F9FAF43580E10F659A074230792,
-	ProgrammManager_MoveObject_m9B17C35661E797E8093020254DAA41FEE13970A0,
+	ProgrammManager_MoveAndRotateObject_m73933268CAFF2BF0970F5A2F13187413A88900F7,
 	ProgrammManager__ctor_mA707F40CEB0C8A3370391B6C2590087F9239632E,
+	Rotation_Start_m1BA3811BE9CEEDA009865CE62B8679DE8DA4DCD7,
+	Rotation_RotationFunction_mCDFB9A99E07033C63B108553D11077CEFD1FB1D5,
+	Rotation__ctor_mC51A8B2D3741FB75120E1D3690D504031D4D77D6,
 };
-static const int32_t s_InvokerIndices[11] = 
+static const int32_t s_InvokerIndices[14] = 
 {
+	2068,
+	2068,
+	2068,
 	2068,
 	2068,
 	2068,
@@ -66,7 +78,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	11,
+	14,
 	s_methodPointers,
 	0,
 	NULL,
