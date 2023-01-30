@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.Assertions;
 
 public class ProgrammManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class ProgrammManager : MonoBehaviour
     void Start()
     {
         _arRaycastManagerScript = GetComponent<ARRaycastManager>();
+        Assert.IsNotNull(_arRaycastManagerScript);
 
         _planeMarkerPrefab.SetActive(false);
     }
