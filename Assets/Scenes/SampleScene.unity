@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 2025393037}
+  m_PlanePrefab: {fileID: 0}
   m_DetectionMode: -1
 --- !u!114 &223974230
 MonoBehaviour:
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _planeMarkerPrefab: {fileID: 1308343892}
-  ObjToSpawn: {fileID: 6521248983435969043, guid: 0234da8558b9c304393d1d5d269c9b40, type: 3}
+  ObjToSpawn: {fileID: 5338307433757072509, guid: 0234da8558b9c304393d1d5d269c9b40, type: 3}
 --- !u!114 &223974231
 MonoBehaviour:
   m_ObjectHideFlags: 0
