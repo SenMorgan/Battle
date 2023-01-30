@@ -22,6 +22,13 @@ public class ProgrammManager : MonoBehaviour
 
     public bool ChooseObject = false;
 
+    [Header("Put your AR Camera here")]
+    [SerializeField] private Camera ARCamera;
+
+    List<ARRaycastHit> hits = new List<ARRaycastHit>();
+
+    private GameObject SelectedObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,14 +46,15 @@ public class ProgrammManager : MonoBehaviour
         {
             ShowPlaneMarkerAndSetObject();
         }
+
+        MoveObject();
+
     }
 
 
     // Always positioned at the center of the screen
     void ShowPlaneMarkerAndSetObject()
     {
-        List<ARRaycastHit> hits = new List<ARRaycastHit>();
-
         _arRaycastManagerScript.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.Planes);
 
         // Show marker
@@ -69,6 +77,48 @@ public class ProgrammManager : MonoBehaviour
             Instantiate(ObjToSpawn, hits[0].pose.position, ObjToSpawn.transform.rotation);
             ChooseObject = false;
             _planeMarkerPrefab.SetActive(false);
+        }
+    }
+
+    void MoveObject()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            _touchPosition = touch.position;
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                Ray ray = ARCamera.ScreenPointToRay(_touchPosition);
+                RaycastHit hitObject;
+
+                if (Physics.Raycast(ray, out hitObject))
+                {
+                    if (hitObject.collider.CompareTag("Unselected"))
+                    {
+                        hitObject.collider.gameObject.tag = "Selected";
+                    }
+                }
+            }
+
+            if (touch.phase == TouchPhase.Moved)
+            {
+                _arRaycastManagerScript.Raycast(_touchPosition, hits, TrackableType.Planes);
+                SelectedObject = GameObject.FindWithTag("Selected");
+
+                if (SelectedObject != null)
+                {
+                    SelectedObject.transform.position = hits[0].pose.position;
+                }
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                if(SelectedObject.CompareTag("Selected"))
+                {
+                    SelectedObject.tag = "Unselected";
+                }
+            }
         }
     }
 }

@@ -431,6 +431,7 @@ MonoBehaviour:
   ObjToSpawn: {fileID: 5338307433757072509, guid: 0234da8558b9c304393d1d5d269c9b40, type: 3}
   ScrollView: {fileID: 1468809653}
   ChooseObject: 0
+  ARCamera: {fileID: 1828601336}
 --- !u!114 &223974231
 MonoBehaviour:
   m_ObjectHideFlags: 0
