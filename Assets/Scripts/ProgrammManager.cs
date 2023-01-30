@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 
 public class ProgrammManager : MonoBehaviour
 {
@@ -49,6 +50,12 @@ public class ProgrammManager : MonoBehaviour
         // Set object on marker
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
+            // Check if finger is over a UI element
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            {
+                Debug.Log("Touched the UI");
+                return;
+            }
             // Instantiate your object
             Instantiate(ObjToSpawn, hits[0].pose.position, ObjToSpawn.transform.rotation);
         }
