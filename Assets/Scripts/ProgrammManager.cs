@@ -5,6 +5,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class ProgrammManager : MonoBehaviour
 {
@@ -33,11 +34,20 @@ public class ProgrammManager : MonoBehaviour
 
     private Quaternion _YRotation;
 
+    [Header("Put your object size TextMesh here")]
+    public GameObject objectSizeText;
+
+    private TextMeshProUGUI _sizeText;
+
     // Start is called before the first frame update
     void Start()
     {
         _arRaycastManagerScript = GetComponent<ARRaycastManager>();
         Assert.IsNotNull(_arRaycastManagerScript);
+
+        Assert.IsNotNull(objectSizeText);
+        _sizeText = objectSizeText.GetComponent<TextMeshProUGUI>();
+        Assert.IsNotNull(_sizeText);
 
         _planeMarkerPrefab.SetActive(false);
         scrollView.SetActive(false);
@@ -46,28 +56,48 @@ public class ProgrammManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _arRaycastManagerScript.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), _hits, TrackableType.Planes);
+
         if (chooseObject)
         {
-            ShowPlaneMarkerAndSetObject();
+            SetObject();
         }
 
         MoveAndRotateObject();
 
+        ShowPlaneMarker();
+        PrintObjectSize();
     }
 
-
-    // Always positioned at the center of the screen
-    void ShowPlaneMarkerAndSetObject()
+    void PrintObjectSize()
     {
-        _arRaycastManagerScript.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), _hits, TrackableType.Planes);
+        GameObject _obj = GameObject.FindWithTag("Unselected");
 
-        // Show marker
+        if (_obj != null)
+        {
+            _sizeText.text = "Object size: " + _obj.transform.localScale.x + "m";
+        }
+        else
+        {
+            _sizeText.text = "Object size not found";
+        }
+    }
+
+    // Show marker
+    void ShowPlaneMarker()
+    {
         if (_hits.Count > 0)
         {
             _planeMarkerPrefab.transform.position = _hits[0].pose.position;
-            _planeMarkerPrefab.SetActive(true);
-        }
 
+            if (!_planeMarkerPrefab.activeInHierarchy)
+                _planeMarkerPrefab.SetActive(true);
+        }
+    }
+
+
+    void SetObject()
+    {
         // Set object on marker
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
@@ -80,7 +110,7 @@ public class ProgrammManager : MonoBehaviour
             // Instantiate your object
             Instantiate(objToSpawn, _hits[0].pose.position, objToSpawn.transform.rotation);
             chooseObject = false;
-            _planeMarkerPrefab.SetActive(false);
+            // _planeMarkerPrefab.SetActive(false);
         }
     }
 
