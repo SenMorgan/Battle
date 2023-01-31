@@ -64,7 +64,7 @@ public class ProgrammManager : MonoBehaviour
             // Print all local scale values and all lossyScale values with 2 decimal places
             _sizeText.text = "Local scale: " + _obj.transform.localScale.ToString("F2") +
                             System.Environment.NewLine +
-                            " Lossy scale: " + _obj.transform.lossyScale.ToString("F2");
+                            "Lossy scale: " + _obj.transform.lossyScale.ToString("F2");
 
         }
         else
