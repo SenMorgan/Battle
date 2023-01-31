@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Unselected
   - Selected
+  - TestPlane
   layers:
   - Default
   - TransparentFX

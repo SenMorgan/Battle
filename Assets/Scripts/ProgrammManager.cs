@@ -7,6 +7,8 @@ using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using TMPro;
 
+[ExecuteAlways]
+
 public class ProgrammManager : MonoBehaviour
 {
     [Header("Put your Plane Marker here")]
@@ -53,6 +55,24 @@ public class ProgrammManager : MonoBehaviour
         scrollView.SetActive(false);
     }
 
+
+    // Print real world size of the object
+    void PrintObjectSize(GameObject _obj)
+    {
+        if (_obj != null)
+        {
+            // Print all local scale values and all lossyScale values with 2 decimal places
+            _sizeText.text = "Local scale: " + _obj.transform.localScale.ToString("F2") +
+                            System.Environment.NewLine +
+                            " Lossy scale: " + _obj.transform.lossyScale.ToString("F2");
+
+        }
+        else
+        {
+            _sizeText.text = "Object is null";
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -66,20 +86,12 @@ public class ProgrammManager : MonoBehaviour
         MoveAndRotateObject();
 
         ShowPlaneMarker();
-        PrintObjectSize();
-    }
 
-    void PrintObjectSize()
-    {
         GameObject _obj = GameObject.FindWithTag("Unselected");
-
         if (_obj != null)
         {
-            _sizeText.text = "Object size: " + _obj.transform.localScale.x + "m";
-        }
-        else
-        {
-            _sizeText.text = "Object size not found";
+            _obj = _obj.transform.Find("Top").gameObject;
+            PrintObjectSize(_obj);
         }
     }
 

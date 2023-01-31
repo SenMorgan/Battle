@@ -12,13 +12,18 @@ public class ChooseObject : MonoBehaviour
 
     public GameObject chosenObject;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _programmManagerScript = FindObjectOfType<ProgrammManager>();
         Assert.IsNotNull(_programmManagerScript);
 
         _button = GetComponent<Button>();
+        Assert.IsNotNull(_button);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         _button.onClick.AddListener(ChooseObjectFunc);
     }
 
