@@ -103,9 +103,9 @@ public class ProgrammManager : MonoBehaviour
             Assert.IsNotNull(_boxParent, "BoxParent is null");
             // Change Z axis size of the box collider
             _boxParent.GetComponent<BoxCollider>().size =
-                new Vector3(_boxParent.GetComponent<BoxCollider>().size.x,
-                _boxParent.GetComponent<BoxCollider>().size.y,
-                 _boxParent.GetComponent<BoxCollider>().size.z + 0.1f);
+                new Vector3(_boxParent.GetComponent<BoxCollider>().size.x + 0.01f,
+                _boxParent.GetComponent<BoxCollider>().size.y + 0.01f,
+                _boxParent.GetComponent<BoxCollider>().size.z + 0.01f);
 
         }
     }
@@ -143,8 +143,6 @@ public class ProgrammManager : MonoBehaviour
         Vector3 _size = new Vector3(to.x - from.x, to.y - from.y, to.z - from.z);
 
 
-
-
         /* If box depth and width were changed, then we need to change X and Z scale of the «Top» and
             «Bottom» parts of the box, because this parts were rotated when box was created.*/
         Vector3 _newTopBottomSize = new Vector3(_top.transform.localScale.x + _size.x,
@@ -172,38 +170,49 @@ public class ProgrammManager : MonoBehaviour
             To change this values, we need to change «Position Offset» in «Constraint Settings» in
             «Parent Constraint» component using «SetTranslationOffset» method */
         ParentConstraint _topParentConstraint = _top.GetComponent<ParentConstraint>();
-        // Get actual position offset
+        // Get actual position offsets
         Vector3 _topConstrPositionOffset = _topParentConstraint.GetTranslationOffset(0);
-        // Change Z position offset
+        // Change position offsets
+        _topConstrPositionOffset.y = _topConstrPositionOffset.y + _size.y;
         _topConstrPositionOffset.z = _topConstrPositionOffset.z - _size.z / 2;
-        // Set new position offset
+        // Set new position offsets
         _topParentConstraint.SetTranslationOffset(0, _topConstrPositionOffset);
 
         ParentConstraint _bottomParentConstraint = _bottom.GetComponent<ParentConstraint>();
-        // Get actual position offset
+        // Get actual position offsets
         Vector3 _bottomConstrPositionOffset = _bottomParentConstraint.GetTranslationOffset(0);
-        // Change Z position offset
+        // Change position offsets
         _bottomConstrPositionOffset.z = _bottomConstrPositionOffset.z - _size.z / 2;
-        // Set new position offset
+        // Set new position offsets
         _bottomParentConstraint.SetTranslationOffset(0, _bottomConstrPositionOffset);
 
         ParentConstraint _leftParentConstraint = _left.GetComponent<ParentConstraint>();
-        // Get actual position offset
+        // Get actual position offsets
         Vector3 _leftConstrPositionOffset = _leftParentConstraint.GetTranslationOffset(0);
-        // Change Z position offset
+        // Change position offsets
+        _leftConstrPositionOffset.x = _leftConstrPositionOffset.x - _size.x / 2;
+        _leftConstrPositionOffset.y = _leftConstrPositionOffset.y + _size.y / 2;
         _leftConstrPositionOffset.z = _leftConstrPositionOffset.z - _size.z / 2;
-        // Set new position offset
+        // Set new position offsets
         _leftParentConstraint.SetTranslationOffset(0, _leftConstrPositionOffset);
 
         ParentConstraint _rightParentConstraint = _right.GetComponent<ParentConstraint>();
-        // Get actual position offset
+        // Get actual position offsets
         Vector3 _rightConstrPositionOffset = _rightParentConstraint.GetTranslationOffset(0);
-        // Change Z position offset
+        // Change position offsets
+        _rightConstrPositionOffset.x = _rightConstrPositionOffset.x + _size.x / 2;
+        _rightConstrPositionOffset.y = _rightConstrPositionOffset.y + _size.y / 2;
         _rightConstrPositionOffset.z = _rightConstrPositionOffset.z - _size.z / 2;
-        // Set new position offset
+        // Set new position offsets
         _rightParentConstraint.SetTranslationOffset(0, _rightConstrPositionOffset);
 
-
+        ParentConstraint _rearParentConstraint = _rear.GetComponent<ParentConstraint>();
+        // Get actual position offsets
+        Vector3 _rearConstrPositionOffset = _rearParentConstraint.GetTranslationOffset(0);
+        // Change position offsets
+        _rearConstrPositionOffset.y = _rearConstrPositionOffset.y + _size.y / 2;
+        // Set new position offsets
+        _rearParentConstraint.SetTranslationOffset(0, _rearConstrPositionOffset);
 
 
 
