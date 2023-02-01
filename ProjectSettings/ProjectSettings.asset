@@ -242,6 +242,11 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: -482381047502339535, guid: 5221d74a7cbd61b418970ae94ae18275, type: 2}
+  - {fileID: 11400000, guid: 5e229a3706b720c4e86978c1a785ad05, type: 2}
+  - {fileID: -6907317896971910904, guid: 4e21f25a2022d9e459fd953d492d50d8, type: 2}
+  - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -813,7 +818,7 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
-    Android: 1
+    Android: 0
   il2cppCompilerConfiguration:
     Android: 1
   managedStrippingLevel: {}

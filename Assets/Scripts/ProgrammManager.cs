@@ -6,6 +6,7 @@ using UnityEngine.XR.ARSubsystems;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.Animations;
 
 [ExecuteAlways]
 
@@ -83,16 +84,107 @@ public class ProgrammManager : MonoBehaviour
             SetObject();
         }
 
-        MoveAndRotateObject();
+        // MoveAndRotateObject();
+        // ShowPlaneMarker();
 
-        ShowPlaneMarker();
-
-        GameObject _obj = GameObject.FindWithTag("Unselected");
+        GameObject _obj = GameObject.FindWithTag("Player");
         if (_obj != null)
         {
             _obj = _obj.transform.Find("Top").gameObject;
             PrintObjectSize(_obj);
         }
+
+        // TODO: remove. This is for debug
+        if (rotation)
+        {
+            rotation = false;
+            // Find object with name BoxParent
+            GameObject _boxParent = GameObject.Find("BoxParent");
+            Assert.IsNotNull(_boxParent, "BoxParent is null");
+            // Change Z axis size of the box collider
+            _boxParent.GetComponent<BoxCollider>().size =
+                new Vector3(_boxParent.GetComponent<BoxCollider>().size.x,
+                _boxParent.GetComponent<BoxCollider>().size.y,
+                 _boxParent.GetComponent<BoxCollider>().size.z + 0.1f);
+
+        }
+    }
+
+    void OnEnable()
+    {
+        BoxBaseScript.onSizeChanged += onParentSizeChanged;
+    }
+
+    void OnDisable()
+    {
+        BoxBaseScript.onSizeChanged -= onParentSizeChanged;
+    }
+
+    // Change the size and position of every part of the box. «Bottom», «Top», «Left», «Right», «Rear» are the names of parts of the box
+    // Center and position of the «Bottom» part is fixed
+    // Use Vector3 from, Vector3 to arguments to get old and new size of the box
+    void onParentSizeChanged(Vector3 from, Vector3 to)
+    {
+        GameObject _obj = GameObject.FindWithTag("Player");
+
+        // Debug.Log("From: " + from.ToString() + " To: " + to.ToString() + " Object: " + _obj);
+
+        if (_obj == null)
+        {
+            //log
+            Debug.Log("Object is null in onParentSizeChanged");
+            return;
+        }
+
+        GameObject _bottom = _obj.transform.Find("Bottom").gameObject;
+        GameObject _top = _obj.transform.Find("Top").gameObject;
+        GameObject _left = _obj.transform.Find("Left").gameObject;
+        GameObject _right = _obj.transform.Find("Right").gameObject;
+        GameObject _rear = _obj.transform.Find("Rear").gameObject;
+
+        // Delta between old and new size of the box
+        Vector3 _size = new Vector3(to.x - from.x, to.y - from.y, to.z - from.z);
+
+
+
+
+        /* If box depth and width were changed, then we need to change X and Z scale of the «Top» and
+            «Bottom» parts of the box, because this parts were rotated when box was created.*/
+        Vector3 _newTopBottomSize = new Vector3(_top.transform.localScale.x + _size.x,
+                                        _top.transform.localScale.y + _size.z,
+                                        _top.transform.localScale.z);
+        _top.transform.localScale = _newTopBottomSize;
+        _bottom.transform.localScale = _newTopBottomSize;
+
+        /* Also if box depth changed, then we need to change Z position of the «Top» and
+            «Bottom» parts of the box to ensure that the «Rear» part is still attached to the wall.
+            To change this value, we need to change «Position Offset» in «Constraint Settings» in
+            «Parent Constraint» component using «SetTranslationOffset» method */
+        ParentConstraint _topParentConstraint = _top.GetComponent<ParentConstraint>();
+        // Get actual position offset
+        Vector3 _topConstrPositionOffset = _topParentConstraint.GetTranslationOffset(0);
+        // Change Z position offset
+        _topConstrPositionOffset.z = _topConstrPositionOffset.z - _size.z / 2;
+        // Set new position offset
+        _topParentConstraint.SetTranslationOffset(0, _topConstrPositionOffset);
+
+        ParentConstraint _bottomParentConstraint = _bottom.GetComponent<ParentConstraint>();
+        // Get actual position offset
+        Vector3 _bottomConstrPositionOffset = _bottomParentConstraint.GetTranslationOffset(0);
+        // Change Z position offset
+        _bottomConstrPositionOffset.z = _bottomConstrPositionOffset.z - _size.z / 2;
+        // Set new position offset
+        _bottomParentConstraint.SetTranslationOffset(0, _bottomConstrPositionOffset);
+
+        /* And finally we need to change center of the box collider of the «Constrain source» object
+            to ensure that the «Rear» part is still attached to the wall */
+        // Get the «Constrain source» object
+        GameObject _constrainSource = _topParentConstraint.GetSource(0).sourceTransform.gameObject;
+        // Change center of the box collider
+        _constrainSource.GetComponent<BoxCollider>().center = new Vector3(_constrainSource.GetComponent<BoxCollider>().center.x,
+                                                                        _constrainSource.GetComponent<BoxCollider>().center.y,
+                                                                        _constrainSource.GetComponent<BoxCollider>().center.z - _size.z / 2);
+
     }
 
     // Show marker
