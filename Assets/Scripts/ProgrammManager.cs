@@ -63,10 +63,15 @@ public class ProgrammManager : MonoBehaviour
         if (_obj != null)
         {
             // Print all local scale values and all lossyScale values with 2 decimal places
-            _sizeText.text = "Local scale: " + _obj.transform.localScale.ToString("F2") +
+            _sizeText.text = "Top: " + _obj.transform.Find("Top").localScale.ToString("F2") +
                             System.Environment.NewLine +
-                            "Lossy scale: " + _obj.transform.lossyScale.ToString("F2");
-
+                            "Left: " + _obj.transform.Find("Left").localScale.ToString("F2") +
+                            System.Environment.NewLine +
+                            "Right: " + _obj.transform.Find("Right").localScale.ToString("F2") +
+                            System.Environment.NewLine +
+                            "Rear: " + _obj.transform.Find("Rear").localScale.ToString("F2") +
+                            System.Environment.NewLine +
+                            "Bottom: " + _obj.transform.Find("Bottom").localScale.ToString("F2");
         }
         else
         {
@@ -84,29 +89,13 @@ public class ProgrammManager : MonoBehaviour
             SetObject();
         }
 
-        // MoveAndRotateObject();
-        // ShowPlaneMarker();
+        MoveAndRotateObject();
+        ShowPlaneMarker();
 
         GameObject _obj = GameObject.FindWithTag("Player");
         if (_obj != null)
         {
-            _obj = _obj.transform.Find("Top").gameObject;
             PrintObjectSize(_obj);
-        }
-
-        // TODO: remove. This is for debug
-        if (rotation)
-        {
-            rotation = false;
-            // Find object with name BoxParent
-            GameObject _boxParent = GameObject.Find("BoxParent");
-            Assert.IsNotNull(_boxParent, "BoxParent is null");
-            // Change Z axis size of the box collider
-            _boxParent.GetComponent<BoxCollider>().size =
-                new Vector3(_boxParent.GetComponent<BoxCollider>().size.x + 0.01f,
-                _boxParent.GetComponent<BoxCollider>().size.y + 0.01f,
-                _boxParent.GetComponent<BoxCollider>().size.z + 0.01f);
-
         }
     }
 
@@ -329,7 +318,27 @@ public class ProgrammManager : MonoBehaviour
 
                 float difference = currentMagnitude - prevMagnitude;
 
-                _selectedObject.transform.localScale += new Vector3(difference * 0.001f, difference * 0.001f, difference * 0.001f);
+                // Find object with name BoxParent
+                GameObject _boxParent = GameObject.Find("BoxParent");
+                Assert.IsNotNull(_boxParent, "BoxParent is null");
+
+                // Get current size of box collider
+                Vector3 _boxSize = _boxParent.GetComponent<BoxCollider>().size;
+                // Change size of box collider
+                _boxSize = new Vector3(_boxSize.x + difference * 0.001f,
+                                        _boxSize.y + difference * 0.001f,
+                                        _boxSize.z + difference * 0.001f);
+                // Check if new size is more than 0.1
+                if (_boxSize.x > 0.1f && _boxSize.y > 0.1f && _boxSize.z > 0.1f)
+                {
+                    // Change size of box collider
+                    _boxParent.GetComponent<BoxCollider>().size = _boxSize;
+                }
+                else
+                {
+                    // Change size of box collider
+                    _boxParent.GetComponent<BoxCollider>().size = new Vector3(0.1f, 0.1f, 0.1f);
+                }
             }
 
             if (touch.phase == TouchPhase.Ended)

@@ -109,13 +109,24 @@ struct InterfaceFuncInvoker2
 		return ((Func)invokeData.methodPtr)(obj, p1, p2, invokeData.method);
 	}
 };
+template <typename T1>
+struct InvokerActionInvoker1;
+template <typename T1>
+struct InvokerActionInvoker1<T1*>
+{
+	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1)
+	{
+		void* params[1] = { p1 };
+		method->invoker_method(methodPtr, method, obj, params, params[0]);
+	}
+};
 template <typename T1, typename T2>
 struct InvokerActionInvoker2
 {
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1 p1, T2 p2)
 	{
 		void* params[2] = { &p1, &p2 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[1]);
 	}
 };
 template <typename T1, typename T2>
@@ -124,7 +135,7 @@ struct InvokerActionInvoker2<T1*, T2>
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1, T2 p2)
 	{
 		void* params[2] = { p1, &p2 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[1]);
 	}
 };
 template <typename T1, typename T2, typename T3>
@@ -135,7 +146,7 @@ struct InvokerActionInvoker3<T1*, T2, T3>
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1, T2 p2, T3 p3)
 	{
 		void* params[3] = { p1, &p2, &p3 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[2]);
 	}
 };
 template <typename T1, typename T2, typename T3>
@@ -144,7 +155,7 @@ struct InvokerActionInvoker3<T1*, T2*, T3>
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1, T2* p2, T3 p3)
 	{
 		void* params[3] = { p1, p2, &p3 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[2]);
 	}
 };
 
@@ -158,12 +169,12 @@ struct Action_1_tE8693FF0E67CDBA52BAFB211BFF1844D076ABAFB;
 struct Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2;
 // System.Action`1<UnityEngine.XR.XRInputSubsystem>
 struct Action_1_tC867D66471C553CFFF8707FF2C59FB7AAB03086A;
-// System.Action`2<System.Int32Enum,System.IntPtr>
-struct Action_2_tA2A44C5EC0AA8ABD34B0529307EDC2F3311F7870;
-// System.Action`2<System.Object,System.Boolean>
-struct Action_2_t5BCD350E28ADACED656596CC308132ED74DA0915;
+// System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99;
 // System.Action`2<System.String,System.Boolean>
 struct Action_2_t79388C33CD9A9EDFE5BE17BE73F59AB95415B00A;
+// System.Action`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8;
 // System.Action`2<UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi/ArAvailability,System.IntPtr>
 struct Action_2_tDDC5AFE3871F6D7726DE92277BC51B2C095A120F;
 // System.Action`2<UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi/ArPrestoApkInstallStatus,System.IntPtr>
@@ -172,6 +183,8 @@ struct Action_2_t573664FBF88DEE17C18D89D868A092835F175F07;
 struct Action_3_t9E9F00CC6AC96764CAB10CF74EBB4050022802E3;
 // System.Action`3<System.IntPtr,UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter>
 struct Action_3_t11564F1AD4C5840C281621F3C44F2743DFF69209;
+// System.Action`3<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_3_t838D6B6BB4BFFC6E8430C389747DB008A0B26146;
 // System.Collections.Generic.Dictionary`2<System.Int32,System.Text.Encoding>
 struct Dictionary_2_t87EDE08B2E48F793A22DE50D6B3CC2E7EBB2DB54;
 // System.Collections.Generic.Dictionary`2<System.Type,UnityEngine.ISubsystem>
@@ -180,16 +193,16 @@ struct Dictionary_2_tCDC65F572855EBDD1C12CEE33EBEBE0131F60C9C;
 struct Func_1_t2BE7F58348C9CC544A8973B3A9E55541DE43C457;
 // System.Func`1<System.Guid>
 struct Func_1_t795BA1461C14377291BD8B37CC2DF979C31BF318;
-// System.Func`1<System.Int32Enum>
-struct Func_1_tA8F91C23675D323D5C9C1F3D2FAA8008CB1EF551;
 // System.Func`1<UnityEngine.XR.ARSubsystems.Supported>
 struct Func_1_t778056BE8A070F696DB064AC7FBD1F996A928ED2;
-// System.Collections.Generic.HashSet`1<System.Int32Enum>
-struct HashSet_1_t2EC13BE6E93BB0C99D5CF97A25799B40FD6CBAF4;
+// System.Func`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431;
 // System.Collections.Generic.HashSet`1<UnityEngine.TextureFormat>
 struct HashSet_1_t2D550A7AEEE730305B5362D0CFDA1CADC3A69992;
 // System.Collections.Generic.HashSet`1<UnityEngine.XR.Management.XRLoader>
 struct HashSet_1_t174593AE6599738C19A33586587D63534CED9F0F;
+// System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87;
 // System.Collections.Generic.IEqualityComparer`1<UnityEngine.TextureFormat>
 struct IEqualityComparer_1_tF69E6924FA30FB3B1A5ADE4FC1CE3DA39DF4749D;
 // System.Collections.Generic.IReadOnlyDictionary`2<System.String,System.Byte[]>
@@ -198,8 +211,6 @@ struct IReadOnlyDictionary_2_t97FD4FEBA26DC444E19159FCE117EB26780A1816;
 struct IReadOnlyList_1_tA80C12111618D2D89FCD26036BFD26E605419A2A;
 // System.Collections.Generic.KeyValuePair`2<UnityEngine.InputSystem.Utilities.InternedString,System.Object>
 struct KeyValuePair_2_tC24A74EF64A292F5C6BA77D0B04CD6620D2DE3AC;
-// System.Collections.Generic.List`1<System.Object>
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D;
 // System.Collections.Generic.List`1<System.String>
 struct List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD;
 // System.Collections.Generic.List`1<System.UInt64>
@@ -230,12 +241,14 @@ struct List_1_t97C3D1A8E80E095D7CE223BC4D02400F78DA063F;
 struct List_1_t23F59D024DFD759F7295EBC6C25BD5F56992C950;
 // System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRSessionSubsystemDescriptor>
 struct List_1_tC86363A0A1DF8199DB382C6CDB5A1254F8660A34;
-// UnityEngine.XR.ARSubsystems.Promise`1<System.Int32Enum>
-struct Promise_1_tF93E504A18090E7276B6F9EF5AA27230E9A641CB;
+// System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A;
 // UnityEngine.XR.ARSubsystems.Promise`1<UnityEngine.XR.ARSubsystems.SessionAvailability>
 struct Promise_1_t7BC5F1754A27CF06571C0C51E5893AE44146B274;
 // UnityEngine.XR.ARSubsystems.Promise`1<UnityEngine.XR.ARSubsystems.SessionInstallationStatus>
 struct Promise_1_t5FC5C28B835D1A44C362235B30176D38FCBC7DEC;
+// UnityEngine.XR.ARSubsystems.Promise`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Promise_1_tDF175E3233C815DA21D8B6CA42B9C7728AFDF278;
 // UnityEngine.XR.ARSubsystems.SerializableDictionary`2<System.String,System.Byte[]>
 struct SerializableDictionary_2_t43C5D129793FC3216489482F7A8B933128D7F0A8;
 // UnityEngine.SubsystemsImplementation.SubsystemWithProvider`3<System.Object,System.Object,System.Object>
@@ -292,6 +305,8 @@ struct XRPlaneSubsystemDescriptorU5BU5D_t4BBEF639E821D462DF742BD33C6E8004B4A6678
 struct XRRaycastSubsystemDescriptorU5BU5D_t775E51EED5B1118C201510E73919FB2EF1C9707F;
 // UnityEngine.XR.ARSubsystems.XRSessionSubsystemDescriptor[]
 struct XRSessionSubsystemDescriptorU5BU5D_tC31A2840B7CA880C5C8629D9FD8827ADBD348905;
+// Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType[]
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC;
 // UnityEngine.XR.ARCore.ARCoreAnchorSubsystem
 struct ARCoreAnchorSubsystem_t9BAB1503EB4D93C36B0CB273C7138A0D23F21E84;
 // UnityEngine.XR.ARCore.ARCoreCameraSubsystem
@@ -852,6 +867,7 @@ struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771;
 struct ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918;
 struct StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248;
 struct TextureFormatU5BU5D_t57C94D6A95145D00C2952E20E5E1E531EB1364C9;
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC;
 
 IL2CPP_EXTERN_C_BEGIN
 IL2CPP_EXTERN_C_END
@@ -867,15 +883,15 @@ struct U3CModuleU3E_t0911AE74D967C36DFD2EB5D36583B65FF7689548
 {
 };
 
-// System.EmptyArray`1<System.Object>
-struct EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE  : public RuntimeObject
+// System.EmptyArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80  : public RuntimeObject
 {
 };
 
-struct EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE_StaticFields
+struct EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80_StaticFields
 {
 	// T[] System.EmptyArray`1::Value
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___Value_0;
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___Value_0;
 };
 
 // System.Collections.Generic.HashSet`1<UnityEngine.TextureFormat>
@@ -897,25 +913,6 @@ struct HashSet_1_t2D550A7AEEE730305B5362D0CFDA1CADC3A69992  : public RuntimeObje
 	int32_t ____version_13;
 	// System.Runtime.Serialization.SerializationInfo System.Collections.Generic.HashSet`1::_siInfo
 	SerializationInfo_t3C47F63E24BEB9FCE2DC6309E027F238DC5C5E37* ____siInfo_14;
-};
-
-// System.Collections.Generic.List`1<System.Object>
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D  : public RuntimeObject
-{
-	// T[] System.Collections.Generic.List`1::_items
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ____items_1;
-	// System.Int32 System.Collections.Generic.List`1::_size
-	int32_t ____size_2;
-	// System.Int32 System.Collections.Generic.List`1::_version
-	int32_t ____version_3;
-	// System.Object System.Collections.Generic.List`1::_syncRoot
-	RuntimeObject* ____syncRoot_4;
-};
-
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D_StaticFields
-{
-	// T[] System.Collections.Generic.List`1::s_emptyArray
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___s_emptyArray_5;
 };
 
 // System.Collections.Generic.List`1<System.String>
@@ -1163,6 +1160,25 @@ struct List_1_tC86363A0A1DF8199DB382C6CDB5A1254F8660A34_StaticFields
 {
 	// T[] System.Collections.Generic.List`1::s_emptyArray
 	XRSessionSubsystemDescriptorU5BU5D_tC31A2840B7CA880C5C8629D9FD8827ADBD348905* ___s_emptyArray_5;
+};
+
+// System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A  : public RuntimeObject
+{
+	// T[] System.Collections.Generic.List`1::_items
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ____items_1;
+	// System.Int32 System.Collections.Generic.List`1::_size
+	int32_t ____size_2;
+	// System.Int32 System.Collections.Generic.List`1::_version
+	int32_t ____version_3;
+	// System.Object System.Collections.Generic.List`1::_syncRoot
+	RuntimeObject* ____syncRoot_4;
+};
+
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A_StaticFields
+{
+	// T[] System.Collections.Generic.List`1::s_emptyArray
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___s_emptyArray_5;
 };
 
 // UnityEngine.XR.ARCore.ARCoreLoaderConstants
@@ -1668,6 +1684,17 @@ struct NativeArray_1_tC503E651BA1B71B961BBC7485E923DD431EFCC66
 	int32_t ___m_AllocatorLabel_2;
 };
 
+// Unity.Collections.NativeArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>
+struct NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 
+{
+	// System.Void* Unity.Collections.NativeArray`1::m_Buffer
+	void* ___m_Buffer_0;
+	// System.Int32 Unity.Collections.NativeArray`1::m_Length
+	int32_t ___m_Length_1;
+	// Unity.Collections.Allocator Unity.Collections.NativeArray`1::m_AllocatorLabel
+	int32_t ___m_AllocatorLabel_2;
+};
+
 // Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/FaceRegionWithARCorePose>
 struct NativeArray_1_tCEE7A6C5C16F401CA6D402D369B93DFA83F57BA5 
 {
@@ -1692,6 +1719,17 @@ struct NativeSlice_1_tCEC4B2B900638EC1820BB61FE436766204DFD8DA
 
 // Unity.Collections.NativeSlice`1<System.Single>
 struct NativeSlice_1_t173266145AD9873C4FE45D91583856BC2DDCDF75 
+{
+	// System.Byte* Unity.Collections.NativeSlice`1::m_Buffer
+	uint8_t* ___m_Buffer_0;
+	// System.Int32 Unity.Collections.NativeSlice`1::m_Stride
+	int32_t ___m_Stride_1;
+	// System.Int32 Unity.Collections.NativeSlice`1::m_Length
+	int32_t ___m_Length_2;
+};
+
+// Unity.Collections.NativeSlice`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>
+struct NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52 
 {
 	// System.Byte* Unity.Collections.NativeSlice`1::m_Buffer
 	uint8_t* ___m_Buffer_0;
@@ -1907,6 +1945,9 @@ struct ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D
 	// T2 System.ValueTuple`2::Item2
 	int32_t ___Item2_1;
 };
+
+// System.ValueTuple`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+typedef Il2CppFullySharedGenericStruct ValueTuple_2_tBAA1E1D7D97D80E0EBA7FE8773B1FF409AEA3829;
 
 // UnityEngine.XR.ARCore.ARCoreCpuImageApi
 struct ARCoreCpuImageApi_t8203AD89D30A3D50749A9F6DD6D79E2C391286D7  : public Api_tAE210A8378E537AFD1FA4B99562229CE842377FB
@@ -2910,6 +2951,9 @@ struct Nullable_1_tAC9037ECF4C188DFFE614617119CAC19A784F9FD
 	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___value_1;
 };
 
+// System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>
+typedef Il2CppFullySharedGenericStruct Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339;
+
 // UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.BoundedPlane>
 struct TrackableChanges_1_tFC79B2E1FF9EFB1D5754F6995583D33A519F300F 
 {
@@ -3001,6 +3045,19 @@ struct TrackableChanges_1_t5289D1DB76FBCB9C1A7B387927387F4299599C1E
 	NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E ___m_Removed_3;
 };
 
+// UnityEngine.XR.ARSubsystems.TrackableChanges`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>
+struct TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD 
+{
+	// System.Boolean UnityEngine.XR.ARSubsystems.TrackableChanges`1::<isCreated>k__BackingField
+	bool ___U3CisCreatedU3Ek__BackingField_0;
+	// Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.TrackableChanges`1::m_Added
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 ___m_Added_1;
+	// Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.TrackableChanges`1::m_Updated
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 ___m_Updated_2;
+	// Unity.Collections.NativeArray`1<UnityEngine.XR.ARSubsystems.TrackableId> UnityEngine.XR.ARSubsystems.TrackableChanges`1::m_Removed
+	NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E ___m_Removed_3;
+};
+
 // UnityEngine.XR.ARSubsystems.TrackingSubsystem`4<UnityEngine.XR.ARSubsystems.BoundedPlane,UnityEngine.XR.ARSubsystems.XRPlaneSubsystem,UnityEngine.XR.ARSubsystems.XRPlaneSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRPlaneSubsystem/Provider>
 struct TrackingSubsystem_4_t6A4D8CCD1F1694558E2CC65E84F2376ED1018B1B  : public SubsystemWithProvider_3_tE2E94AA2ED69A0B1D8AFC10351E3A4D199EE973A
 {
@@ -3035,6 +3092,9 @@ struct TrackingSubsystem_4_t36B7E963263063D29AD906549E77576FAA31C385  : public S
 struct TrackingSubsystem_4_tB7FCF25CAC299E60D9488336C9CBC34A94E8AD78  : public SubsystemWithProvider_3_tD731AAC554B5A386083FF524D97FBA7F2B61C61E
 {
 };
+
+// UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/Triangle`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>
+typedef Il2CppFullySharedGenericStruct Triangle_1_tD62E2E6C9A76BB7E4E7FC4792F0D00BB5A095467;
 
 // <PrivateImplementationDetails>
 struct U3CPrivateImplementationDetailsU3E_tA4EA68D5F0F0746E073B835B0D18AF04ACB9AD01  : public RuntimeObject
@@ -4634,13 +4694,18 @@ struct Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2  : public MulticastDel
 {
 };
 
-// System.Action`2<System.Object,System.Boolean>
-struct Action_2_t5BCD350E28ADACED656596CC308132ED74DA0915  : public MulticastDelegate_t
+// System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99  : public MulticastDelegate_t
 {
 };
 
 // System.Action`2<System.String,System.Boolean>
 struct Action_2_t79388C33CD9A9EDFE5BE17BE73F59AB95415B00A  : public MulticastDelegate_t
+{
+};
+
+// System.Action`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8  : public MulticastDelegate_t
 {
 };
 
@@ -5086,219 +5151,280 @@ struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771  : public Runtim
 		Il2CppCodeGenWriteBarrier((void**)m_Items + index, (void*)value);
 	}
 };
+// Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType[]
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC  : public RuntimeArray
+{
+	ALIGN_FIELD (8) uint8_t m_Items[1];
+
+	inline uint8_t* GetAddressAt(il2cpp_array_size_t index)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items + il2cpp_array_calc_byte_offset(this, index);
+	}
+	inline uint8_t* GetAddressAtUnchecked(il2cpp_array_size_t index)
+	{
+		return m_Items + il2cpp_array_calc_byte_offset(this, index);
+	}
+};
 
 
-// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRAnchor>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_mF0606DD2BB9C43B53F65F857EC829D41C7745A0A_gshared (TrackableChanges_1_t6971CD7F709E7353F4365FE06A109B21A0F0C931* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRAnchor_tDD427E66CAA09DE7B058EA76223EF7DC3880FE82 ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method) ;
+// System.Void System.ValueTuple`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(T1,T2)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ValueTuple_2__ctor_mCAE8E725F680FA6BE2C23B9686C9F6056BB7E5CD_gshared (ValueTuple_2_tBAA1E1D7D97D80E0EBA7FE8773B1FF409AEA3829* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item10, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item21, const RuntimeMethod* method) ;
+// System.Boolean System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_HasValue()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, const RuntimeMethod* method) ;
+// T System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::GetValueOrDefault()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Nullable_1_GetValueOrDefault_mC057FBD944AF068B90EBDD0B496231A01B2A4228_gshared_inline (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, Il2CppFullySharedGenericStruct* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::.ctor(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___value0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_m19BF1F09CAD376FA000FCA5EAF8AFF35FD898576_gshared (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method) ;
 // TProvider UnityEngine.SubsystemsImplementation.SubsystemWithProvider`3<System.Object,System.Object,System.Object>::get_provider()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* SubsystemWithProvider_3_get_provider_m963D70D839CE42A2C17A2C183A61C25F0E2C6732_gshared_inline (SubsystemWithProvider_3_t548D9C2A4778C7ADB62496A2A07F8B7563309893* __this, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.NativeCopyUtility::PtrToNativeArrayWithDefault<UnityEngine.XR.ARSubsystems.XRCameraConfiguration>(T,System.Void*,System.Int32,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_tAE1C2CA4717E405609ED9F96E485A9FE00E622D6 NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63_m703344A67C5AC2A962E59337A7E50F2AB13F3600_gshared (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 ___defaultT0, void* ___source1, int32_t ___sourceElementSize2, int32_t ___length3, int32_t ___allocator4, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<UnityEngine.XR.ARSubsystems.XRCameraConfiguration>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m21E0BDFE5AEE60B802C089371A4A8877CB0AF721_gshared (Nullable_1_t4F11BA1306120798159EC97ABA03E6731032A09F* __this, XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 ___value0, const RuntimeMethod* method) ;
-// T System.Nullable`1<UnityEngine.XR.ARSubsystems.XRCameraConfiguration>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 Nullable_1_get_Value_m4ADE2838E179292BEB0F37EEE8B351AAD6610DD6_gshared (Nullable_1_t4F11BA1306120798159EC97ABA03E6731032A09F* __this, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.NativeCopyUtility::PtrToNativeArrayWithDefault<UnityEngine.XR.ARSubsystems.XRTextureDescriptor>(T,System.Void*,System.Int32,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_t6C2613A1D4A03EFEE59BBADBC529386D1205D01C NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRTextureDescriptor_t699023EDE6E2593F61CE969A68B5E56CD04CFA19_m354F27CE0E63D75D5FF70ADFE712D0E08D1FF9A3_gshared (XRTextureDescriptor_t699023EDE6E2593F61CE969A68B5E56CD04CFA19 ___defaultT0, void* ___source1, int32_t ___sourceElementSize2, int32_t ___length3, int32_t ___allocator4, const RuntimeMethod* method) ;
-// System.Void System.Action`1<UnityEngine.XR.ARCore.ARCoreBeforeGetCameraConfigurationEventArgs>::Invoke(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m651DBA72A6EDCD23A701202FF8EADFDAA47EE0AC_gshared_inline (Action_1_t9F90E7000DF8062F6211B6C752125F079812471A* __this, ARCoreBeforeGetCameraConfigurationEventArgs_t9368C5A015241C02E50D864D77FDFC2D223FA451 ___obj0, const RuntimeMethod* method) ;
-// System.Void System.Action`3<System.IntPtr,UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_3__ctor_m72E4B6489B11B10B2B1A1E9E23B0D88F4DA00C25_gshared (Action_3_t11564F1AD4C5840C281621F3C44F2743DFF69209* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.HashSet`1<System.Int32Enum>::Contains(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HashSet_1_Contains_mC7FB9D44EF9B75D89964DC508B4B08D8DA98339E_gshared (HashSet_1_t2EC13BE6E93BB0C99D5CF97A25799B40FD6CBAF4* __this, int32_t ___item0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.HashSet`1<System.Int32Enum>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HashSet_1__ctor_mD2BBE225041537B7240E453D3E14991EB2169E2C_gshared (HashSet_1_t2EC13BE6E93BB0C99D5CF97A25799B40FD6CBAF4* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.HashSet`1<System.Int32Enum>::Add(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HashSet_1_Add_m4F8BBB0C65C72E41F10A7F83E2963B71A631153C_gshared (HashSet_1_t2EC13BE6E93BB0C99D5CF97A25799B40FD6CBAF4* __this, int32_t ___item0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XREnvironmentProbe>::.ctor(System.Int32,System.Int32,System.Int32,Unity.Collections.Allocator,T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_m04EC64BAFAB595ADE7B0C7E4E5A2C2F04DFDE444_gshared (TrackableChanges_1_t03BF8B384A61E7421A4748384189C50C3A2C323F* __this, int32_t ___addedCount0, int32_t ___updatedCount1, int32_t ___removedCount2, int32_t ___allocator3, XREnvironmentProbe_tAA657FAB648E2599B519F9FD66A1CEED65034DD9 ___defaultValue4, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<UnityEngine.XR.ARSubsystems.TrackableId> UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XREnvironmentProbe>::get_removed()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E TrackableChanges_1_get_removed_mB692C4B8E9682871345D028184FD08CA66224E56_gshared_inline (TrackableChanges_1_t03BF8B384A61E7421A4748384189C50C3A2C323F* __this, const RuntimeMethod* method) ;
-// System.Boolean Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ARCoreFaceRegionData>::get_IsCreated()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool NativeArray_1_get_IsCreated_m4E26A204A78BB781973BC9A4A723A53CA6E6C99F_gshared (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A* __this, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ARCoreFaceRegionData>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1_Dispose_mC861B7FB8987BB8C932B99AED4A3A0EF98CDE1DC_gshared (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A* __this, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ARCoreFaceRegionData>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_mF3AC96F90E3CABE7951140755ED6CB970EE4369F_gshared (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/FaceRegionWithARCorePose>(System.Void*,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_tCEE7A6C5C16F401CA6D402D369B93DFA83F57BA5 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisFaceRegionWithARCorePose_tB9B76D03166A36772E2545A2BF0551E85BE30CAA_mA2C5076590C7A87B9EB3C615288E63C34D97A4DF_gshared (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/TransformPoseJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformPoseJob_t39D1DBD5539A5D5445C2230FCD0DDBBDE99FD6FF_m8711FE5224F9A53BC2107CB475354702EDE994CF_gshared (TransformPoseJob_t39D1DBD5539A5D5445C2230FCD0DDBBDE99FD6FF ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.Vector3>(System.Void*,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisVector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_m9A085600C320307AD71C833F0352693C75103D4C_gshared (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/TransformVerticesJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformVerticesJob_t7191B4ACF5EFD19AB9EAD47A1E930D381652C2E2_m4FD710A72D7AF8EF6E7B9C611A736A8B5AAC8E43_gshared (TransformVerticesJob_t7191B4ACF5EFD19AB9EAD47A1E930D381652C2E2 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.Vector2>(System.Void*,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m8CC23F9B357DD3415FAB8C319466BEAA6365AF44_gshared (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/TransformUVsJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformUVsJob_t53238C05FF0E6AD13634989ABC6D54535C4DC50D_mDE2D246162D7E3A9A1AEE2AEA7BABF861F6B7498_gshared (TransformUVsJob_t53238C05FF0E6AD13634989ABC6D54535C4DC50D ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/Triangle`1<System.UInt16>>(System.Void*,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_tCCC271D553130CD49535607AC9E7F4C877F67AFC NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisTriangle_1_t37AD500EBA0FF178D5A11334D2731DE378640303_m37AF2E82F20B6B250C1D991696FE04203DC80523_gshared (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method) ;
-// System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<System.Int32>(Unity.Collections.NativeArray`1<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* NativeArrayUnsafeUtility_GetUnsafePtr_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_mD2D9DC546B80A05000B107C8E09FAA4BED3B2144_gshared (NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C ___nativeArray0, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/Triangle`1<System.Int32>>(System.Void*,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_tD44577047DE907F1AB2FD07CE1AD03D0D60CEB90 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisTriangle_1_tCB71783FB3769A6B5EC63107AA1E6A0C2F41283C_m3B5FFE85F45695424C7786C9C174AF53885A4F22_gshared (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/TransformIndicesJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformIndicesJob_tB9B054D8BC8E9A685DEA1CE50771CE1FB9F65FEC_m7CB8F6A2644FB5BCF3C55700CDFDC15DE4A76852_gshared (TransformIndicesJob_tB9B054D8BC8E9A685DEA1CE50771CE1FB9F65FEC ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRFace>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_mB6C11A3B1AA676D62783C7DAF2BE0BBA80D7874B_gshared (TrackableChanges_1_t244050823CF4D8F3C9DFAE4AB0CEFA639C719119* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRFace_t235F951F4AC7CC6A0CA6829CECA05210D64982FB ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/Triangle`1<System.Int32>::.ctor(T,T,T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Triangle_1__ctor_m6431E62F150798F62D16D1A41967D58AEDD71D84_gshared (Triangle_1_tCB71783FB3769A6B5EC63107AA1E6A0C2F41283C* __this, int32_t ___a0, int32_t ___b1, int32_t ___c2, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ManagedReferenceImage>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1_Dispose_m6146CB6DA0D631F40DF6C7916AF2B9AECC400A00_gshared (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF* __this, const RuntimeMethod* method) ;
-// UnityEngine.XR.ARCore.NativeView UnityEngine.XR.ARCore.NativeViewExtensions::AsNativeView<UnityEngine.XR.ARCore.ManagedReferenceImage>(Unity.Collections.NativeArray`1<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeView_t8F56B92E78CD2A5400305F0695DC7FE7455408F1 NativeViewExtensions_AsNativeView_TisManagedReferenceImage_tACB6E8B16DD2F176EAB1A08349B2092C1194E7FE_m14EA2D6A7D5675F91BC41D77EF0284193E0A2C41_gshared (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF ___array0, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<System.Byte>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_m981CC7E27B6C9946024877F2696920951443B04F_gshared (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<System.Byte>(Unity.Collections.NativeArray`1<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* NativeArrayUnsafeUtility_GetUnsafePtr_TisByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_m8CFDB2DF56E810A2E2FB3686AF676FCAC65AFCC2_gshared (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF ___nativeArray0, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<System.Byte>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1_Dispose_m8B0F342847ECB90EB814E1F6AA5BF7DC2F271AEA_gshared (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF* __this, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreImageDatabase/AddImageJob>(T,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobExtensions_Schedule_TisAddImageJob_t39C08496B14A24EC0F1D26EA4114EF3BEFEB329F_mCACB14652BB6DB728FE6E375A21EAC28A0D7060E_gshared (AddImageJob_t39C08496B14A24EC0F1D26EA4114EF3BEFEB329F ___jobData0, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn1, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRTrackedImage>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_mEE4B03B437265DB6A153AB3E05FA9B216CBEEA20_gshared (TrackableChanges_1_t5289D1DB76FBCB9C1A7B387927387F4299599C1E* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRTrackedImage_t0F99DAB96B2D6422D0F8DA720F9BEFD3655DDFDD ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<System.Object,System.Object>(System.Collections.Generic.List`1<TDescriptor>,System.String)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* ___descriptors0, String_t* ___id1, const RuntimeMethod* method) ;
+// Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.NativeCopyUtility::PtrToNativeArrayWithDefault<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(T,System.Void*,System.Int32,System.Int32,Unity.Collections.Allocator)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 NativeCopyUtility_PtrToNativeArrayWithDefault_TisIl2CppFullySharedGenericStruct_m5DB57E174831F787CAF177A674881BD0F8DC0C64_gshared (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___defaultT0, void* ___source1, int32_t ___sourceElementSize2, int32_t ___length3, int32_t ___allocator4, const RuntimeMethod* method) ;
+// T System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_Value()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, Il2CppFullySharedGenericStruct* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Invoke(T)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___obj0, const RuntimeMethod* method) ;
+// System.Void System.Action`3<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_3__ctor_mFC076EF2A48CF6C01932E82D2F23489658D5D9B4_gshared (Action_3_t838D6B6BB4BFFC6E8430C389747DB008A0B26146* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Contains(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HashSet_1_Contains_m6D40586EE21316C2647D81169AFFF9B4C7719F74_gshared (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HashSet_1__ctor_m5E12B490550D90B0686D55F8F4E7B0506BD07120_gshared (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HashSet_1_Add_m73E14DB94D21272EEE1E28E4D74704B0095D8064_gshared (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::.ctor(System.Int32,System.Int32,System.Int32,Unity.Collections.Allocator,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_m04218AF0632242E36F370817C60BEF59514847C0_gshared (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD* __this, int32_t ___addedCount0, int32_t ___updatedCount1, int32_t ___removedCount2, int32_t ___allocator3, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___defaultValue4, const RuntimeMethod* method) ;
+// Unity.Collections.NativeArray`1<UnityEngine.XR.ARSubsystems.TrackableId> UnityEngine.XR.ARSubsystems.TrackableChanges`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_removed()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E TrackableChanges_1_get_removed_mAB913A3B635F6ABE4EF7A3CD18B3C120DD5F2738_gshared_inline (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD* __this, const RuntimeMethod* method) ;
+// System.Boolean Unity.Collections.NativeArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_IsCreated()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool NativeArray_1_get_IsCreated_m527A2C3B75C25BFF29D1D9EA88C81172FF4F5A5A_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* __this, const RuntimeMethod* method) ;
+// System.Void Unity.Collections.NativeArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1_Dispose_m365A262FA4CA431467F021D7732CECD68316AF80_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* __this, const RuntimeMethod* method) ;
+// System.Void Unity.Collections.NativeArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
+// Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(System.Void*,System.Int32,Unity.Collections.Allocator)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisIl2CppFullySharedGenericStruct_m6920C14D4E38FAB84BD2B5F148CE70DF7F224F52_gshared (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method) ;
+// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
+// System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(Unity.Collections.NativeArray`1<T>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* NativeArrayUnsafeUtility_GetUnsafePtr_TisIl2CppFullySharedGenericStruct_m4AB802D5B1B296D0F976C1E7631699B0C4A4D00F_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 ___nativeArray0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/Triangle`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::.ctor(T,T,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Triangle_1__ctor_m7042483AA858DB29B29119CE6D3DB8A391396C6F_gshared (Triangle_1_tD62E2E6C9A76BB7E4E7FC4792F0D00BB5A095467* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___a0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___b1, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___c2, const RuntimeMethod* method) ;
+// UnityEngine.XR.ARCore.NativeView UnityEngine.XR.ARCore.NativeViewExtensions::AsNativeView<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(Unity.Collections.NativeArray`1<T>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeView_t8F56B92E78CD2A5400305F0695DC7FE7455408F1 NativeViewExtensions_AsNativeView_TisIl2CppFullySharedGenericStruct_m3EA09587D372D3CDB9B4426F269F9EF1A6CB2121_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 ___array0, const RuntimeMethod* method) ;
+// Unity.Jobs.JobHandle Unity.Jobs.IJobExtensions::Schedule<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(T,Unity.Jobs.JobHandle)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobExtensions_Schedule_TisIl2CppFullySharedGenericStruct_mF266365A1A83D3A8671F9B001353E6658E321E57_gshared (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___jobData0, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn1, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(System.Collections.Generic.List`1<TDescriptor>,System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* ___descriptors0, String_t* ___id1, const RuntimeMethod* method) ;
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::DestroySubsystem<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XRLoaderHelper_DestroySubsystem_TisRuntimeObject_mF0CB81C6BD9DA12D6E8C21703A18E939389A1185_gshared (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
-// System.Void System.Func`1<System.Int32Enum>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Func_1__ctor_mB72E02E4A5EAA72E35D6DEBAE357C0AE7920088A_gshared (Func_1_tA8F91C23675D323D5C9C1F3D2FAA8008CB1EF551* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::Add(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// ReturnType UnityEngine.AndroidJavaObject::Call<System.Boolean>(System.String,System.Object[])
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool AndroidJavaObject_Call_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_m05D3284A3FA772D032190A0FE82363C61000F1DF_gshared (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* __this, String_t* ___methodName0, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___args1, const RuntimeMethod* method) ;
-// System.Void System.Action`2<System.Object,System.Boolean>::Invoke(T1,T2)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_2_Invoke_mB2DD87F61EB655A33F6277F1E277246CE23B6625_gshared_inline (Action_2_t5BCD350E28ADACED656596CC308132ED74DA0915* __this, RuntimeObject* ___arg10, bool ___arg21, const RuntimeMethod* method) ;
-// FieldType UnityEngine.AndroidJavaObject::GetStatic<System.Object>(System.String)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AndroidJavaObject_GetStatic_TisRuntimeObject_m4EF4E4761A0A6E99E0A298F653E8129B1494E4C9_gshared (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* __this, String_t* ___fieldName0, const RuntimeMethod* method) ;
-// T[] System.Array::Empty<System.Object>()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline (const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARSubsystems.XRPlaneSubsystem/Provider::CreateOrResizeNativeArrayIfNecessary<UnityEngine.Vector2>(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArray`1<T>&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Provider_CreateOrResizeNativeArrayIfNecessary_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m3FF6126D31B18EF8F02A921B6EF41A436C07AB3E_gshared (int32_t ___length0, int32_t ___allocator1, NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70* ___array2, const RuntimeMethod* method) ;
-// System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<UnityEngine.Vector2>(Unity.Collections.NativeArray`1<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* NativeArrayUnsafeUtility_GetUnsafePtr_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m2B0D2CB30FDAA96454AA1E55D86254BBE984DA53_gshared (NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70 ___nativeArray0, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCorePlaneSubsystem/ARCoreProvider/FlipBoundaryHandednessJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisFlipBoundaryHandednessJob_t524C3EDC001476D81B80054EEF33E12BE40164B9_m1AE3703C47C3E65CD26A3A2AE77C77D2F2EA57B0_gshared (FlipBoundaryHandednessJob_t524C3EDC001476D81B80054EEF33E12BE40164B9 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobExtensions::Schedule<UnityEngine.XR.ARCore.ARCorePlaneSubsystem/ARCoreProvider/FlipBoundaryWindingJob>(T,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobExtensions_Schedule_TisFlipBoundaryWindingJob_tA5962E4B7968E117AAD4117EEDECADBA3B767512_m2F91B5C629E78AA0BFD5AEF5E4DE31F6A38AD16D_gshared (FlipBoundaryWindingJob_tA5962E4B7968E117AAD4117EEDECADBA3B767512 ___jobData0, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn1, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<UnityEngine.Vector2>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1_Dispose_m78ECC3FE24D545255D9CFABB81FC34CA6CC2A4A7_gshared (NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.BoundedPlane>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_m20EC72CF73EBF4EFF269979448BF3DF59AE27ECD_gshared (TrackableChanges_1_tFC79B2E1FF9EFB1D5754F6995583D33A519F300F* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, BoundedPlane_tF51C315A8961EB42F0A1B60D47158646E5AF75CE ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRRaycast>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_mB681BD9D3A46140C4ACCD96865A0A4E8AED3C0D9_gshared (TrackableChanges_1_t097463074AB33F65828FED3152F6A605C0B114A5* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRRaycast_t100015712885CDF4EF42820EB36277DC6DDC8103 ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.NativeCopyUtility::PtrToNativeArrayWithDefault<UnityEngine.XR.ARSubsystems.XRRaycastHit>(T,System.Void*,System.Int32,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_t1ABEAB84724CAEAFCB8767B8502FD3185AC9CAD0 NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRRaycastHit_t87A29A58C1D41AF1B3995B73777A7494B0695780_m2DBC49A37FAB938DC67DB6443873A837B0809B82_gshared (XRRaycastHit_t87A29A58C1D41AF1B3995B73777A7494B0695780 ___defaultT0, void* ___source1, int32_t ___sourceElementSize2, int32_t ___length3, int32_t ___allocator4, const RuntimeMethod* method) ;
-// System.Void System.Action`1<UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m3C9AE48DFF42A535948B243A7777D94D20F71E34_gshared (Action_1_t50A1540EA73609CB8D3B72EE418EEFE3BFD8F892* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// System.Void System.Action`1<UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs>::Invoke(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m3EB72A68DE319EE2E509526622CB15EC302F6B35_gshared_inline (Action_1_t50A1540EA73609CB8D3B72EE418EEFE3BFD8F892* __this, ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938 ___obj0, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<UnityEngine.XR.ARCore.ArSession>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m32ABACF756C1DCD792C8F9B935993EA28F61F6A6_gshared (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___value0, const RuntimeMethod* method) ;
-// System.Void System.Action`3<UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArConfig,System.IntPtr>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_3__ctor_m8DF6348D2F98201AD78576963F3C3A35FBFFC1F9_gshared (Action_3_t9E9F00CC6AC96764CAB10CF74EBB4050022802E3* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// T System.Runtime.InteropServices.Marshal::PtrToStructure<UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativePtr>(System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativePtr_tAFBCEE7D503D40125DA56C3BCBC0AC3B9AE70224 Marshal_PtrToStructure_TisNativePtr_tAFBCEE7D503D40125DA56C3BCBC0AC3B9AE70224_m1699F9BBBF774CF1AC6D494A6500BFAA523115FD_gshared (intptr_t ___ptr0, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARSubsystems.ConfigurationDescriptor>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_mF5F83FE5BC71FDB70BF8DC34DAA73ADBC49F7B28_gshared (NativeArray_1_t280B4C6187922FE73AC16AC7F23255AE192676E2* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<UnityEngine.XR.ARSubsystems.ConfigurationDescriptor>(Unity.Collections.NativeArray`1<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* NativeArrayUnsafeUtility_GetUnsafePtr_TisConfigurationDescriptor_tD16AA30B812AA662D234FBFE6575AF8A328CA3A1_m6D69FA3DDA1BBB8136FC1344C11801E7071CBF8E_gshared (NativeArray_1_t280B4C6187922FE73AC16AC7F23255AE192676E2 ___nativeArray0, const RuntimeMethod* method) ;
-// System.Int32 Unity.Collections.LowLevel.Unsafe.UnsafeUtility::SizeOf<UnityEngine.XR.ARSubsystems.ConfigurationDescriptor>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UnsafeUtility_SizeOf_TisConfigurationDescriptor_tD16AA30B812AA662D234FBFE6575AF8A328CA3A1_mEAF8889D8E67EB11CD5FFD32B4D13466BD28C2E2_gshared (const RuntimeMethod* method) ;
-// System.Void System.Action`1<System.IntPtr>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m3657419BEA982F0D4CD1F16862138852C86D0953_gshared (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// UnityEngine.XR.ARSubsystems.Promise`1<T> UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::ExecuteAsync<System.Int32Enum>(System.Action`1<System.IntPtr>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Promise_1_tF93E504A18090E7276B6F9EF5AA27230E9A641CB* ARCoreProvider_ExecuteAsync_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m58D1F65D55CF1229491473A1AB700D966A535384_gshared (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2* ___apiMethod0, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<System.Int32>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mCF2FD8B3055FA87FC9C504F2122B3B0FAEDE3EC9_gshared_inline (Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1B40BC28* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<System.Int32>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Nullable_1_get_Value_m0DF3B826A745419D26A168689AEB4BE6F8698ECA_gshared (Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1B40BC28* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::ResolvePromise<System.Int32Enum>(System.IntPtr,T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_ResolvePromise_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m29F9B15ECFEF123E76E9DA2D73B5467918966454_gshared (intptr_t ___context0, int32_t ___arg1, const RuntimeMethod* method) ;
-// System.Void System.Action`2<System.Object,System.Boolean>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_2__ctor_m460C72FDDE5FF8033C7BD19A07CF4E3F473F7414_gshared (Action_2_t5BCD350E28ADACED656596CC308132ED74DA0915* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// System.Void System.Action`2<System.Int32Enum,System.IntPtr>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_2__ctor_m053D448E0AE7D6F0A9FFC8B860C709A792E81B60_gshared (Action_2_tA2A44C5EC0AA8ABD34B0529307EDC2F3311F7870* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// System.Void System.ValueTuple`2<System.Int32,System.Int32>::.ctor(T1,T2)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_gshared (ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D* __this, int32_t ___item10, int32_t ___item21, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_gshared_inline (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>::GetValueOrDefault()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_gshared_inline (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB* __this, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<System.IntPtr>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_gshared (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455* __this, intptr_t ___value0, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_gshared_inline (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>::GetValueOrDefault()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_gshared_inline (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_gshared_inline (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>::GetValueOrDefault()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_gshared_inline (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mB2D03C2253145ECBE459264A5476C9DB7FE2DC95_gshared_inline (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>::GetValueOrDefault()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7 Nullable_1_GetValueOrDefault_m63BA6341EF0131341178244A39DD235C3ED95638_gshared_inline (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623* __this, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m6F7128C944C4D24ADCCB0A44A57F5F07FF547385_gshared (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623* __this, ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7 ___value0, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArSession>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mCBD2FF535AA3DA1FD9A2B6FF41312A05A56FFD2D_gshared_inline (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<UnityEngine.XR.ARCore.ArSession>::GetValueOrDefault()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF Nullable_1_GetValueOrDefault_m01D847669976AD41BACDA9443110062EF84086E7_gshared_inline (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRPointCloud>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TrackableChanges_1__ctor_m86FF832095618F3232DAC4FD1E9DD60AE252BFB3_gshared (TrackableChanges_1_t33787F6E969DAC65E8C2FD57FE6AAC9119CFDB89* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRPointCloud_t99DB921A9C92F53CEA3EB29A64E2DECDA6EA7D8C ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.Quaternion>(System.Void*,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_t033CD013BF2CA1D8A5909650F2E75960C527E638 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisQuaternion_tDA59F214EF07D7700B26E40E562F267AF7306974_mD7CEBD73999042AAC575D52A40749352CD4C0D60_gshared (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<UnityEngine.Vector3>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_mD6D2D9E805E66DA9D5A8766ADB32AE63A4D306D0_gshared (NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreXRDepthSubsystem/ARCoreProvider/TransformPositionsJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformPositionsJob_t48D0CD5B7C65104B1156232DE2C06967D161492E_mE59BBA1FC80C015E7C89A9330F9A4FA26914A4A0_gshared (TransformPositionsJob_t48D0CD5B7C65104B1156232DE2C06967D161492E ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<System.Single>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_m4D540A81E1062EEC2C4B0697A34A4EEFB9BC9004_gshared (NativeArray_1_t3848EE4B6647317212A754634DE6DBC90B99FBEF* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreXRDepthSubsystem/ARCoreProvider/ExtractConfidenceValuesJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisExtractConfidenceValuesJob_tE29B65C6210F79DA05CBFA12BAE229D43DBB99BB_m11EC48B463051D97A5C3A4C394A2345E0BB416AE_gshared (ExtractConfidenceValuesJob_tE29B65C6210F79DA05CBFA12BAE229D43DBB99BB ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<System.UInt64>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_mA8531DC1B7696C5771660F84BEFAAD1B126030D1_gshared (NativeArray_1_t07975297AD7F7512193094A7C0703BA872EF7A7B* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<System.Int32>(System.Void*,System.Int32,Unity.Collections.Allocator)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m5C4C6FA53CA05FE88CA7926E8B1C0DF717B63550_gshared (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreXRDepthSubsystem/ARCoreProvider/CopyIdentifiersJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisCopyIdentifiersJob_tFEF3E6776D39C124552268BED8D4CC16E24ABBE6_m7FF39ACAF76DFAE3F895A793273BACBC28C0C075_gshared (CopyIdentifiersJob_tFEF3E6776D39C124552268BED8D4CC16E24ABBE6 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// System.Void System.Func`1<System.Guid>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Func_1__ctor_mF051C59A4536E246F8D503B6C2AFD4A633CF27E3_gshared (Func_1_t795BA1461C14377291BD8B37CC2DF979C31BF318* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// T Unity.Collections.NativeSlice`1<System.Byte>::get_Item(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint8_t NativeSlice_1_get_Item_m78B246AADBB1E51D08787974BE76502C20890E72_gshared (NativeSlice_1_tCEC4B2B900638EC1820BB61FE436766204DFD8DA* __this, int32_t ___index0, const RuntimeMethod* method) ;
-// T Unity.Collections.NativeSlice`1<System.Single>::get_Item(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float NativeSlice_1_get_Item_m47F6910D5F656CCFB4EEC9B9A341CFF81CEFC974_gshared (NativeSlice_1_t173266145AD9873C4FE45D91583856BC2DDCDF75* __this, int32_t ___index0, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.FlipVerticalJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisFlipVerticalJob_tAE462B1FCA2AC821363FF79C325761C26F3010D0_mE8320C0825ADE9E9E4E67E1995A8B32266D18095_gshared (FlipVerticalJob_tAE462B1FCA2AC821363FF79C325761C26F3010D0 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ConvertStridedToGrayscaleJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisConvertStridedToGrayscaleJob_tF6593F425AEC88BDEF7547C8BD7C3B7E90D4EF0E_m9BF203149CE1721FFE96B3477EFB0957C0AB34C3_gshared (ConvertStridedToGrayscaleJob_tF6593F425AEC88BDEF7547C8BD7C3B7E90D4EF0E ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ConvertARGB32ToGrayscaleJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisConvertARGB32ToGrayscaleJob_tF0EA2C0851FE8269BF7A5D567F73FF0B5DFE2C4B_m6A3B85CD2EDBCE404D18FBC9E1D402F2C7E14532_gshared (ConvertARGB32ToGrayscaleJob_tF0EA2C0851FE8269BF7A5D567F73FF0B5DFE2C4B ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ConvertBGRA32ToGrayscaleJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisConvertBGRA32ToGrayscaleJob_t8611C9F20E256B04EAE3EE21587F4132A2ABCD5D_m8AD454E5E9187ECC250AD6FDD337B384FB6622FE_gshared (ConvertBGRA32ToGrayscaleJob_t8611C9F20E256B04EAE3EE21587F4132A2ABCD5D ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// Unity.Collections.NativeSlice`1<U> Unity.Collections.NativeSlice`1<System.Byte>::SliceConvert<System.Single>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeSlice_1_t173266145AD9873C4FE45D91583856BC2DDCDF75 NativeSlice_1_SliceConvert_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m1B756A8DEBBAE105AF451C968E5E73C223A7A3E8_gshared (NativeSlice_1_tCEC4B2B900638EC1820BB61FE436766204DFD8DA* __this, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ConvertRFloatToGrayscaleJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisConvertRFloatToGrayscaleJob_tDB4C675A6D63668F3A0F84DAA2703ED1ECC0BBF9_mD07826D3BC98D390AC6AA5F6521ED7A0B501ECA9_gshared (ConvertRFloatToGrayscaleJob_tDB4C675A6D63668F3A0F84DAA2703ED1ECC0BBF9 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<UnityEngine.InputSystem.Layouts.InputDeviceMatcher>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_mD369CAC1BA03979662923E5D5E9FAF1F98E252EB_gshared (Nullable_1_t4EEC710224A7596AC94C3B6D292E4CB7D84B7F2C* __this, InputDeviceMatcher_tF9BA551C8BB4AE41672366A7EBEA951543E0C555 ___value0, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) ;
+// System.Void System.Func`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Func_1__ctor_mC73A4FCEBBAB90CB7B7AB16321F3F98FBBF12596_gshared (Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(T)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// ReturnType UnityEngine.AndroidJavaObject::Call<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(System.String,System.Object[])
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AndroidJavaObject_Call_TisIl2CppFullySharedGenericAny_mCA7EED8FFBB862858FF426BD7D6B191F9C24234B_gshared (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* __this, String_t* ___methodName0, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___args1, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Action`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Invoke(T1,T2)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_2_Invoke_m6343941059117DF354182855F996EB3D08B4C06C_gshared_inline (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___arg10, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___arg21, const RuntimeMethod* method) ;
+// FieldType UnityEngine.AndroidJavaObject::GetStatic<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AndroidJavaObject_GetStatic_TisIl2CppFullySharedGenericAny_mDD5B83921F6078373B85EB4F803492A68545BA7E_gshared (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* __this, String_t* ___fieldName0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// T[] System.Array::Empty<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline (const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARSubsystems.XRPlaneSubsystem/Provider::CreateOrResizeNativeArrayIfNecessary<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArray`1<T>&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Provider_CreateOrResizeNativeArrayIfNecessary_TisIl2CppFullySharedGenericStruct_mA59758011A49ED37FE547FB2E7C71E29DA35A08E_gshared (int32_t ___length0, int32_t ___allocator1, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* ___array2, const RuntimeMethod* method) ;
+// System.Void System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// T System.Runtime.InteropServices.Marshal::PtrToStructure<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Marshal_PtrToStructure_TisIl2CppFullySharedGenericAny_m581A3AD70CDE980043E5C4CF5AA1FDBF98CD2E2B_gshared (intptr_t ___ptr0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Int32 Unity.Collections.LowLevel.Unsafe.UnsafeUtility::SizeOf<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t UnsafeUtility_SizeOf_TisIl2CppFullySharedGenericStruct_mB6FBF9DDC79FEC02EC8705E9E527E1CD495564BF_gshared (const RuntimeMethod* method) ;
+// UnityEngine.XR.ARSubsystems.Promise`1<T> UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::ExecuteAsync<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(System.Action`1<System.IntPtr>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Promise_1_tDF175E3233C815DA21D8B6CA42B9C7728AFDF278* ARCoreProvider_ExecuteAsync_TisIl2CppFullySharedGenericAny_m0D23733EC9E3A64357A761F04DB9AFA28BCF3AF7_gshared (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2* ___apiMethod0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::ResolvePromise<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(System.IntPtr,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_ResolvePromise_TisIl2CppFullySharedGenericStruct_mF698EFE2E47A93FD93F871AD6CF706D0AF22B46C_gshared (intptr_t ___context0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___arg1, const RuntimeMethod* method) ;
+// System.Void System.Action`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_2__ctor_m8E9B7F6EE50FEF26FF7537F554B4F5E434F70550_gshared (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// T Unity.Collections.NativeSlice`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_Item(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeSlice_1_get_Item_mB5E7BDE4EDF7E31480A9785BE103CC7E17E0E3A8_gshared (NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52* __this, int32_t ___index0, Il2CppFullySharedGenericStruct* il2cppRetVal, const RuntimeMethod* method) ;
+// Unity.Collections.NativeSlice`1<U> Unity.Collections.NativeSlice`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::SliceConvert<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52 NativeSlice_1_SliceConvert_TisIl2CppFullySharedGenericStruct_m95D4A04F6012B6943507CFAECA0DFAE7A1D26AB1_gshared (NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52* __this, const RuntimeMethod* method) ;
 // System.Void UnityEngine.InputSystem.InputSystem::RegisterLayout<System.Object>(System.String,System.Nullable`1<UnityEngine.InputSystem.Layouts.InputDeviceMatcher>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InputSystem_RegisterLayout_TisRuntimeObject_m8B0CF2E33066D31E034869BE401DD185E2F04011_gshared (String_t* ___name0, Nullable_1_t4EEC710224A7596AC94C3B6D292E4CB7D84B7F2C ___matches1, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<UnityEngine.Vector2>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m5B4AD6C29FA5950EF6C215B9A459707DCC95EF73_gshared (Nullable_1_tAC9037ECF4C188DFFE614617119CAC19A784F9FD* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___value0, const RuntimeMethod* method) ;
 // T UnityEngine.XR.ARCore.ManagedReferenceImage::ResolveGCHandle<System.Object>(System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* ManagedReferenceImage_ResolveGCHandle_TisRuntimeObject_mEB332D0B86E4C5041E93E32297F3345C0B2F2798_gshared (intptr_t ___ptr0, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ManagedReferenceImage>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_mFDD5F82C8B82F2D5F1D67E0C325DA2E04E3C24B0_gshared (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<System.IntPtr>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mE2869A6464CFABCCBC9BA3B0BDC1DA9A54E1C57B_gshared_inline (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<System.IntPtr>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t Nullable_1_get_Value_mC255DDF2E4EDF1B963EBC1C41D64B6CD1A2AECA2_gshared (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455* __this, const RuntimeMethod* method) ;
 
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::.ctor(System.IntPtr)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_inline (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, intptr_t ___value0, const RuntimeMethod* method) ;
+// System.Boolean System.IntPtr::op_Equality(System.IntPtr,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271 (intptr_t ___value10, intptr_t ___value21, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::get_IsNull()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_get_IsNull_m0E09F4D2B8C7F7159FBF65FCA7486A8C79741ED6 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) ;
+// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfig::AsIntPtr()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_inline (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Create_m886224169A78B3D22AB043E40F1524CF667F28FC (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* ___value1, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::.ctor(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_mE14FEFC3215FE2A052D06E5A43C619D320B9AA19 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Boolean System.IntPtr::op_Inequality(System.IntPtr,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B (intptr_t ___value10, intptr_t ___value21, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Destroy(UnityEngine.XR.ARCore.ArCameraConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Destroy_mABA8B48536BC128B2F42CA1F8C7381412C11046F (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Dispose_m165F78DBFE34B76060059B7BFC7EB367E0D626CC (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetCameraId(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArString&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetCameraId_mEDFA5672A4B0455D422FB0C4124606BF5792FE55 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, ArString_tC06261461628907E722414E34002436529F6DA10* ___valueOut2, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArString::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArString_Dispose_m2D9E29EC3E98FE828F7FEAB806341561A8A193AA (ArString_tC06261461628907E722414E34002436529F6DA10* __this, const RuntimeMethod* method) ;
+// System.String UnityEngine.XR.ARCore.ArString::ToString()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ArString_ToString_m58566F4EAB0BEC069B61795B57AF890F9AF05961 (ArString_tC06261461628907E722414E34002436529F6DA10* __this, const RuntimeMethod* method) ;
+// System.String UnityEngine.XR.ARCore.ArCameraConfig::GetCameraId(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ArCameraConfig_GetCameraId_mE547D5D96CFA540BE2631831CB839D3D907DAC90 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetDepthSensorUsage_m1E6D173C6463759F5E3C80848B26598DC419C0DE (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___valueOut2, const RuntimeMethod* method) ;
+// UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage UnityEngine.XR.ARCore.ArCameraConfig::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetDepthSensorUsage_m5F136C8F9C5B3044C503580EB45DBC2671EC7C4F (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetFacingDirection(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfigFacingDirection&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetFacingDirection_mF3A1BE5B912348463F8FECFE1EFD6C4660912114 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___valueOut2, const RuntimeMethod* method) ;
+// UnityEngine.XR.ARCore.ArCameraConfigFacingDirection UnityEngine.XR.ARCore.ArCameraConfig::GetFacingDirection(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetFacingDirection_m3C022FA6AC02ED9BBBE8B4923E9CA397E72FB7A4 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetFpsRange(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetFpsRange_m288AE232C4A22D6FC87AE2EFA38B4611CE222087 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___minFps2, int32_t* ___maxFps3, const RuntimeMethod* method) ;
+// System.Void System.ValueTuple`2<System.Int32,System.Int32>::.ctor(T1,T2)
+inline void ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477 (ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D* __this, int32_t ___item10, int32_t ___item21, const RuntimeMethod* method)
+{
+	((  void (*) (ValueTuple_2_tBAA1E1D7D97D80E0EBA7FE8773B1FF409AEA3829*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))ValueTuple_2__ctor_mCAE8E725F680FA6BE2C23B9686C9F6056BB7E5CD_gshared)((ValueTuple_2_tBAA1E1D7D97D80E0EBA7FE8773B1FF409AEA3829*)__this, (Il2CppFullySharedGenericAny)&___item10, (Il2CppFullySharedGenericAny)&___item21, method);
+}
+// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetFpsRange(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetFpsRange_mF9215E84CF0CF2EB05D2ACD0CFDE02899C9F2533 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetImageDimensions(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetImageDimensions_m00F158B234F449E732FA04FE3F2962A6B6D3BB7C (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___width2, int32_t* ___height3, const RuntimeMethod* method) ;
+// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetImageDimensions(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetImageDimensions_m3746D40ABD8902AEA59C72E1F6B23635A1A2C2C6 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetTextureDimensions(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetTextureDimensions_mC2ED0976D9D803C8067E13BE4C5311C3300FAAB7 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___width2, int32_t* ___height3, const RuntimeMethod* method) ;
+// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetTextureDimensions(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetTextureDimensions_mA0E9C970FDEE0847B4FC7AABC35D82B0259648AE (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::Equals(UnityEngine.XR.ARCore.ArCameraConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___other0, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::Equals(System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_Equals_m475848DB0C28F764CAFC0F44E27B06BEB7564041 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
+// System.Int32 System.IntPtr::GetHashCode()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t IntPtr_GetHashCode_m669B16AD7483C1C396E48F41D9CAC4B719E38F3D (intptr_t* __this, const RuntimeMethod* method) ;
+// System.Int32 UnityEngine.XR.ARCore.ArCameraConfig::GetHashCode()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetHashCode_m12BD55CF30C1466B45155A17224C4AA9AB16C4E0 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) ;
+// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>::get_HasValue()
+inline bool Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_inline (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB* __this, const RuntimeMethod* method)
+{
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
+}
+// T System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>::GetValueOrDefault()
+inline ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_inline (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB* __this, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_mC057FBD944AF068B90EBDD0B496231A01B2A4228_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
+}
+// System.Void System.Nullable`1<System.IntPtr>::.ctor(T)
+inline void Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8 (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455* __this, intptr_t ___value0, const RuntimeMethod* method)
+{
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
+}
+// System.Boolean UnityEngine.XR.ARCore.NativeObject::ArePointersEqual(System.Nullable`1<System.IntPtr>,System.Nullable`1<System.IntPtr>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool NativeObject_ArePointersEqual_m78CCE35C1493CF89AD67B679A45687843777B576 (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 ___lhs0, Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 ___rhs1, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Equality_mCE55DA201D1AB39471354684350E00BB06DBFA5C (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___lhs0, Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___rhs1, const RuntimeMethod* method) ;
+// System.IntPtr UnityEngine.XR.ARSubsystems.XRCameraConfiguration::get_nativeConfigurationHandle()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t XRCameraConfiguration_get_nativeConfigurationHandle_mD9C92AE35660E0441A296301336578BA11313155_inline (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63* __this, const RuntimeMethod* method) ;
+// UnityEngine.XR.ARCore.ArCameraConfig UnityEngine.XR.ARCore.ArCameraConfig::FromIntPtr(System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ArCameraConfig_FromIntPtr_mBCBEFFFEAEBB82AD1AFDDDA8B450F161938A83F8 (intptr_t ___value0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::.ctor(System.IntPtr)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_inline (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, intptr_t ___value0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Create_m142C7ADE353D6E38316A3A6EE50CB56FC883AC07 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* ___filterOut1, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::.ctor(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mF486A6AFC61683CFC3E52B7E5494E983D4DE83E7 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfigFilter::AsIntPtr()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_inline (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::get_IsNull()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_get_IsNull_m0C4936F2612BC0BB7B4BAF08F9F0947D69EDC383 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_GetDepthSensorUsage_mD6B774F26D0C2DE2202A91A98F6DBACF90D98E61 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t* ___valueOut2, const RuntimeMethod* method) ;
+// UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage UnityEngine.XR.ARCore.ArCameraConfigFilter::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetDepthSensorUsage_mAD042C592CA038A62E72173B8B0E9224067C7C12 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetDepthSensorUsage_m5B7D3EC70DBB599EE5F6F6A682D6D55011D30555 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t ___value2, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetDepthSensorUsage_m92C45E574F2383B585B96C7FEC9FF2CCEABC68E3 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___depthSensorUsage1, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::GetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigTargetFps&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_GetTargetFps_m9973098C5F69BF6DBEB4694352ADF354C213BC02 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t* ___valueOut2, const RuntimeMethod* method) ;
+// UnityEngine.XR.ARCore.ArCameraConfigTargetFps UnityEngine.XR.ARCore.ArCameraConfigFilter::GetTargetFps(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetTargetFps_m8A00967A664541D6702D5256F048DC56EBB74983 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigTargetFps)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetTargetFps_mABECEE8F72881F7B6F0CD21C0916DCB68B949FCF (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t ___value2, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigTargetFps)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetTargetFps_mD09E6CDC671DB61E9FC443F99A26EF4C716C9766 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___targetFps1, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Destroy(UnityEngine.XR.ARCore.ArCameraConfigFilter)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Destroy_m9EAD8BB21D88A11EE1ED2E885E92B06FE96BEA6F (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___self0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Dispose_m71514EB30557871157FCA62921F794E10EC3BD59 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::Equals(UnityEngine.XR.ARCore.ArCameraConfigFilter)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___other0, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::Equals(System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_Equals_mF6B858B3A8FC33E7912163F338B1CC71C59744ED (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
+// System.Int32 UnityEngine.XR.ARCore.ArCameraConfigFilter::GetHashCode()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetHashCode_mAB06AE4573E43FB7802536BD3809666832F1348A (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) ;
+// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>::get_HasValue()
+inline bool Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_inline (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D* __this, const RuntimeMethod* method)
+{
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
+}
+// T System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>::GetValueOrDefault()
+inline ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_inline (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D* __this, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_mC057FBD944AF068B90EBDD0B496231A01B2A4228_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Equality_mEC832B8112587B3269F1EE3E5F42320B0CE170B9 (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___lhs0, Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___rhs1, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArConfig::.ctor(System.IntPtr)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_inline (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, intptr_t ___value0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArConfig::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArConfig&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Create_m165DEBEB687311E29D05FBB31CB1C31916DFDBAA (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* ___configOut1, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArConfig::.ctor(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig__ctor_m807FC812AF15E78B8FD5025A164FF214A030F793 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::get_IsNull()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_get_IsNull_mC16E8E4A5FD7562D365B3CED6F6195F6D3A4BA98 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) ;
+// System.IntPtr UnityEngine.XR.ARCore.ArConfig::AsIntPtr()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_inline (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::Equals(UnityEngine.XR.ARCore.ArConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___other0, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::Equals(System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_Equals_mAF04B9E9552EAF1D2DE31F107EF45BBC9CF8BBA4 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
+// System.Int32 UnityEngine.XR.ARCore.ArConfig::GetHashCode()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArConfig_GetHashCode_m2AA440E48A34FDA2186E99FDF0630578AB433DC4 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArConfig::Destroy(UnityEngine.XR.ARCore.ArConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Destroy_m28D7B99179AA968D94454EFF9FD67F44AE354DE3 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___config0, const RuntimeMethod* method) ;
+// System.Void UnityEngine.XR.ARCore.ArConfig::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Dispose_m7AFD805848963702EA520A205BF9E3AC79BFA37B (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) ;
+// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>::get_HasValue()
+inline bool Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_inline (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C* __this, const RuntimeMethod* method)
+{
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
+}
+// T System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>::GetValueOrDefault()
+inline ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_inline (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C* __this, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_mC057FBD944AF068B90EBDD0B496231A01B2A4228_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Equality_m5078A53EB4B64DB5D3415C642CE14B353E370B7C (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___lhs0, Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___rhs1, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.ARCore.Api::get_platformAndroid()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Api_get_platformAndroid_m6AD0B05ABD6C0211049325687C9FFD80128A5479 (const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.ARCore.Api::get_loaderPresent()
@@ -5330,7 +5456,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_refPoints_rel
 // System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRAnchor>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
 inline void TrackableChanges_1__ctor_mF0606DD2BB9C43B53F65F857EC829D41C7745A0A (TrackableChanges_1_t6971CD7F709E7353F4365FE06A109B21A0F0C931* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRAnchor_tDD427E66CAA09DE7B058EA76223EF7DC3880FE82 ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method)
 {
-	((  void (*) (TrackableChanges_1_t6971CD7F709E7353F4365FE06A109B21A0F0C931*, void*, int32_t, void*, int32_t, void*, int32_t, XRAnchor_tDD427E66CAA09DE7B058EA76223EF7DC3880FE82, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_mF0606DD2BB9C43B53F65F857EC829D41C7745A0A_gshared)(__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, ___defaultT6, ___stride7, ___allocator8, method);
+	((  void (*) (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*, void*, int32_t, void*, int32_t, void*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_m19BF1F09CAD376FA000FCA5EAF8AFF35FD898576_gshared)((TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*)__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, (Il2CppFullySharedGenericStruct)&___defaultT6, ___stride7, ___allocator8, method);
 }
 // System.Boolean UnityEngine.XR.ARCore.ARCoreAnchorSubsystem/ARCoreProvider::UnityARCore_refPoints_tryAdd(UnityEngine.Pose,UnityEngine.XR.ARSubsystems.XRAnchor&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreProvider_UnityARCore_refPoints_tryAdd_m0C7D4AB47E2EC13723A1E950F618E250AC7746D8 (Pose_t06BA69EAA6E9FAF60056D519A87D25F54AFE7971 ___pose0, XRAnchor_tDD427E66CAA09DE7B058EA76223EF7DC3880FE82* ___anchor1, const RuntimeMethod* method) ;
@@ -5370,8 +5496,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreBeforeGetCameraConfigurationEventA
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreBeforeGetCameraConfigurationEventArgs_Equals_m08904E4BE8373C7A8930D51AF33F2EF8F60BA528 (ARCoreBeforeGetCameraConfigurationEventArgs_t9368C5A015241C02E50D864D77FDFC2D223FA451* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
 // System.Int32 UnityEngine.XR.ARCore.ArSession::GetHashCode()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArSession_GetHashCode_m5D362BBA3F33B01AC2C68D04FD433DB71CBDF21E (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF* __this, const RuntimeMethod* method) ;
-// System.Int32 UnityEngine.XR.ARCore.ArCameraConfigFilter::GetHashCode()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetHashCode_mAB06AE4573E43FB7802536BD3809666832F1348A (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) ;
 // System.Int32 UnityEngine.XR.ARCore.HashCodeUtil::Combine(System.Int32,System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t HashCodeUtil_Combine_m1421C2AAB5E1692D25706288CE0B50FFAF6826BD (int32_t ___hash10, int32_t ___hash21, const RuntimeMethod* method) ;
 // System.Int32 UnityEngine.XR.ARCore.ARCoreBeforeGetCameraConfigurationEventArgs::GetHashCode()
@@ -5382,8 +5506,6 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArSession_AsIntPtr_m7367
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ARCoreBeforeSetConfigurationEventArgs_get_session_mFB401F61257971B12D20BA2C2A13427ADF110405 (ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938* __this, const RuntimeMethod* method) ;
 // UnityEngine.XR.ARCore.ArSession UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs::get_arSession()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ARCoreBeforeSetConfigurationEventArgs_get_arSession_mFD007DB2BB188809848E2E6F699A87C4041137B9_inline (ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938* __this, const RuntimeMethod* method) ;
-// System.IntPtr UnityEngine.XR.ARCore.ArConfig::AsIntPtr()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_inline (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) ;
 // System.IntPtr UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs::get_config()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ARCoreBeforeSetConfigurationEventArgs_get_config_mABF124F70ED16AECD48A7AD0758798446A53DF31 (ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938* __this, const RuntimeMethod* method) ;
 // UnityEngine.XR.ARCore.ArConfig UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs::get_arConfig()
@@ -5398,12 +5520,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreBeforeSetConfigurationEventArgs__c
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreBeforeSetConfigurationEventArgs__ctor_mE6E334059D83C27B306C1F72CD68C86E6DA4FED2 (ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___config1, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.ARCore.ArSession::Equals(UnityEngine.XR.ARCore.ArSession)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArSession_Equals_m23B510198BAD7E0B9A1484ECFCF5BF41B7DC7748 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___other0, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::Equals(UnityEngine.XR.ARCore.ArConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___other0, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs::Equals(UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreBeforeSetConfigurationEventArgs_Equals_m4B4E1CC09BDDC6E0259BAC9D254FE94F81E336BB (ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938* __this, ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938 ___other0, const RuntimeMethod* method) ;
-// System.Int32 UnityEngine.XR.ARCore.ArConfig::GetHashCode()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArConfig_GetHashCode_m2AA440E48A34FDA2186E99FDF0630578AB433DC4 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) ;
 // System.Int32 UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs::GetHashCode()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ARCoreBeforeSetConfigurationEventArgs_GetHashCode_m6E3BC2573D8D619B0E86CCF48EB8F27283F41349 (ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938* __this, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs::Equals(System.Object)
@@ -5516,19 +5634,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* IntPtr_op_Explicit_m2728CBA081E79B97DDC
 // Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.NativeCopyUtility::PtrToNativeArrayWithDefault<UnityEngine.XR.ARSubsystems.XRCameraConfiguration>(T,System.Void*,System.Int32,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_tAE1C2CA4717E405609ED9F96E485A9FE00E622D6 NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63_m703344A67C5AC2A962E59337A7E50F2AB13F3600 (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 ___defaultT0, void* ___source1, int32_t ___sourceElementSize2, int32_t ___length3, int32_t ___allocator4, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_tAE1C2CA4717E405609ED9F96E485A9FE00E622D6 (*) (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63, void*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63_m703344A67C5AC2A962E59337A7E50F2AB13F3600_gshared)(___defaultT0, ___source1, ___sourceElementSize2, ___length3, ___allocator4, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, void*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeCopyUtility_PtrToNativeArrayWithDefault_TisIl2CppFullySharedGenericStruct_m5DB57E174831F787CAF177A674881BD0F8DC0C64_gshared)((Il2CppFullySharedGenericStruct)&___defaultT0, ___source1, ___sourceElementSize2, ___length3, ___allocator4, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_tAE1C2CA4717E405609ED9F96E485A9FE00E622D6, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // System.Boolean UnityEngine.XR.ARCore.ARCoreCameraSubsystem::TryGetCurrentConfiguration(UnityEngine.XR.ARSubsystems.XRCameraConfiguration&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreCameraSubsystem_TryGetCurrentConfiguration_m334348283EABC372AD15A49B02C504B543B53F78 (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63* ___configuration0, const RuntimeMethod* method) ;
 // System.Void System.Nullable`1<UnityEngine.XR.ARSubsystems.XRCameraConfiguration>::.ctor(T)
 inline void Nullable_1__ctor_m21E0BDFE5AEE60B802C089371A4A8877CB0AF721 (Nullable_1_t4F11BA1306120798159EC97ABA03E6731032A09F* __this, XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_t4F11BA1306120798159EC97ABA03E6731032A09F*, XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63, const RuntimeMethod*))Nullable_1__ctor_m21E0BDFE5AEE60B802C089371A4A8877CB0AF721_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // T System.Nullable`1<UnityEngine.XR.ARSubsystems.XRCameraConfiguration>::get_Value()
 inline XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 Nullable_1_get_Value_m4ADE2838E179292BEB0F37EEE8B351AAD6610DD6 (Nullable_1_t4F11BA1306120798159EC97ABA03E6731032A09F* __this, const RuntimeMethod* method)
 {
-	return ((  XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 (*) (Nullable_1_t4F11BA1306120798159EC97ABA03E6731032A09F*, const RuntimeMethod*))Nullable_1_get_Value_m4ADE2838E179292BEB0F37EEE8B351AAD6610DD6_gshared)(__this, method);
+	XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // UnityEngine.XR.ARCore.ARCoreCameraSubsystem/CameraConfigurationResult UnityEngine.XR.ARCore.ARCoreCameraSubsystem/NativeApi::UnityARCore_Camera_TrySetCurrentConfiguration(UnityEngine.XR.ARSubsystems.XRCameraConfiguration)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t NativeApi_UnityARCore_Camera_TrySetCurrentConfiguration_m2145D1E21F1C3C88D921ABEF2C0A17E8CB006D00 (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 ___cameraConfiguration0, const RuntimeMethod* method) ;
@@ -5543,7 +5664,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeApi_UnityARCore_Camera_ReleaseText
 // Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.NativeCopyUtility::PtrToNativeArrayWithDefault<UnityEngine.XR.ARSubsystems.XRTextureDescriptor>(T,System.Void*,System.Int32,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_t6C2613A1D4A03EFEE59BBADBC529386D1205D01C NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRTextureDescriptor_t699023EDE6E2593F61CE969A68B5E56CD04CFA19_m354F27CE0E63D75D5FF70ADFE712D0E08D1FF9A3 (XRTextureDescriptor_t699023EDE6E2593F61CE969A68B5E56CD04CFA19 ___defaultT0, void* ___source1, int32_t ___sourceElementSize2, int32_t ___length3, int32_t ___allocator4, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_t6C2613A1D4A03EFEE59BBADBC529386D1205D01C (*) (XRTextureDescriptor_t699023EDE6E2593F61CE969A68B5E56CD04CFA19, void*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRTextureDescriptor_t699023EDE6E2593F61CE969A68B5E56CD04CFA19_m354F27CE0E63D75D5FF70ADFE712D0E08D1FF9A3_gshared)(___defaultT0, ___source1, ___sourceElementSize2, ___length3, ___allocator4, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, void*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeCopyUtility_PtrToNativeArrayWithDefault_TisIl2CppFullySharedGenericStruct_m5DB57E174831F787CAF177A674881BD0F8DC0C64_gshared)((Il2CppFullySharedGenericStruct)&___defaultT0, ___source1, ___sourceElementSize2, ___length3, ___allocator4, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_t6C2613A1D4A03EFEE59BBADBC529386D1205D01C, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // System.Boolean UnityEngine.XR.ARCore.ARCoreCpuImageApi::TryAcquireLatestImage(UnityEngine.XR.ARCore.ARCoreCpuImageApi/ImageType,UnityEngine.XR.ARSubsystems.XRCpuImage/Cinfo&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreCpuImageApi_TryAcquireLatestImage_m5C02A41B0E866D8AC99E4F32B25F2D5890ECA073 (int32_t ___imageType0, Cinfo_t5A1647353ADB5A2EC5EC8A30B1AAE80050168F4C* ___cinfo1, const RuntimeMethod* method) ;
@@ -5566,14 +5688,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* GCHandle_get_Target_m481F9508D
 // System.Void System.Action`1<UnityEngine.XR.ARCore.ARCoreBeforeGetCameraConfigurationEventArgs>::Invoke(T)
 inline void Action_1_Invoke_m651DBA72A6EDCD23A701202FF8EADFDAA47EE0AC_inline (Action_1_t9F90E7000DF8062F6211B6C752125F079812471A* __this, ARCoreBeforeGetCameraConfigurationEventArgs_t9368C5A015241C02E50D864D77FDFC2D223FA451 ___obj0, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t9F90E7000DF8062F6211B6C752125F079812471A*, ARCoreBeforeGetCameraConfigurationEventArgs_t9368C5A015241C02E50D864D77FDFC2D223FA451, const RuntimeMethod*))Action_1_Invoke_m651DBA72A6EDCD23A701202FF8EADFDAA47EE0AC_gshared_inline)(__this, ___obj0, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, (Il2CppFullySharedGenericAny)&___obj0, method);
 }
 // System.Int32 UnityEngine.Shader::PropertyToID(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Shader_PropertyToID_mE98523D50F5656CAE89B30695C458253EB8956CA (String_t* ___name0, const RuntimeMethod* method) ;
 // System.Void System.Action`3<System.IntPtr,UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter>::.ctor(System.Object,System.IntPtr)
 inline void Action_3__ctor_m72E4B6489B11B10B2B1A1E9E23B0D88F4DA00C25 (Action_3_t11564F1AD4C5840C281621F3C44F2743DFF69209* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_3_t11564F1AD4C5840C281621F3C44F2743DFF69209*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_3__ctor_m72E4B6489B11B10B2B1A1E9E23B0D88F4DA00C25_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_3_t838D6B6BB4BFFC6E8430C389747DB008A0B26146*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_3__ctor_mFC076EF2A48CF6C01932E82D2F23489658D5D9B4_gshared)((Action_3_t838D6B6BB4BFFC6E8430C389747DB008A0B26146*)__this, ___object0, ___method1, method);
 }
 // System.Boolean UnityEngine.XR.ARCore.ARCoreCpuImageApi/NativeApi::UnityARCore_CpuImage_TryAcquireLatestImage(UnityEngine.XR.ARCore.ARCoreCpuImageApi/ImageType,UnityEngine.XR.ARSubsystems.XRCpuImage/Cinfo&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool NativeApi_UnityARCore_CpuImage_TryAcquireLatestImage_m961556B4A05E02E1E0913A05293B6B38ACDADDD8 (int32_t ___imageType0, Cinfo_t5A1647353ADB5A2EC5EC8A30B1AAE80050168F4C* ___cameraImageCinfo1, const RuntimeMethod* method) ;
@@ -5602,7 +5724,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t XRCpuImage_get_format_mB7
 // System.Boolean System.Collections.Generic.HashSet`1<UnityEngine.TextureFormat>::Contains(T)
 inline bool HashSet_1_Contains_mD80BEF45416BC45AEE8D388F681BC234B92A5EA8 (HashSet_1_t2D550A7AEEE730305B5362D0CFDA1CADC3A69992* __this, int32_t ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (HashSet_1_t2D550A7AEEE730305B5362D0CFDA1CADC3A69992*, int32_t, const RuntimeMethod*))HashSet_1_Contains_mC7FB9D44EF9B75D89964DC508B4B08D8DA98339E_gshared)(__this, ___item0, method);
+	return ((  bool (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))HashSet_1_Contains_m6D40586EE21316C2647D81169AFFF9B4C7719F74_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, (Il2CppFullySharedGenericAny)&___item0, method);
 }
 // System.Void UnityEngine.XR.ARSubsystems.XRCpuImage/Api::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Api__ctor_mFD77CE4DCDE143DFBF11744359F52058E9550F9D (Api_tAE210A8378E537AFD1FA4B99562229CE842377FB* __this, const RuntimeMethod* method) ;
@@ -5611,12 +5733,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreCpuImageApi__ctor_m16F0D8727C47B3B
 // System.Void System.Collections.Generic.HashSet`1<UnityEngine.TextureFormat>::.ctor()
 inline void HashSet_1__ctor_mA888BE2939F08E9E2115B212E8531A103C31F94F (HashSet_1_t2D550A7AEEE730305B5362D0CFDA1CADC3A69992* __this, const RuntimeMethod* method)
 {
-	((  void (*) (HashSet_1_t2D550A7AEEE730305B5362D0CFDA1CADC3A69992*, const RuntimeMethod*))HashSet_1__ctor_mD2BBE225041537B7240E453D3E14991EB2169E2C_gshared)(__this, method);
+	((  void (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, const RuntimeMethod*))HashSet_1__ctor_m5E12B490550D90B0686D55F8F4E7B0506BD07120_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, method);
 }
 // System.Boolean System.Collections.Generic.HashSet`1<UnityEngine.TextureFormat>::Add(T)
 inline bool HashSet_1_Add_m8D0389AD0A9C8D5CFF046B5278C0516AF0117FCB (HashSet_1_t2D550A7AEEE730305B5362D0CFDA1CADC3A69992* __this, int32_t ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (HashSet_1_t2D550A7AEEE730305B5362D0CFDA1CADC3A69992*, int32_t, const RuntimeMethod*))HashSet_1_Add_m4F8BBB0C65C72E41F10A7F83E2963B71A631153C_gshared)(__this, ___item0, method);
+	return ((  bool (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))HashSet_1_Add_m73E14DB94D21272EEE1E28E4D74704B0095D8064_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, (Il2CppFullySharedGenericAny)&___item0, method);
 }
 // System.Void UnityEngine.XR.ARSubsystems.XREnvironmentProbeSubsystemCinfo::set_id(System.String)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void XREnvironmentProbeSubsystemCinfo_set_id_m0157B51BEBA22C10D835283A2E342811FB3904E0_inline (XREnvironmentProbeSubsystemCinfo_t789782F5A133A904D6BD0E54234937564363C29C* __this, String_t* ___value0, const RuntimeMethod* method) ;
@@ -5661,12 +5783,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeApi_UnityARCore_EnvironmentProbePr
 // System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XREnvironmentProbe>::.ctor(System.Int32,System.Int32,System.Int32,Unity.Collections.Allocator,T)
 inline void TrackableChanges_1__ctor_m04EC64BAFAB595ADE7B0C7E4E5A2C2F04DFDE444 (TrackableChanges_1_t03BF8B384A61E7421A4748384189C50C3A2C323F* __this, int32_t ___addedCount0, int32_t ___updatedCount1, int32_t ___removedCount2, int32_t ___allocator3, XREnvironmentProbe_tAA657FAB648E2599B519F9FD66A1CEED65034DD9 ___defaultValue4, const RuntimeMethod* method)
 {
-	((  void (*) (TrackableChanges_1_t03BF8B384A61E7421A4748384189C50C3A2C323F*, int32_t, int32_t, int32_t, int32_t, XREnvironmentProbe_tAA657FAB648E2599B519F9FD66A1CEED65034DD9, const RuntimeMethod*))TrackableChanges_1__ctor_m04EC64BAFAB595ADE7B0C7E4E5A2C2F04DFDE444_gshared)(__this, ___addedCount0, ___updatedCount1, ___removedCount2, ___allocator3, ___defaultValue4, method);
+	((  void (*) (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*, int32_t, int32_t, int32_t, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))TrackableChanges_1__ctor_m04218AF0632242E36F370817C60BEF59514847C0_gshared)((TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*)__this, ___addedCount0, ___updatedCount1, ___removedCount2, ___allocator3, (Il2CppFullySharedGenericStruct)&___defaultValue4, method);
 }
 // Unity.Collections.NativeArray`1<UnityEngine.XR.ARSubsystems.TrackableId> UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XREnvironmentProbe>::get_removed()
 inline NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E TrackableChanges_1_get_removed_mB692C4B8E9682871345D028184FD08CA66224E56_inline (TrackableChanges_1_t03BF8B384A61E7421A4748384189C50C3A2C323F* __this, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E (*) (TrackableChanges_1_t03BF8B384A61E7421A4748384189C50C3A2C323F*, const RuntimeMethod*))TrackableChanges_1_get_removed_mB692C4B8E9682871345D028184FD08CA66224E56_gshared_inline)(__this, method);
+	return ((  NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E (*) (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*, const RuntimeMethod*))TrackableChanges_1_get_removed_mAB913A3B635F6ABE4EF7A3CD18B3C120DD5F2738_gshared_inline)((TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*)__this, method);
 }
 // UnityEngine.XR.ARSubsystems.TrackableId UnityEngine.XR.ARSubsystems.XREnvironmentProbe::get_trackableId()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR TrackableId_t49EAE8AA4B9584E314518723DC22B66496D47AD7 XREnvironmentProbe_get_trackableId_m7B20AFD8D153397E7270F72C81B32043DA83C57F_inline (XREnvironmentProbe_tAA657FAB648E2599B519F9FD66A1CEED65034DD9* __this, const RuntimeMethod* method) ;
@@ -5697,29 +5819,30 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* ARCoreFaceSubsystem_UnityARCore_faceTra
 // System.Boolean Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ARCoreFaceRegionData>::get_IsCreated()
 inline bool NativeArray_1_get_IsCreated_m4E26A204A78BB781973BC9A4A723A53CA6E6C99F (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A*, const RuntimeMethod*))NativeArray_1_get_IsCreated_m4E26A204A78BB781973BC9A4A723A53CA6E6C99F_gshared)(__this, method);
+	return ((  bool (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))NativeArray_1_get_IsCreated_m527A2C3B75C25BFF29D1D9EA88C81172FF4F5A5A_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, method);
 }
 // System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ARCoreFaceRegionData>::Dispose()
 inline void NativeArray_1_Dispose_mC861B7FB8987BB8C932B99AED4A3A0EF98CDE1DC (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A* __this, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A*, const RuntimeMethod*))NativeArray_1_Dispose_mC861B7FB8987BB8C932B99AED4A3A0EF98CDE1DC_gshared)(__this, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))NativeArray_1_Dispose_m365A262FA4CA431467F021D7732CECD68316AF80_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreFaceSubsystem::UnityARCore_faceTracking_deallocateTemp(System.Void*)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreFaceSubsystem_UnityARCore_faceTracking_deallocateTemp_mD03CDFA5D36E7AF8633A55677CC3C98562EABD68 (void* ___regions0, const RuntimeMethod* method) ;
 // System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ARCoreFaceRegionData>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_mF3AC96F90E3CABE7951140755ED6CB970EE4369F (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t8F554B7FBEC1AE0DCD60C82E58AD883E0182777A*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_mF3AC96F90E3CABE7951140755ED6CB970EE4369F_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/FaceRegionWithARCorePose>(System.Void*,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_tCEE7A6C5C16F401CA6D402D369B93DFA83F57BA5 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisFaceRegionWithARCorePose_tB9B76D03166A36772E2545A2BF0551E85BE30CAA_mA2C5076590C7A87B9EB3C615288E63C34D97A4DF (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_tCEE7A6C5C16F401CA6D402D369B93DFA83F57BA5 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisFaceRegionWithARCorePose_tB9B76D03166A36772E2545A2BF0551E85BE30CAA_mA2C5076590C7A87B9EB3C615288E63C34D97A4DF_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisIl2CppFullySharedGenericStruct_m6920C14D4E38FAB84BD2B5F148CE70DF7F224F52_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_tCEE7A6C5C16F401CA6D402D369B93DFA83F57BA5, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/TransformPoseJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformPoseJob_t39D1DBD5539A5D5445C2230FCD0DDBBDE99FD6FF_m8711FE5224F9A53BC2107CB475354702EDE994CF (TransformPoseJob_t39D1DBD5539A5D5445C2230FCD0DDBBDE99FD6FF ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (TransformPoseJob_t39D1DBD5539A5D5445C2230FCD0DDBBDE99FD6FF, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisTransformPoseJob_t39D1DBD5539A5D5445C2230FCD0DDBBDE99FD6FF_m8711FE5224F9A53BC2107CB475354702EDE994CF_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // System.Void Unity.Jobs.JobHandle::Complete()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JobHandle_Complete_mDCED35A125AAB37EDDAB2E31C805B4904B614A4A (JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08* __this, const RuntimeMethod* method) ;
@@ -5768,50 +5891,54 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XRFaceMesh_Resize_mD9373FB138642F70F4068
 // Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.Vector3>(System.Void*,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisVector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_m9A085600C320307AD71C833F0352693C75103D4C (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisVector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_m9A085600C320307AD71C833F0352693C75103D4C_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisIl2CppFullySharedGenericStruct_m6920C14D4E38FAB84BD2B5F148CE70DF7F224F52_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // Unity.Collections.NativeArray`1<UnityEngine.Vector3> UnityEngine.XR.ARSubsystems.XRFaceMesh::get_vertices()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD XRFaceMesh_get_vertices_m8B133063FC373FD34B8ECBEE696B3462DC65277E_inline (XRFaceMesh_t6B92499E6ECFF17A9BDCC6E531A79395795E2CD4* __this, const RuntimeMethod* method) ;
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/TransformVerticesJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformVerticesJob_t7191B4ACF5EFD19AB9EAD47A1E930D381652C2E2_m4FD710A72D7AF8EF6E7B9C611A736A8B5AAC8E43 (TransformVerticesJob_t7191B4ACF5EFD19AB9EAD47A1E930D381652C2E2 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (TransformVerticesJob_t7191B4ACF5EFD19AB9EAD47A1E930D381652C2E2, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisTransformVerticesJob_t7191B4ACF5EFD19AB9EAD47A1E930D381652C2E2_m4FD710A72D7AF8EF6E7B9C611A736A8B5AAC8E43_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // Unity.Collections.NativeArray`1<UnityEngine.Vector3> UnityEngine.XR.ARSubsystems.XRFaceMesh::get_normals()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD XRFaceMesh_get_normals_m37A411662D1051785AFC6807E3BBEC0E2B3BB61B_inline (XRFaceMesh_t6B92499E6ECFF17A9BDCC6E531A79395795E2CD4* __this, const RuntimeMethod* method) ;
 // Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.Vector2>(System.Void*,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m8CC23F9B357DD3415FAB8C319466BEAA6365AF44 (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m8CC23F9B357DD3415FAB8C319466BEAA6365AF44_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisIl2CppFullySharedGenericStruct_m6920C14D4E38FAB84BD2B5F148CE70DF7F224F52_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // Unity.Collections.NativeArray`1<UnityEngine.Vector2> UnityEngine.XR.ARSubsystems.XRFaceMesh::get_uvs()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70 XRFaceMesh_get_uvs_m71BF16345717D8B5D8F41C571A8D3152337E0A28_inline (XRFaceMesh_t6B92499E6ECFF17A9BDCC6E531A79395795E2CD4* __this, const RuntimeMethod* method) ;
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/TransformUVsJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformUVsJob_t53238C05FF0E6AD13634989ABC6D54535C4DC50D_mDE2D246162D7E3A9A1AEE2AEA7BABF861F6B7498 (TransformUVsJob_t53238C05FF0E6AD13634989ABC6D54535C4DC50D ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (TransformUVsJob_t53238C05FF0E6AD13634989ABC6D54535C4DC50D, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisTransformUVsJob_t53238C05FF0E6AD13634989ABC6D54535C4DC50D_mDE2D246162D7E3A9A1AEE2AEA7BABF861F6B7498_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/Triangle`1<System.UInt16>>(System.Void*,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_tCCC271D553130CD49535607AC9E7F4C877F67AFC NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisTriangle_1_t37AD500EBA0FF178D5A11334D2731DE378640303_m37AF2E82F20B6B250C1D991696FE04203DC80523 (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_tCCC271D553130CD49535607AC9E7F4C877F67AFC (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisTriangle_1_t37AD500EBA0FF178D5A11334D2731DE378640303_m37AF2E82F20B6B250C1D991696FE04203DC80523_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisIl2CppFullySharedGenericStruct_m6920C14D4E38FAB84BD2B5F148CE70DF7F224F52_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_tCCC271D553130CD49535607AC9E7F4C877F67AFC, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // Unity.Collections.NativeArray`1<System.Int32> UnityEngine.XR.ARSubsystems.XRFaceMesh::get_indices()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C XRFaceMesh_get_indices_m2658965B1B99DF1CF00154D791B580AE71CB136D_inline (XRFaceMesh_t6B92499E6ECFF17A9BDCC6E531A79395795E2CD4* __this, const RuntimeMethod* method) ;
 // System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<System.Int32>(Unity.Collections.NativeArray`1<T>)
 inline void* NativeArrayUnsafeUtility_GetUnsafePtr_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_mD2D9DC546B80A05000B107C8E09FAA4BED3B2144 (NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C ___nativeArray0, const RuntimeMethod* method)
 {
-	return ((  void* (*) (NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_mD2D9DC546B80A05000B107C8E09FAA4BED3B2144_gshared)(___nativeArray0, method);
+	return ((  void* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisIl2CppFullySharedGenericStruct_m4AB802D5B1B296D0F976C1E7631699B0C4A4D00F_gshared)(il2cpp_codegen_cast_struct<NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C>(&___nativeArray0), method);
 }
 // Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/Triangle`1<System.Int32>>(System.Void*,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_tD44577047DE907F1AB2FD07CE1AD03D0D60CEB90 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisTriangle_1_tCB71783FB3769A6B5EC63107AA1E6A0C2F41283C_m3B5FFE85F45695424C7786C9C174AF53885A4F22 (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_tD44577047DE907F1AB2FD07CE1AD03D0D60CEB90 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisTriangle_1_tCB71783FB3769A6B5EC63107AA1E6A0C2F41283C_m3B5FFE85F45695424C7786C9C174AF53885A4F22_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisIl2CppFullySharedGenericStruct_m6920C14D4E38FAB84BD2B5F148CE70DF7F224F52_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_tD44577047DE907F1AB2FD07CE1AD03D0D60CEB90, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/TransformIndicesJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformIndicesJob_tB9B054D8BC8E9A685DEA1CE50771CE1FB9F65FEC_m7CB8F6A2644FB5BCF3C55700CDFDC15DE4A76852 (TransformIndicesJob_tB9B054D8BC8E9A685DEA1CE50771CE1FB9F65FEC ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (TransformIndicesJob_tB9B054D8BC8E9A685DEA1CE50771CE1FB9F65FEC, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisTransformIndicesJob_tB9B054D8BC8E9A685DEA1CE50771CE1FB9F65FEC_m7CB8F6A2644FB5BCF3C55700CDFDC15DE4A76852_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.JobHandle::CombineDependencies(Unity.Jobs.JobHandle,Unity.Jobs.JobHandle)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 JobHandle_CombineDependencies_mA265FBED9D75AEF610251410AFC7766F40D5BB05 (JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___job00, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___job11, const RuntimeMethod* method) ;
@@ -5824,7 +5951,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreFaceSubsystem_UnityARCore_faceTrac
 // System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRFace>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
 inline void TrackableChanges_1__ctor_mB6C11A3B1AA676D62783C7DAF2BE0BBA80D7874B (TrackableChanges_1_t244050823CF4D8F3C9DFAE4AB0CEFA639C719119* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRFace_t235F951F4AC7CC6A0CA6829CECA05210D64982FB ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method)
 {
-	((  void (*) (TrackableChanges_1_t244050823CF4D8F3C9DFAE4AB0CEFA639C719119*, void*, int32_t, void*, int32_t, void*, int32_t, XRFace_t235F951F4AC7CC6A0CA6829CECA05210D64982FB, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_mB6C11A3B1AA676D62783C7DAF2BE0BBA80D7874B_gshared)(__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, ___defaultT6, ___stride7, ___allocator8, method);
+	((  void (*) (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*, void*, int32_t, void*, int32_t, void*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_m19BF1F09CAD376FA000FCA5EAF8AFF35FD898576_gshared)((TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*)__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, (Il2CppFullySharedGenericStruct)&___defaultT6, ___stride7, ___allocator8, method);
 }
 // System.Void UnityEngine.XR.ARSubsystems.XRFaceSubsystem/Provider::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Provider__ctor_m41CCFF923C16D17CC1297FE5FF752330D8CD1BBD (Provider_t7030F6D06C0B37E868033A148F7C8615413D5322* __this, const RuntimeMethod* method) ;
@@ -5837,7 +5964,7 @@ IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void TransformUVsJob_Execute
 // System.Void UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/Triangle`1<System.Int32>::.ctor(T,T,T)
 inline void Triangle_1__ctor_m6431E62F150798F62D16D1A41967D58AEDD71D84 (Triangle_1_tCB71783FB3769A6B5EC63107AA1E6A0C2F41283C* __this, int32_t ___a0, int32_t ___b1, int32_t ___c2, const RuntimeMethod* method)
 {
-	((  void (*) (Triangle_1_tCB71783FB3769A6B5EC63107AA1E6A0C2F41283C*, int32_t, int32_t, int32_t, const RuntimeMethod*))Triangle_1__ctor_m6431E62F150798F62D16D1A41967D58AEDD71D84_gshared)(__this, ___a0, ___b1, ___c2, method);
+	((  void (*) (Triangle_1_tD62E2E6C9A76BB7E4E7FC4792F0D00BB5A095467*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Triangle_1__ctor_m7042483AA858DB29B29119CE6D3DB8A391396C6F_gshared)((Triangle_1_tD62E2E6C9A76BB7E4E7FC4792F0D00BB5A095467*)__this, (Il2CppFullySharedGenericStruct)&___a0, (Il2CppFullySharedGenericStruct)&___b1, (Il2CppFullySharedGenericStruct)&___c2, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreFaceSubsystem/ARCoreProvider/TransformIndicesJob::Execute(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void TransformIndicesJob_Execute_m20C5A48E77A83348D5BD86AD436EBC581C5F0AAB (TransformIndicesJob_tB9B054D8BC8E9A685DEA1CE50771CE1FB9F65FEC* IL2CPP_PARAMETER_RESTRICT __this, int32_t ___i0, const RuntimeMethod* method) ;
@@ -5876,12 +6003,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_tA7A7D0942211548E9D94C540285A44
 // System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ManagedReferenceImage>::Dispose()
 inline void NativeArray_1_Dispose_m6146CB6DA0D631F40DF6C7916AF2B9AECC400A00 (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF* __this, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF*, const RuntimeMethod*))NativeArray_1_Dispose_m6146CB6DA0D631F40DF6C7916AF2B9AECC400A00_gshared)(__this, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))NativeArray_1_Dispose_m365A262FA4CA431467F021D7732CECD68316AF80_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, method);
 }
 // UnityEngine.XR.ARCore.NativeView UnityEngine.XR.ARCore.NativeViewExtensions::AsNativeView<UnityEngine.XR.ARCore.ManagedReferenceImage>(Unity.Collections.NativeArray`1<T>)
 inline NativeView_t8F56B92E78CD2A5400305F0695DC7FE7455408F1 NativeViewExtensions_AsNativeView_TisManagedReferenceImage_tACB6E8B16DD2F176EAB1A08349B2092C1194E7FE_m14EA2D6A7D5675F91BC41D77EF0284193E0A2C41 (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF ___array0, const RuntimeMethod* method)
 {
-	return ((  NativeView_t8F56B92E78CD2A5400305F0695DC7FE7455408F1 (*) (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF, const RuntimeMethod*))NativeViewExtensions_AsNativeView_TisManagedReferenceImage_tACB6E8B16DD2F176EAB1A08349B2092C1194E7FE_m14EA2D6A7D5675F91BC41D77EF0284193E0A2C41_gshared)(___array0, method);
+	return ((  NativeView_t8F56B92E78CD2A5400305F0695DC7FE7455408F1 (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, const RuntimeMethod*))NativeViewExtensions_AsNativeView_TisIl2CppFullySharedGenericStruct_m3EA09587D372D3CDB9B4426F269F9EF1A6CB2121_gshared)(il2cpp_codegen_cast_struct<NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF>(&___array0), method);
 }
 // System.Void System.Object::Finalize()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object_Finalize_mC98C96301CCABFE00F1A7EF8E15DF507CACD42B2 (RuntimeObject* __this, const RuntimeMethod* method) ;
@@ -5900,7 +6027,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Encoding_t65CDEF28CF20A7B8C92E85A4E808920C246
 // System.Void Unity.Collections.NativeArray`1<System.Byte>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_m981CC7E27B6C9946024877F2696920951443B04F (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m981CC7E27B6C9946024877F2696920951443B04F_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // System.Int32 System.Runtime.CompilerServices.RuntimeHelpers::get_OffsetToStringData()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t RuntimeHelpers_get_OffsetToStringData_m90A5D27EF88BE9432BF7093B7D7E7A0ACB0A8FBD (const RuntimeMethod* method) ;
@@ -5909,12 +6036,12 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t String_get_Length_m42625D
 // System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<System.Byte>(Unity.Collections.NativeArray`1<T>)
 inline void* NativeArrayUnsafeUtility_GetUnsafePtr_TisByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_m8CFDB2DF56E810A2E2FB3686AF676FCAC65AFCC2 (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF ___nativeArray0, const RuntimeMethod* method)
 {
-	return ((  void* (*) (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_m8CFDB2DF56E810A2E2FB3686AF676FCAC65AFCC2_gshared)(___nativeArray0, method);
+	return ((  void* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisIl2CppFullySharedGenericStruct_m4AB802D5B1B296D0F976C1E7631699B0C4A4D00F_gshared)(il2cpp_codegen_cast_struct<NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF>(&___nativeArray0), method);
 }
 // System.Void Unity.Collections.NativeArray`1<System.Byte>::Dispose()
 inline void NativeArray_1_Dispose_m8B0F342847ECB90EB814E1F6AA5BF7DC2F271AEA (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF* __this, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t81F55263465517B73C455D3400CF67B4BADD85CF*, const RuntimeMethod*))NativeArray_1_Dispose_m8B0F342847ECB90EB814E1F6AA5BF7DC2F271AEA_gshared)(__this, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))NativeArray_1_Dispose_m365A262FA4CA431467F021D7732CECD68316AF80_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, method);
 }
 // System.Int32 UnityEngine.Vector2Int::get_x()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Vector2Int_get_x_mA2CACB1B6E6B5AD0CCC32B2CD2EDCE3ECEB50576_inline (Vector2Int_t69B2886EBAB732D9B880565E18E7568F3DE0CE6A* __this, const RuntimeMethod* method) ;
@@ -5935,7 +6062,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR NativeArray_1_t81F55263465517B73C455D3400CF67
 // Unity.Jobs.JobHandle Unity.Jobs.IJobExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreImageDatabase/AddImageJob>(T,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobExtensions_Schedule_TisAddImageJob_t39C08496B14A24EC0F1D26EA4114EF3BEFEB329F_mCACB14652BB6DB728FE6E375A21EAC28A0D7060E (AddImageJob_t39C08496B14A24EC0F1D26EA4114EF3BEFEB329F ___jobData0, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn1, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (AddImageJob_t39C08496B14A24EC0F1D26EA4114EF3BEFEB329F, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobExtensions_Schedule_TisAddImageJob_t39C08496B14A24EC0F1D26EA4114EF3BEFEB329F_mCACB14652BB6DB728FE6E375A21EAC28A0D7060E_gshared)(___jobData0, ___dependsOn1, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobExtensions_Schedule_TisIl2CppFullySharedGenericStruct_mF266365A1A83D3A8671F9B001353E6658E321E57_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___dependsOn1, method);
 }
 // UnityEngine.XR.ARSubsystems.AddReferenceImageJobState UnityEngine.XR.ARSubsystems.MutableRuntimeReferenceImageLibrary::CreateAddJobState(System.IntPtr,Unity.Jobs.JobHandle)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AddReferenceImageJobState_tCF90A84092F3D2A7536D1D28C9E6EC0D7F53937A MutableRuntimeReferenceImageLibrary_CreateAddJobState_m0D3F0C269DC4388E00B628A01982BA04609380C0 (MutableRuntimeReferenceImageLibrary_t51AE6E77B281FCE9DF42C7E905A11935708A53F8* __this, intptr_t ___handle0, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___jobHandle1, const RuntimeMethod* method) ;
@@ -5945,12 +6072,8 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR XRReferenceImage_tB2544D6E18E55CD44F4EED1B0573A6A7154C1E2F ManagedReferenceImage_ToReferenceImage_m6E37905684A97C30C332AEB8BD57E67128CBF3F1 (ManagedReferenceImage_tACB6E8B16DD2F176EAB1A08349B2092C1194E7FE* __this, const RuntimeMethod* method) ;
 // System.Int32 UnityEngine.XR.ARCore.ARCoreImageDatabase::GetReferenceImageCount(System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ARCoreImageDatabase_GetReferenceImageCount_m28772B1CADB95B265D85FDF95EA30D9FC9E0609F (intptr_t ___self0, const RuntimeMethod* method) ;
-// System.Int32 System.IntPtr::GetHashCode()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t IntPtr_GetHashCode_m669B16AD7483C1C396E48F41D9CAC4B719E38F3D (intptr_t* __this, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.ARCore.ARCoreImageDatabase::Equals(UnityEngine.XR.ARCore.ARCoreImageDatabase)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreImageDatabase_Equals_m00A589ECD8847528CCA00E2AC42863D9437C492E (ARCoreImageDatabase_t334CD3227F477626EB8F2972B1CB9CFCD5F6A807* __this, ARCoreImageDatabase_t334CD3227F477626EB8F2972B1CB9CFCD5F6A807* ___other0, const RuntimeMethod* method) ;
-// System.Boolean System.IntPtr::op_Equality(System.IntPtr,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271 (intptr_t ___value10, intptr_t ___value21, const RuntimeMethod* method) ;
 // System.Boolean UnityEngine.XR.ARCore.ARCoreImageDatabase::op_Equality(UnityEngine.XR.ARCore.ARCoreImageDatabase,UnityEngine.XR.ARCore.ARCoreImageDatabase)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreImageDatabase_op_Equality_m2823B083318E8120CF73F4B4B27BCF2493BC6969 (ARCoreImageDatabase_t334CD3227F477626EB8F2972B1CB9CFCD5F6A807* ___lhs0, ARCoreImageDatabase_t334CD3227F477626EB8F2972B1CB9CFCD5F6A807* ___rhs1, const RuntimeMethod* method) ;
 // System.Void System.Runtime.CompilerServices.RuntimeHelpers::InitializeArray(System.Array,System.RuntimeFieldHandle)
@@ -6006,7 +6129,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_imageTracking
 // System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRTrackedImage>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
 inline void TrackableChanges_1__ctor_mEE4B03B437265DB6A153AB3E05FA9B216CBEEA20 (TrackableChanges_1_t5289D1DB76FBCB9C1A7B387927387F4299599C1E* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRTrackedImage_t0F99DAB96B2D6422D0F8DA720F9BEFD3655DDFDD ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method)
 {
-	((  void (*) (TrackableChanges_1_t5289D1DB76FBCB9C1A7B387927387F4299599C1E*, void*, int32_t, void*, int32_t, void*, int32_t, XRTrackedImage_t0F99DAB96B2D6422D0F8DA720F9BEFD3655DDFDD, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_mEE4B03B437265DB6A153AB3E05FA9B216CBEEA20_gshared)(__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, ___defaultT6, ___stride7, ___allocator8, method);
+	((  void (*) (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*, void*, int32_t, void*, int32_t, void*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_m19BF1F09CAD376FA000FCA5EAF8AFF35FD898576_gshared)((TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*)__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, (Il2CppFullySharedGenericStruct)&___defaultT6, ___stride7, ___allocator8, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreImageTrackingSubsystem/ARCoreProvider::UnityARCore_imageTracking_destroy()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_imageTracking_destroy_m4EADD7AB13CC0F86B4BED490FEB521BE7534AC20 (const RuntimeMethod* method) ;
@@ -6019,57 +6142,57 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Provider__ctor_mC1DE32F65A2B47BE70F69F63
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XRSessionSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRSessionSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRSessionSubsystemDescriptor_tC27BC32D3225FDB3C2114906B7917065435E3076_TisXRSessionSubsystem_t1E6E6CD0C279BA8BC4E4ED94E539552036B9C399_m5B2AA3FA6A492552585DC57D5E844C64E3D23CDA (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tC86363A0A1DF8199DB382C6CDB5A1254F8660A34* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tC86363A0A1DF8199DB382C6CDB5A1254F8660A34*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XRCameraSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRCameraSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRCameraSubsystemDescriptor_t4C2FD5F5B1005FCF89005E0F2CFE0FF86DDC6847_TisXRCameraSubsystem_t1F15E4BAEF03223F63AB57E49D1B5DE06749D140_m56501C34B03966D4C7BE87D9FC4E999E9536E4F0 (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tB62E7DBB1A743CF013D1542F79F59C2BB105B7AC* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tB62E7DBB1A743CF013D1542F79F59C2BB105B7AC*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XRDepthSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRDepthSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRDepthSubsystemDescriptor_tA961ACA2A67359F10E59D48257490E3ACEEFD5C0_TisXRDepthSubsystem_t61DE8363378DC9991027C95E31303A3F1BC32E48_m8C2B9F8057D167111C882F93A1C83DC2BB3DEACC (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tF88289A219854A2C4D0D098CCAD2A4CAD4DA0A5C* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tF88289A219854A2C4D0D098CCAD2A4CAD4DA0A5C*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XRPlaneSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRPlaneSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRPlaneSubsystemDescriptor_t0DF362BB5A820B47811DA6460D259AE9EBA06300_TisXRPlaneSubsystem_t6FC18D5B1FF10EE9B4A751977B526F44A16EDB62_m05C4C69111BC2E9C0E1ACB5C3B70DF7900F14D97 (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tD705D57B270C006E488F9C9B55BA0768A11125D0* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tD705D57B270C006E488F9C9B55BA0768A11125D0*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XRAnchorSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRAnchorSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRAnchorSubsystemDescriptor_tE311C24D7BA2405DA537716807EBEB451F6A3C30_TisXRAnchorSubsystem_tB8B108EFBD93D4AFD53DCE7BD599009F79D214AF_mD73C26045DE99584474B5D06F157B149B6941F65 (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_t65387FE114D984E6DCFF71774BFC19CEB318A9BE* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_t65387FE114D984E6DCFF71774BFC19CEB318A9BE*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XRRaycastSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRRaycastSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRRaycastSubsystemDescriptor_t8AF0FF26C155E0D9ED865CDD1666C67FA301E311_TisXRRaycastSubsystem_t48087E79DE9617C7E866875C8DDD3124C9E068B7_mB8BAA548678AB588BCA657CC93A81F658DE77E7D (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_t97C3D1A8E80E095D7CE223BC4D02400F78DA063F* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_t97C3D1A8E80E095D7CE223BC4D02400F78DA063F*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XRImageTrackingSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRImageTrackingSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRImageTrackingSubsystemDescriptor_t6D3883C9B0005F09FE2ECE410BF3A8E64A4A5CBE_TisXRImageTrackingSubsystem_t5EEEA714F4273F686F836517EE4957AEDFFD7BEB_m89ED206580910DDC2D02B707526A7CC49FA7E275 (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tFAD70D497835B4EB99F6C04DFD87EA9406E796ED* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tFAD70D497835B4EB99F6C04DFD87EA9406E796ED*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.XRInputSubsystemDescriptor,UnityEngine.XR.XRInputSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRInputSubsystemDescriptor_t42088DD6542C0BDD27C2951B911E4F69DD1F917D_TisXRInputSubsystem_tFECE6683FCAEBF05BAD05E5D612690095D8BAD34_mA9FE0AE2F98657CD075CD191BAB94910F963C08C (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tE3AE94237CE649B47E1D52E1A3120E772255FF87* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tE3AE94237CE649B47E1D52E1A3120E772255FF87*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XRFaceSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XRFaceSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXRFaceSubsystemDescriptor_t44596C9878EB76583452C5F5BF6FA78FA9EB171F_TisXRFaceSubsystem_t93DD9DDD21C06E5A591BB0094512BC8FD8A890D3_m2A9FF1C049F7ED53ABAD31D3ABFE80DA9C7CDA39 (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_t5E8878D20C1B753B569DF68C6CCE3159D9AB04A6* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_t5E8878D20C1B753B569DF68C6CCE3159D9AB04A6*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XREnvironmentProbeSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XREnvironmentProbeSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXREnvironmentProbeSubsystemDescriptor_t19B9462452B99289DB335591C096C5CC970296C4_TisXREnvironmentProbeSubsystem_t1C339A3A0B8601507D2438158D6632271557CC0B_mC248D89D3DBA509566C433626A37C9ABB6178584 (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_tDE8C3B426AF72FF013BD4E2E4C4660F30F1371DB* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDE8C3B426AF72FF013BD4E2E4C4660F30F1371DB*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // System.Void UnityEngine.XR.Management.XRLoaderHelper::CreateSubsystem<UnityEngine.XR.ARSubsystems.XROcclusionSubsystemDescriptor,UnityEngine.XR.ARSubsystems.XROcclusionSubsystem>(System.Collections.Generic.List`1<TDescriptor>,System.String)
 inline void XRLoaderHelper_CreateSubsystem_TisXROcclusionSubsystemDescriptor_t25944D13CC0A207D206577F9A91D445526B4930F_TisXROcclusionSubsystem_tAA1BB69ACF188D778FBC8EF5E7B427C6EB2F0C3C_mE90B3795E26E96443B7E19B01BDCFE219F4E1D30 (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC* __this, List_1_t3D09B5A317B11F9E075244885D17EC10AF3301C2* ___descriptors0, String_t* ___id1, const RuntimeMethod* method)
 {
-	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_t3D09B5A317B11F9E075244885D17EC10AF3301C2*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisRuntimeObject_TisRuntimeObject_m4FA794B59AA23B850EE0DF5DA0776E9DD231D768_gshared)(__this, ___descriptors0, ___id1, method);
+	((  void (*) (XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*, List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, String_t*, const RuntimeMethod*))XRLoaderHelper_CreateSubsystem_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m59B7D4D241C4A6E51188583FAEEFC7D1B6D512D0_gshared)((XRLoaderHelper_tE96E7AE003148D5319D20BAD7E02654367E41DCC*)__this, (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)___descriptors0, ___id1, method);
 }
 // UnityEngine.XR.ARSubsystems.XRSessionSubsystem UnityEngine.XR.ARCore.ARCoreLoader::get_sessionSubsystem()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR XRSessionSubsystem_t1E6E6CD0C279BA8BC4E4ED94E539552036B9C399* ARCoreLoader_get_sessionSubsystem_mB719854EF11ED7529B060881E078347967098818 (ARCoreLoader_t14046898389C7A78C47EAC92490AD4A6EB7A1E72* __this, const RuntimeMethod* method) ;
@@ -6133,57 +6256,57 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void XRLoaderHelper__ctor_mEAD9691DBE10C223AB
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRSessionSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_m751F8C0A254EAAB9A57DC06058D6478D339241E7 (List_1_tC86363A0A1DF8199DB382C6CDB5A1254F8660A34* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tC86363A0A1DF8199DB382C6CDB5A1254F8660A34*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRCameraSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_mCEB5D9ECEA5630CE9235CEF5D7619090A6F81F90 (List_1_tB62E7DBB1A743CF013D1542F79F59C2BB105B7AC* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tB62E7DBB1A743CF013D1542F79F59C2BB105B7AC*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRDepthSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_m58A0EBFF5B75A5957CC94BDB2FD97220147648B5 (List_1_tF88289A219854A2C4D0D098CCAD2A4CAD4DA0A5C* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tF88289A219854A2C4D0D098CCAD2A4CAD4DA0A5C*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRPlaneSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_m0041FCD66EA4A14EE9726BD4394D16E3B774F24D (List_1_tD705D57B270C006E488F9C9B55BA0768A11125D0* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tD705D57B270C006E488F9C9B55BA0768A11125D0*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRAnchorSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_mB384A94B775793199D6172CD1A2B3139DD608F17 (List_1_t65387FE114D984E6DCFF71774BFC19CEB318A9BE* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t65387FE114D984E6DCFF71774BFC19CEB318A9BE*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRRaycastSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_mDABF63F4EEB1F694E44489872E8254FCF762AE27 (List_1_t97C3D1A8E80E095D7CE223BC4D02400F78DA063F* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t97C3D1A8E80E095D7CE223BC4D02400F78DA063F*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRImageTrackingSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_m557951E514A8AC64A23A7BB73E5AB7311864AFC7 (List_1_tFAD70D497835B4EB99F6C04DFD87EA9406E796ED* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tFAD70D497835B4EB99F6C04DFD87EA9406E796ED*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.XRInputSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_m2211D9F948E2002179E205222318FE448863F2CD (List_1_tE3AE94237CE649B47E1D52E1A3120E772255FF87* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tE3AE94237CE649B47E1D52E1A3120E772255FF87*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XRFaceSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_m7C7331D79296471E23B70E31A3A1FBB67430722D (List_1_t5E8878D20C1B753B569DF68C6CCE3159D9AB04A6* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t5E8878D20C1B753B569DF68C6CCE3159D9AB04A6*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XREnvironmentProbeSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_mD37DFF84CD1CA96858B12F84D0CF63E5B720F055 (List_1_tDE8C3B426AF72FF013BD4E2E4C4660F30F1371DB* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tDE8C3B426AF72FF013BD4E2E4C4660F30F1371DB*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<UnityEngine.XR.ARSubsystems.XROcclusionSubsystemDescriptor>::.ctor()
 inline void List_1__ctor_m0F0F399A867DD49156E70176EE1C7B03008B0C91 (List_1_t3D09B5A317B11F9E075244885D17EC10AF3301C2* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t3D09B5A317B11F9E075244885D17EC10AF3301C2*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void UnityEngine.ScriptableObject::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ScriptableObject__ctor_mD037FDB0B487295EA47F79A4DB1BF1846C9087FF (ScriptableObject_tB3BFDB921A1B1795B38A5417D3B97A89A140436A* __this, const RuntimeMethod* method) ;
@@ -6196,7 +6319,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void XROcclusionSubsystemCinfo_se
 // System.Void System.Func`1<UnityEngine.XR.ARSubsystems.Supported>::.ctor(System.Object,System.IntPtr)
 inline void Func_1__ctor_mA54113F3FBAD8BFCC633695DE0703817E9270C4E (Func_1_t778056BE8A070F696DB064AC7FBD1F996A928ED2* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Func_1_t778056BE8A070F696DB064AC7FBD1F996A928ED2*, RuntimeObject*, intptr_t, const RuntimeMethod*))Func_1__ctor_mB72E02E4A5EAA72E35D6DEBAE357C0AE7920088A_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431*, RuntimeObject*, intptr_t, const RuntimeMethod*))Func_1__ctor_mC73A4FCEBBAB90CB7B7AB16321F3F98FBBF12596_gshared)((Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.XR.ARSubsystems.XROcclusionSubsystemCinfo::set_environmentDepthImageSupportedDelegate(System.Func`1<UnityEngine.XR.ARSubsystems.Supported>)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void XROcclusionSubsystemCinfo_set_environmentDepthImageSupportedDelegate_m18E4C878D993208EB9EEA9D667CA5C88E4E1D4BE_inline (XROcclusionSubsystemCinfo_tC55FF1EE3C9965ECC716C629299373FF4C33D272* __this, Func_1_t778056BE8A070F696DB064AC7FBD1F996A928ED2* ___value0, const RuntimeMethod* method) ;
@@ -6249,12 +6372,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool NativeApi_UnityARCore_OcclusionProvider_
 // System.Void System.Collections.Generic.List`1<System.String>::.ctor()
 inline void List_1__ctor_mCA8DD57EAC70C2B5923DBB9D5A77CEAC22E7068E (List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<System.String>::Add(T)
 inline void List_1_Add_mF10DB1D3CBB0B14215F0E4F8AB4934A1955E5351_inline (List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD* __this, String_t* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD*, String_t*, const RuntimeMethod*))List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline)(__this, ___item0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Boolean UnityEngine.Application::get_isEditor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Application_get_isEditor_mEAC51E3ACE6DCE438087FB14BD75A3C219D354D0 (const RuntimeMethod* method) ;
@@ -6265,12 +6388,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AndroidJavaObject_t8FFB930F335C1178405B82AC2B
 // ReturnType UnityEngine.AndroidJavaObject::Call<System.Boolean>(System.String,System.Object[])
 inline bool AndroidJavaObject_Call_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_m05D3284A3FA772D032190A0FE82363C61000F1DF (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* __this, String_t* ___methodName0, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___args1, const RuntimeMethod* method)
 {
-	return ((  bool (*) (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0*, String_t*, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*, const RuntimeMethod*))AndroidJavaObject_Call_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_m05D3284A3FA772D032190A0FE82363C61000F1DF_gshared)(__this, ___methodName0, ___args1, method);
+	bool il2cppRetVal;
+	((  void (*) (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0*, String_t*, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))AndroidJavaObject_Call_TisIl2CppFullySharedGenericAny_mCA7EED8FFBB862858FF426BD7D6B191F9C24234B_gshared)((AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0*)__this, ___methodName0, ___args1, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Action`2<System.String,System.Boolean>::Invoke(T1,T2)
 inline void Action_2_Invoke_m6EBB68A4E442B0057E106C998DA0B6F8BB077EF9_inline (Action_2_t79388C33CD9A9EDFE5BE17BE73F59AB95415B00A* __this, String_t* ___arg10, bool ___arg21, const RuntimeMethod* method)
 {
-	((  void (*) (Action_2_t79388C33CD9A9EDFE5BE17BE73F59AB95415B00A*, String_t*, bool, const RuntimeMethod*))Action_2_Invoke_mB2DD87F61EB655A33F6277F1E277246CE23B6625_gshared_inline)(__this, ___arg10, ___arg21, method);
+	((  void (*) (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_2_Invoke_m6343941059117DF354182855F996EB3D08B4C06C_gshared_inline)((Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*)__this, (Il2CppFullySharedGenericAny)___arg10, (Il2CppFullySharedGenericAny)&___arg21, method);
 }
 // UnityEngine.XR.ARCore.ARCorePermissionManager UnityEngine.XR.ARCore.ARCorePermissionManager::get_instance()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ARCorePermissionManager_tCEB9687FC206FD67022541CB715812A4250C7430* ARCorePermissionManager_get_instance_m344C4B4A237CDB080CBE74E69C78881244B999EC (const RuntimeMethod* method) ;
@@ -6285,12 +6410,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AndroidJavaClass__ctor_mB5466169E1151B8C
 // FieldType UnityEngine.AndroidJavaObject::GetStatic<UnityEngine.AndroidJavaObject>(System.String)
 inline AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* AndroidJavaObject_GetStatic_TisAndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0_mD7D192A35EB2B2DA3775FAB081958B72088251DD (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* __this, String_t* ___fieldName0, const RuntimeMethod* method)
 {
-	return ((  AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* (*) (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0*, String_t*, const RuntimeMethod*))AndroidJavaObject_GetStatic_TisRuntimeObject_m4EF4E4761A0A6E99E0A298F653E8129B1494E4C9_gshared)(__this, ___fieldName0, method);
+	AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* il2cppRetVal;
+	((  void (*) (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0*, String_t*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))AndroidJavaObject_GetStatic_TisIl2CppFullySharedGenericAny_mDD5B83921F6078373B85EB4F803492A68545BA7E_gshared)((AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0*)__this, ___fieldName0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // T[] System.Array::Empty<System.Object>()
 inline ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_inline (const RuntimeMethod* method)
 {
-	return ((  ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* (*) (const RuntimeMethod*))Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline)(method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (const RuntimeMethod*))Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline)(method);
+	return (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)il2cppRetVal;
 }
 // System.Void UnityEngine.AndroidJavaObject::.ctor(System.String,System.Object[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AndroidJavaObject__ctor_m5A65B5D325C2CEFAC4097A0D3813F8E158178DD7 (AndroidJavaObject_t8FFB930F335C1178405B82AC2BF512BB1EEF9EB0* __this, String_t* ___className0, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___args1, const RuntimeMethod* method) ;
@@ -6321,29 +6449,29 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* ARCoreProvider_UnityARCore_planeTrackin
 // System.Void UnityEngine.XR.ARSubsystems.XRPlaneSubsystem/Provider::CreateOrResizeNativeArrayIfNecessary<UnityEngine.Vector2>(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArray`1<T>&)
 inline void Provider_CreateOrResizeNativeArrayIfNecessary_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m3FF6126D31B18EF8F02A921B6EF41A436C07AB3E (int32_t ___length0, int32_t ___allocator1, NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70* ___array2, const RuntimeMethod* method)
 {
-	((  void (*) (int32_t, int32_t, NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70*, const RuntimeMethod*))Provider_CreateOrResizeNativeArrayIfNecessary_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m3FF6126D31B18EF8F02A921B6EF41A436C07AB3E_gshared)(___length0, ___allocator1, ___array2, method);
+	((  void (*) (int32_t, int32_t, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))Provider_CreateOrResizeNativeArrayIfNecessary_TisIl2CppFullySharedGenericStruct_mA59758011A49ED37FE547FB2E7C71E29DA35A08E_gshared)(___length0, ___allocator1, (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)___array2, method);
 }
 // System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<UnityEngine.Vector2>(Unity.Collections.NativeArray`1<T>)
 inline void* NativeArrayUnsafeUtility_GetUnsafePtr_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m2B0D2CB30FDAA96454AA1E55D86254BBE984DA53 (NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70 ___nativeArray0, const RuntimeMethod* method)
 {
-	return ((  void* (*) (NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisVector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_m2B0D2CB30FDAA96454AA1E55D86254BBE984DA53_gshared)(___nativeArray0, method);
+	return ((  void* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisIl2CppFullySharedGenericStruct_m4AB802D5B1B296D0F976C1E7631699B0C4A4D00F_gshared)(il2cpp_codegen_cast_struct<NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70>(&___nativeArray0), method);
 }
 // System.Boolean UnityEngine.XR.ARCore.ARCorePlaneSubsystem/ARCoreProvider::UnityARCore_planeTracking_tryCopyBoundary(System.Void*,System.Void*)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreProvider_UnityARCore_planeTracking_tryCopyBoundary_m720CFCE25004DD87E94A5ECF8C9D67CA9C0C93B2 (void* ___plane0, void* ___boundaryOut1, const RuntimeMethod* method) ;
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCorePlaneSubsystem/ARCoreProvider/FlipBoundaryHandednessJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisFlipBoundaryHandednessJob_t524C3EDC001476D81B80054EEF33E12BE40164B9_m1AE3703C47C3E65CD26A3A2AE77C77D2F2EA57B0 (FlipBoundaryHandednessJob_t524C3EDC001476D81B80054EEF33E12BE40164B9 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (FlipBoundaryHandednessJob_t524C3EDC001476D81B80054EEF33E12BE40164B9, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisFlipBoundaryHandednessJob_t524C3EDC001476D81B80054EEF33E12BE40164B9_m1AE3703C47C3E65CD26A3A2AE77C77D2F2EA57B0_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobExtensions::Schedule<UnityEngine.XR.ARCore.ARCorePlaneSubsystem/ARCoreProvider/FlipBoundaryWindingJob>(T,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobExtensions_Schedule_TisFlipBoundaryWindingJob_tA5962E4B7968E117AAD4117EEDECADBA3B767512_m2F91B5C629E78AA0BFD5AEF5E4DE31F6A38AD16D (FlipBoundaryWindingJob_tA5962E4B7968E117AAD4117EEDECADBA3B767512 ___jobData0, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn1, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (FlipBoundaryWindingJob_tA5962E4B7968E117AAD4117EEDECADBA3B767512, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobExtensions_Schedule_TisFlipBoundaryWindingJob_tA5962E4B7968E117AAD4117EEDECADBA3B767512_m2F91B5C629E78AA0BFD5AEF5E4DE31F6A38AD16D_gshared)(___jobData0, ___dependsOn1, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobExtensions_Schedule_TisIl2CppFullySharedGenericStruct_mF266365A1A83D3A8671F9B001353E6658E321E57_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___dependsOn1, method);
 }
 // System.Void Unity.Collections.NativeArray`1<UnityEngine.Vector2>::Dispose()
 inline void NativeArray_1_Dispose_m78ECC3FE24D545255D9CFABB81FC34CA6CC2A4A7 (NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70* __this, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t0BB246A2F65C2C705F83BEBE1B62D9543C330B70*, const RuntimeMethod*))NativeArray_1_Dispose_m78ECC3FE24D545255D9CFABB81FC34CA6CC2A4A7_gshared)(__this, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))NativeArray_1_Dispose_m365A262FA4CA431467F021D7732CECD68316AF80_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, method);
 }
 // System.Void* UnityEngine.XR.ARCore.ARCorePlaneSubsystem/ARCoreProvider::UnityARCore_planeTracking_acquireChanges(System.Void*&,System.Int32&,System.Void*&,System.Int32&,System.Void*&,System.Int32&,System.Int32&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* ARCoreProvider_UnityARCore_planeTracking_acquireChanges_m988991B752D77BACF248256DF174B256DC344A60 (void** ___addedPtr0, int32_t* ___addedLength1, void** ___updatedPtr2, int32_t* ___updatedLength3, void** ___removedPtr4, int32_t* ___removedLength5, int32_t* ___elementSize6, const RuntimeMethod* method) ;
@@ -6352,7 +6480,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_planeTracking
 // System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.BoundedPlane>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
 inline void TrackableChanges_1__ctor_m20EC72CF73EBF4EFF269979448BF3DF59AE27ECD (TrackableChanges_1_tFC79B2E1FF9EFB1D5754F6995583D33A519F300F* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, BoundedPlane_tF51C315A8961EB42F0A1B60D47158646E5AF75CE ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method)
 {
-	((  void (*) (TrackableChanges_1_tFC79B2E1FF9EFB1D5754F6995583D33A519F300F*, void*, int32_t, void*, int32_t, void*, int32_t, BoundedPlane_tF51C315A8961EB42F0A1B60D47158646E5AF75CE, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_m20EC72CF73EBF4EFF269979448BF3DF59AE27ECD_gshared)(__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, ___defaultT6, ___stride7, ___allocator8, method);
+	((  void (*) (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*, void*, int32_t, void*, int32_t, void*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_m19BF1F09CAD376FA000FCA5EAF8AFF35FD898576_gshared)((TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*)__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, (Il2CppFullySharedGenericStruct)&___defaultT6, ___stride7, ___allocator8, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCorePlaneSubsystem/ARCoreProvider::UnityARCore_planeTracking_destroy()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_planeTracking_destroy_mB285E24433D266D2116F3C1C66F10C5F43899114 (const RuntimeMethod* method) ;
@@ -6399,7 +6527,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_raycast_relea
 // System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRRaycast>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
 inline void TrackableChanges_1__ctor_mB681BD9D3A46140C4ACCD96865A0A4E8AED3C0D9 (TrackableChanges_1_t097463074AB33F65828FED3152F6A605C0B114A5* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRRaycast_t100015712885CDF4EF42820EB36277DC6DDC8103 ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method)
 {
-	((  void (*) (TrackableChanges_1_t097463074AB33F65828FED3152F6A605C0B114A5*, void*, int32_t, void*, int32_t, void*, int32_t, XRRaycast_t100015712885CDF4EF42820EB36277DC6DDC8103, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_mB681BD9D3A46140C4ACCD96865A0A4E8AED3C0D9_gshared)(__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, ___defaultT6, ___stride7, ___allocator8, method);
+	((  void (*) (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*, void*, int32_t, void*, int32_t, void*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_m19BF1F09CAD376FA000FCA5EAF8AFF35FD898576_gshared)((TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*)__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, (Il2CppFullySharedGenericStruct)&___defaultT6, ___stride7, ___allocator8, method);
 }
 // System.Boolean UnityEngine.XR.ARCore.ARCoreRaycastSubsystem/ARCoreProvider::UnityARCore_raycast_tryAddRaycast(UnityEngine.Vector2,System.Single,UnityEngine.XR.ARSubsystems.XRRaycast&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ARCoreProvider_UnityARCore_raycast_tryAddRaycast_m21FF95D0D80788ABEC820730773CF2DABF292F83 (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___screenPoint0, float ___estimatedDistance1, XRRaycast_t100015712885CDF4EF42820EB36277DC6DDC8103* ___raycastOut2, const RuntimeMethod* method) ;
@@ -6416,7 +6544,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_raycast_relea
 // Unity.Collections.NativeArray`1<T> UnityEngine.XR.ARSubsystems.NativeCopyUtility::PtrToNativeArrayWithDefault<UnityEngine.XR.ARSubsystems.XRRaycastHit>(T,System.Void*,System.Int32,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_t1ABEAB84724CAEAFCB8767B8502FD3185AC9CAD0 NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRRaycastHit_t87A29A58C1D41AF1B3995B73777A7494B0695780_m2DBC49A37FAB938DC67DB6443873A837B0809B82 (XRRaycastHit_t87A29A58C1D41AF1B3995B73777A7494B0695780 ___defaultT0, void* ___source1, int32_t ___sourceElementSize2, int32_t ___length3, int32_t ___allocator4, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_t1ABEAB84724CAEAFCB8767B8502FD3185AC9CAD0 (*) (XRRaycastHit_t87A29A58C1D41AF1B3995B73777A7494B0695780, void*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeCopyUtility_PtrToNativeArrayWithDefault_TisXRRaycastHit_t87A29A58C1D41AF1B3995B73777A7494B0695780_m2DBC49A37FAB938DC67DB6443873A837B0809B82_gshared)(___defaultT0, ___source1, ___sourceElementSize2, ___length3, ___allocator4, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, void*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeCopyUtility_PtrToNativeArrayWithDefault_TisIl2CppFullySharedGenericStruct_m5DB57E174831F787CAF177A674881BD0F8DC0C64_gshared)((Il2CppFullySharedGenericStruct)&___defaultT0, ___source1, ___sourceElementSize2, ___length3, ___allocator4, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_t1ABEAB84724CAEAFCB8767B8502FD3185AC9CAD0, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreRaycastSubsystem/ARCoreProvider::UnityARCore_raycast_acquireHitResults(UnityEngine.Vector2,UnityEngine.XR.ARSubsystems.TrackableType,System.Void*&,System.Int32&,System.Int32&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_raycast_acquireHitResults_mA0F13622676EB1103DC27EC0008A96A600136388 (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___screenPoint0, int32_t ___filter1, void** ___hitBuffer2, int32_t* ___hitCount3, int32_t* ___elementSize4, const RuntimeMethod* method) ;
@@ -6430,14 +6559,14 @@ inline Provider_t0E03563C43D7DC05CCBFBE3C117052E76FD76AD5* SubsystemWithProvider
 // System.Void System.Action`1<UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_m3C9AE48DFF42A535948B243A7777D94D20F71E34 (Action_1_t50A1540EA73609CB8D3B72EE418EEFE3BFD8F892* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t50A1540EA73609CB8D3B72EE418EEFE3BFD8F892*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m3C9AE48DFF42A535948B243A7777D94D20F71E34_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::add_beforeSetConfiguration(System.Action`1<UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_add_beforeSetConfiguration_m7782F6ED649007DE9D8526072F90B03335EE5E24 (ARCoreProvider_tD2E93A65CCD3E86D401DF128FD49F8B050F21492* __this, Action_1_t50A1540EA73609CB8D3B72EE418EEFE3BFD8F892* ___value0, const RuntimeMethod* method) ;
 // System.Void System.Action`1<UnityEngine.XR.ARCore.ARCoreBeforeSetConfigurationEventArgs>::Invoke(T)
 inline void Action_1_Invoke_m3EB72A68DE319EE2E509526622CB15EC302F6B35_inline (Action_1_t50A1540EA73609CB8D3B72EE418EEFE3BFD8F892* __this, ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938 ___obj0, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t50A1540EA73609CB8D3B72EE418EEFE3BFD8F892*, ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938, const RuntimeMethod*))Action_1_Invoke_m3EB72A68DE319EE2E509526622CB15EC302F6B35_gshared_inline)(__this, ___obj0, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, (Il2CppFullySharedGenericAny)&___obj0, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi::UnityARCore_session_setConfigurationDirty()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeApi_UnityARCore_session_setConfigurationDirty_mC6809AB17D1BB813BB6E6E9AD5084D88BBAF495D (const RuntimeMethod* method) ;
@@ -6478,7 +6607,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_CameraPermissionRequestPr
 // System.Void System.Nullable`1<UnityEngine.XR.ARCore.ArSession>::.ctor(T)
 inline void Nullable_1__ctor_m32ABACF756C1DCD792C8F9B935993EA28F61F6A6 (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20*, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, const RuntimeMethod*))Nullable_1__ctor_m32ABACF756C1DCD792C8F9B935993EA28F61F6A6_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Boolean UnityEngine.XR.ARCore.ArSession::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArSession>,System.Nullable`1<UnityEngine.XR.ARCore.ArSession>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArSession_op_Equality_m9835A20A78F5BBF0A9DCDAD84CCDF5BFF002D664 (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20 ___lhs0, Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20 ___rhs1, const RuntimeMethod* method) ;
@@ -6491,7 +6620,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Thread_Yield_m6610C7321B94ED0193582455A7
 // System.Void System.Action`3<UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArConfig,System.IntPtr>::.ctor(System.Object,System.IntPtr)
 inline void Action_3__ctor_m8DF6348D2F98201AD78576963F3C3A35FBFFC1F9 (Action_3_t9E9F00CC6AC96764CAB10CF74EBB4050022802E3* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_3_t9E9F00CC6AC96764CAB10CF74EBB4050022802E3*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_3__ctor_m8DF6348D2F98201AD78576963F3C3A35FBFFC1F9_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_3_t838D6B6BB4BFFC6E8430C389747DB008A0B26146*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_3__ctor_mFC076EF2A48CF6C01932E82D2F23489658D5D9B4_gshared)((Action_3_t838D6B6BB4BFFC6E8430C389747DB008A0B26146*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.XR.ARSubsystems.XRSessionSubsystem/Provider::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Provider__ctor_m43661C1B8B6373D456C0CDA35F96AACBAB01290A (Provider_t0E03563C43D7DC05CCBFBE3C117052E76FD76AD5* __this, const RuntimeMethod* method) ;
@@ -6538,24 +6667,26 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArSession_get_playbackStatus_m532E4AB
 // T System.Runtime.InteropServices.Marshal::PtrToStructure<UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativePtr>(System.IntPtr)
 inline NativePtr_tAFBCEE7D503D40125DA56C3BCBC0AC3B9AE70224 Marshal_PtrToStructure_TisNativePtr_tAFBCEE7D503D40125DA56C3BCBC0AC3B9AE70224_m1699F9BBBF774CF1AC6D494A6500BFAA523115FD (intptr_t ___ptr0, const RuntimeMethod* method)
 {
-	return ((  NativePtr_tAFBCEE7D503D40125DA56C3BCBC0AC3B9AE70224 (*) (intptr_t, const RuntimeMethod*))Marshal_PtrToStructure_TisNativePtr_tAFBCEE7D503D40125DA56C3BCBC0AC3B9AE70224_m1699F9BBBF774CF1AC6D494A6500BFAA523115FD_gshared)(___ptr0, method);
+	NativePtr_tAFBCEE7D503D40125DA56C3BCBC0AC3B9AE70224 il2cppRetVal;
+	((  void (*) (intptr_t, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Marshal_PtrToStructure_TisIl2CppFullySharedGenericAny_m581A3AD70CDE980043E5C4CF5AA1FDBF98CD2E2B_gshared)(___ptr0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi::UnityARCore_session_getConfigurationDescriptors(System.IntPtr&,System.Int32&,System.Int32&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeApi_UnityARCore_session_getConfigurationDescriptors_m7BBA66A8BAA48B7EFCAF33F5404836450A8325EE (intptr_t* ___ptr0, int32_t* ___count1, int32_t* ___stride2, const RuntimeMethod* method) ;
 // System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARSubsystems.ConfigurationDescriptor>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_mF5F83FE5BC71FDB70BF8DC34DAA73ADBC49F7B28 (NativeArray_1_t280B4C6187922FE73AC16AC7F23255AE192676E2* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t280B4C6187922FE73AC16AC7F23255AE192676E2*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_mF5F83FE5BC71FDB70BF8DC34DAA73ADBC49F7B28_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<UnityEngine.XR.ARSubsystems.ConfigurationDescriptor>(Unity.Collections.NativeArray`1<T>)
 inline void* NativeArrayUnsafeUtility_GetUnsafePtr_TisConfigurationDescriptor_tD16AA30B812AA662D234FBFE6575AF8A328CA3A1_m6D69FA3DDA1BBB8136FC1344C11801E7071CBF8E (NativeArray_1_t280B4C6187922FE73AC16AC7F23255AE192676E2 ___nativeArray0, const RuntimeMethod* method)
 {
-	return ((  void* (*) (NativeArray_1_t280B4C6187922FE73AC16AC7F23255AE192676E2, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisConfigurationDescriptor_tD16AA30B812AA662D234FBFE6575AF8A328CA3A1_m6D69FA3DDA1BBB8136FC1344C11801E7071CBF8E_gshared)(___nativeArray0, method);
+	return ((  void* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisIl2CppFullySharedGenericStruct_m4AB802D5B1B296D0F976C1E7631699B0C4A4D00F_gshared)(il2cpp_codegen_cast_struct<NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, NativeArray_1_t280B4C6187922FE73AC16AC7F23255AE192676E2>(&___nativeArray0), method);
 }
 // System.Int32 Unity.Collections.LowLevel.Unsafe.UnsafeUtility::SizeOf<UnityEngine.XR.ARSubsystems.ConfigurationDescriptor>()
 inline int32_t UnsafeUtility_SizeOf_TisConfigurationDescriptor_tD16AA30B812AA662D234FBFE6575AF8A328CA3A1_mEAF8889D8E67EB11CD5FFD32B4D13466BD28C2E2 (const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (const RuntimeMethod*))UnsafeUtility_SizeOf_TisConfigurationDescriptor_tD16AA30B812AA662D234FBFE6575AF8A328CA3A1_mEAF8889D8E67EB11CD5FFD32B4D13466BD28C2E2_gshared)(method);
+	return ((  int32_t (*) (const RuntimeMethod*))UnsafeUtility_SizeOf_TisIl2CppFullySharedGenericStruct_mB6FBF9DDC79FEC02EC8705E9E527E1CD495564BF_gshared)(method);
 }
 // System.Void Unity.Collections.LowLevel.Unsafe.UnsafeUtility::MemCpyStride(System.Void*,System.Int32,System.Void*,System.Int32,System.Int32,System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnsafeUtility_MemCpyStride_mD7836B76B4F1E7F30DFC859D4E6D7242AFD27C90 (void* ___destination0, int32_t ___destinationStride1, void* ___source2, int32_t ___sourceStride3, int32_t ___elementSize4, int32_t ___count5, const RuntimeMethod* method) ;
@@ -6576,17 +6707,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeApi_UnityARCore_session_onApplicat
 // System.Void System.Action`1<System.IntPtr>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_m3657419BEA982F0D4CD1F16862138852C86D0953 (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m3657419BEA982F0D4CD1F16862138852C86D0953_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // UnityEngine.XR.ARSubsystems.Promise`1<T> UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::ExecuteAsync<UnityEngine.XR.ARSubsystems.SessionAvailability>(System.Action`1<System.IntPtr>)
 inline Promise_1_t7BC5F1754A27CF06571C0C51E5893AE44146B274* ARCoreProvider_ExecuteAsync_TisSessionAvailability_t01F7B649A99735E8895479D291EB177ADC8B4255_m367A96F82BA203DF6951BCC6F0872A16D37BF2E9 (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2* ___apiMethod0, const RuntimeMethod* method)
 {
-	return ((  Promise_1_t7BC5F1754A27CF06571C0C51E5893AE44146B274* (*) (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2*, const RuntimeMethod*))ARCoreProvider_ExecuteAsync_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m58D1F65D55CF1229491473A1AB700D966A535384_gshared)(___apiMethod0, method);
+	Promise_1_tDF175E3233C815DA21D8B6CA42B9C7728AFDF278* il2cppRetVal = ((  Promise_1_tDF175E3233C815DA21D8B6CA42B9C7728AFDF278* (*) (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2*, const RuntimeMethod*))ARCoreProvider_ExecuteAsync_TisIl2CppFullySharedGenericAny_m0D23733EC9E3A64357A761F04DB9AFA28BCF3AF7_gshared)(___apiMethod0, method);
+	return (Promise_1_t7BC5F1754A27CF06571C0C51E5893AE44146B274*)il2cppRetVal;
 }
 // UnityEngine.XR.ARSubsystems.Promise`1<T> UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::ExecuteAsync<UnityEngine.XR.ARSubsystems.SessionInstallationStatus>(System.Action`1<System.IntPtr>)
 inline Promise_1_t5FC5C28B835D1A44C362235B30176D38FCBC7DEC* ARCoreProvider_ExecuteAsync_TisSessionInstallationStatus_tC6EBB8AF18CA242785C3A1941A61A087EFD3A4F3_m14C616E170A0AFBC2D51E1F8AFCA7BB25ADCDAC7 (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2* ___apiMethod0, const RuntimeMethod* method)
 {
-	return ((  Promise_1_t5FC5C28B835D1A44C362235B30176D38FCBC7DEC* (*) (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2*, const RuntimeMethod*))ARCoreProvider_ExecuteAsync_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m58D1F65D55CF1229491473A1AB700D966A535384_gshared)(___apiMethod0, method);
+	Promise_1_tDF175E3233C815DA21D8B6CA42B9C7728AFDF278* il2cppRetVal = ((  Promise_1_tDF175E3233C815DA21D8B6CA42B9C7728AFDF278* (*) (Action_1_t2DF1ED40E3084E997390FF52F462390882271FE2*, const RuntimeMethod*))ARCoreProvider_ExecuteAsync_TisIl2CppFullySharedGenericAny_m0D23733EC9E3A64357A761F04DB9AFA28BCF3AF7_gshared)(___apiMethod0, method);
+	return (Promise_1_t5FC5C28B835D1A44C362235B30176D38FCBC7DEC*)il2cppRetVal;
 }
 // System.IntPtr UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi::UnityARCore_session_getNativePtr()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t NativeApi_UnityARCore_session_getNativePtr_m18528F6B459FF784ADD0562AE6A425A8BE2079B7 (const RuntimeMethod* method) ;
@@ -6607,34 +6740,34 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1
 // System.Boolean System.Nullable`1<System.Int32>::get_HasValue()
 inline bool Nullable_1_get_HasValue_mCF2FD8B3055FA87FC9C504F2122B3B0FAEDE3EC9_inline (Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1B40BC28* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1B40BC28*, const RuntimeMethod*))Nullable_1_get_HasValue_mCF2FD8B3055FA87FC9C504F2122B3B0FAEDE3EC9_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<System.Int32>::get_Value()
 inline int32_t Nullable_1_get_Value_m0DF3B826A745419D26A168689AEB4BE6F8698ECA (Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1B40BC28* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1B40BC28*, const RuntimeMethod*))Nullable_1_get_Value_m0DF3B826A745419D26A168689AEB4BE6F8698ECA_gshared)(__this, method);
+	int32_t il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::ResolvePromise<UnityEngine.XR.ARSubsystems.SessionInstallationStatus>(System.IntPtr,T)
 inline void ARCoreProvider_ResolvePromise_TisSessionInstallationStatus_tC6EBB8AF18CA242785C3A1941A61A087EFD3A4F3_mDCF9716AAD11775C6454E911AEFBB84A23997DCE (intptr_t ___context0, int32_t ___arg1, const RuntimeMethod* method)
 {
-	((  void (*) (intptr_t, int32_t, const RuntimeMethod*))ARCoreProvider_ResolvePromise_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m29F9B15ECFEF123E76E9DA2D73B5467918966454_gshared)(___context0, ___arg1, method);
+	((  void (*) (intptr_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))ARCoreProvider_ResolvePromise_TisIl2CppFullySharedGenericStruct_mF698EFE2E47A93FD93F871AD6CF706D0AF22B46C_gshared)(___context0, (Il2CppFullySharedGenericStruct)&___arg1, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider::ResolvePromise<UnityEngine.XR.ARSubsystems.SessionAvailability>(System.IntPtr,T)
 inline void ARCoreProvider_ResolvePromise_TisSessionAvailability_t01F7B649A99735E8895479D291EB177ADC8B4255_m1C4F6F4DE4970D80D4652207C2C6A0EBEB5202C0 (intptr_t ___context0, int32_t ___arg1, const RuntimeMethod* method)
 {
-	((  void (*) (intptr_t, int32_t, const RuntimeMethod*))ARCoreProvider_ResolvePromise_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m29F9B15ECFEF123E76E9DA2D73B5467918966454_gshared)(___context0, ___arg1, method);
+	((  void (*) (intptr_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))ARCoreProvider_ResolvePromise_TisIl2CppFullySharedGenericStruct_mF698EFE2E47A93FD93F871AD6CF706D0AF22B46C_gshared)(___context0, (Il2CppFullySharedGenericStruct)&___arg1, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/ARCoreProvider/<>c__DisplayClass49_0::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass49_0__ctor_m117E39D5AB1AD3E8F62AAEBF1A7CBF5FD674C8B8 (U3CU3Ec__DisplayClass49_0_tF5CD7660528CA3C7C2C363FCB0A0E9C9CACE5CBA* __this, const RuntimeMethod* method) ;
 // System.Void System.Action`2<System.String,System.Boolean>::.ctor(System.Object,System.IntPtr)
 inline void Action_2__ctor_m8D65B66B6B7CDF2C70A408F47BE85DB9B70CBDCF (Action_2_t79388C33CD9A9EDFE5BE17BE73F59AB95415B00A* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_2_t79388C33CD9A9EDFE5BE17BE73F59AB95415B00A*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m460C72FDDE5FF8033C7BD19A07CF4E3F473F7414_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m8E9B7F6EE50FEF26FF7537F554B4F5E434F70550_gshared)((Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCorePermissionManager::RequestPermission(System.String,System.Action`2<System.String,System.Boolean>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCorePermissionManager_RequestPermission_m85D7447D4D95D74B4ECC898D56295392264B1D8C (String_t* ___permissionName0, Action_2_t79388C33CD9A9EDFE5BE17BE73F59AB95415B00A* ___callback1, const RuntimeMethod* method) ;
-// System.Boolean System.IntPtr::op_Inequality(System.IntPtr,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B (intptr_t ___value10, intptr_t ___value21, const RuntimeMethod* method) ;
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi::UnityARCore_session_setRenderEventPending()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeApi_UnityARCore_session_setRenderEventPending_m1E6CE4FD00F7E301AB5ED17152975F5015DDD658 (const RuntimeMethod* method) ;
 // System.Void UnityEngine.GL::IssuePluginEvent(System.IntPtr,System.Int32)
@@ -6654,167 +6787,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object__ctor_mE837C6B9FA8C6D5D109F4B2EC8
 // System.Void System.Action`2<UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi/ArAvailability,System.IntPtr>::.ctor(System.Object,System.IntPtr)
 inline void Action_2__ctor_m40E9CF6791F988D420176E4A4EEE69FFA2EBBEB9 (Action_2_tDDC5AFE3871F6D7726DE92277BC51B2C095A120F* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_2_tDDC5AFE3871F6D7726DE92277BC51B2C095A120F*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m053D448E0AE7D6F0A9FFC8B860C709A792E81B60_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m8E9B7F6EE50FEF26FF7537F554B4F5E434F70550_gshared)((Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi::ArPresto_checkApkAvailability(System.Action`2<UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi/ArAvailability,System.IntPtr>,System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeApi_ArPresto_checkApkAvailability_m9C8FA059F7751262D17FF19C4C7E1757AD68980F (Action_2_tDDC5AFE3871F6D7726DE92277BC51B2C095A120F* ___onResult0, intptr_t ___context1, const RuntimeMethod* method) ;
 // System.Void System.Action`2<UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi/ArPrestoApkInstallStatus,System.IntPtr>::.ctor(System.Object,System.IntPtr)
 inline void Action_2__ctor_mBBE889582C5770F26FEAB0C0D27DA5B51E1A0675 (Action_2_t573664FBF88DEE17C18D89D868A092835F175F07* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_2_t573664FBF88DEE17C18D89D868A092835F175F07*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m053D448E0AE7D6F0A9FFC8B860C709A792E81B60_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m8E9B7F6EE50FEF26FF7537F554B4F5E434F70550_gshared)((Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi::ArPresto_requestApkInstallation(System.Boolean,System.Action`2<UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi/ArPrestoApkInstallStatus,System.IntPtr>,System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeApi_ArPresto_requestApkInstallation_mDA72B2447273CF392307BD823556F2F6F2886454 (bool ___userRequested0, Action_2_t573664FBF88DEE17C18D89D868A092835F175F07* ___onResult1, intptr_t ___context2, const RuntimeMethod* method) ;
 // System.Void UnityEngine.XR.ARCore.ARCoreSessionSubsystem/NativeApi/CameraPermissionsResultCallbackDelegate::Invoke(System.Boolean,System.IntPtr)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void CameraPermissionsResultCallbackDelegate_Invoke_m1BB16747C0F77B3FB2038F05EFB05E21F9100AE4_inline (CameraPermissionsResultCallbackDelegate_t90FC9D7A14473EF3629452E353498B5EFA3EF587* __this, bool ___granted0, intptr_t ___context1, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::.ctor(System.IntPtr)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_inline (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, intptr_t ___value0, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::get_IsNull()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_get_IsNull_m0E09F4D2B8C7F7159FBF65FCA7486A8C79741ED6 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) ;
-// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfig::AsIntPtr()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_inline (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Create_m886224169A78B3D22AB043E40F1524CF667F28FC (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* ___value1, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::.ctor(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_mE14FEFC3215FE2A052D06E5A43C619D320B9AA19 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Destroy(UnityEngine.XR.ARCore.ArCameraConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Destroy_mABA8B48536BC128B2F42CA1F8C7381412C11046F (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Dispose_m165F78DBFE34B76060059B7BFC7EB367E0D626CC (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetCameraId(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArString&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetCameraId_mEDFA5672A4B0455D422FB0C4124606BF5792FE55 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, ArString_tC06261461628907E722414E34002436529F6DA10* ___valueOut2, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArString::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArString_Dispose_m2D9E29EC3E98FE828F7FEAB806341561A8A193AA (ArString_tC06261461628907E722414E34002436529F6DA10* __this, const RuntimeMethod* method) ;
-// System.String UnityEngine.XR.ARCore.ArString::ToString()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ArString_ToString_m58566F4EAB0BEC069B61795B57AF890F9AF05961 (ArString_tC06261461628907E722414E34002436529F6DA10* __this, const RuntimeMethod* method) ;
-// System.String UnityEngine.XR.ARCore.ArCameraConfig::GetCameraId(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ArCameraConfig_GetCameraId_mE547D5D96CFA540BE2631831CB839D3D907DAC90 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetDepthSensorUsage_m1E6D173C6463759F5E3C80848B26598DC419C0DE (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___valueOut2, const RuntimeMethod* method) ;
-// UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage UnityEngine.XR.ARCore.ArCameraConfig::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetDepthSensorUsage_m5F136C8F9C5B3044C503580EB45DBC2671EC7C4F (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetFacingDirection(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfigFacingDirection&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetFacingDirection_mF3A1BE5B912348463F8FECFE1EFD6C4660912114 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___valueOut2, const RuntimeMethod* method) ;
-// UnityEngine.XR.ARCore.ArCameraConfigFacingDirection UnityEngine.XR.ARCore.ArCameraConfig::GetFacingDirection(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetFacingDirection_m3C022FA6AC02ED9BBBE8B4923E9CA397E72FB7A4 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetFpsRange(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetFpsRange_m288AE232C4A22D6FC87AE2EFA38B4611CE222087 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___minFps2, int32_t* ___maxFps3, const RuntimeMethod* method) ;
-// System.Void System.ValueTuple`2<System.Int32,System.Int32>::.ctor(T1,T2)
-inline void ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477 (ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D* __this, int32_t ___item10, int32_t ___item21, const RuntimeMethod* method)
-{
-	((  void (*) (ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D*, int32_t, int32_t, const RuntimeMethod*))ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_gshared)(__this, ___item10, ___item21, method);
-}
-// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetFpsRange(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetFpsRange_mF9215E84CF0CF2EB05D2ACD0CFDE02899C9F2533 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetImageDimensions(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetImageDimensions_m00F158B234F449E732FA04FE3F2962A6B6D3BB7C (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___width2, int32_t* ___height3, const RuntimeMethod* method) ;
-// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetImageDimensions(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetImageDimensions_m3746D40ABD8902AEA59C72E1F6B23635A1A2C2C6 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetTextureDimensions(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetTextureDimensions_mC2ED0976D9D803C8067E13BE4C5311C3300FAAB7 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___width2, int32_t* ___height3, const RuntimeMethod* method) ;
-// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetTextureDimensions(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetTextureDimensions_mA0E9C970FDEE0847B4FC7AABC35D82B0259648AE (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::Equals(UnityEngine.XR.ARCore.ArCameraConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___other0, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::Equals(System.Object)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_Equals_m475848DB0C28F764CAFC0F44E27B06BEB7564041 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
-// System.Int32 UnityEngine.XR.ARCore.ArCameraConfig::GetHashCode()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetHashCode_m12BD55CF30C1466B45155A17224C4AA9AB16C4E0 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>::get_HasValue()
-inline bool Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_inline (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB* __this, const RuntimeMethod* method)
-{
-	return ((  bool (*) (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB*, const RuntimeMethod*))Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_gshared_inline)(__this, method);
-}
-// T System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>::GetValueOrDefault()
-inline ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_inline (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB* __this, const RuntimeMethod* method)
-{
-	return ((  ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 (*) (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_gshared_inline)(__this, method);
-}
-// System.Void System.Nullable`1<System.IntPtr>::.ctor(T)
-inline void Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8 (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455* __this, intptr_t ___value0, const RuntimeMethod* method)
-{
-	((  void (*) (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455*, intptr_t, const RuntimeMethod*))Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_gshared)(__this, ___value0, method);
-}
-// System.Boolean UnityEngine.XR.ARCore.NativeObject::ArePointersEqual(System.Nullable`1<System.IntPtr>,System.Nullable`1<System.IntPtr>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool NativeObject_ArePointersEqual_m78CCE35C1493CF89AD67B679A45687843777B576 (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 ___lhs0, Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 ___rhs1, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Equality_mCE55DA201D1AB39471354684350E00BB06DBFA5C (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___lhs0, Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___rhs1, const RuntimeMethod* method) ;
-// System.IntPtr UnityEngine.XR.ARSubsystems.XRCameraConfiguration::get_nativeConfigurationHandle()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t XRCameraConfiguration_get_nativeConfigurationHandle_mD9C92AE35660E0441A296301336578BA11313155_inline (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63* __this, const RuntimeMethod* method) ;
-// UnityEngine.XR.ARCore.ArCameraConfig UnityEngine.XR.ARCore.ArCameraConfig::FromIntPtr(System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ArCameraConfig_FromIntPtr_mBCBEFFFEAEBB82AD1AFDDDA8B450F161938A83F8 (intptr_t ___value0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::.ctor(System.IntPtr)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_inline (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, intptr_t ___value0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Create_m142C7ADE353D6E38316A3A6EE50CB56FC883AC07 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* ___filterOut1, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::.ctor(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mF486A6AFC61683CFC3E52B7E5494E983D4DE83E7 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfigFilter::AsIntPtr()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_inline (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::get_IsNull()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_get_IsNull_m0C4936F2612BC0BB7B4BAF08F9F0947D69EDC383 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_GetDepthSensorUsage_mD6B774F26D0C2DE2202A91A98F6DBACF90D98E61 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t* ___valueOut2, const RuntimeMethod* method) ;
-// UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage UnityEngine.XR.ARCore.ArCameraConfigFilter::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetDepthSensorUsage_mAD042C592CA038A62E72173B8B0E9224067C7C12 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetDepthSensorUsage_m5B7D3EC70DBB599EE5F6F6A682D6D55011D30555 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t ___value2, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetDepthSensorUsage_m92C45E574F2383B585B96C7FEC9FF2CCEABC68E3 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___depthSensorUsage1, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::GetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigTargetFps&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_GetTargetFps_m9973098C5F69BF6DBEB4694352ADF354C213BC02 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t* ___valueOut2, const RuntimeMethod* method) ;
-// UnityEngine.XR.ARCore.ArCameraConfigTargetFps UnityEngine.XR.ARCore.ArCameraConfigFilter::GetTargetFps(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetTargetFps_m8A00967A664541D6702D5256F048DC56EBB74983 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigTargetFps)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetTargetFps_mABECEE8F72881F7B6F0CD21C0916DCB68B949FCF (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t ___value2, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigTargetFps)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetTargetFps_mD09E6CDC671DB61E9FC443F99A26EF4C716C9766 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___targetFps1, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Destroy(UnityEngine.XR.ARCore.ArCameraConfigFilter)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Destroy_m9EAD8BB21D88A11EE1ED2E885E92B06FE96BEA6F (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___self0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Dispose_m71514EB30557871157FCA62921F794E10EC3BD59 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::Equals(UnityEngine.XR.ARCore.ArCameraConfigFilter)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___other0, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::Equals(System.Object)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_Equals_mF6B858B3A8FC33E7912163F338B1CC71C59744ED (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>::get_HasValue()
-inline bool Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_inline (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D* __this, const RuntimeMethod* method)
-{
-	return ((  bool (*) (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D*, const RuntimeMethod*))Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_gshared_inline)(__this, method);
-}
-// T System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>::GetValueOrDefault()
-inline ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_inline (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D* __this, const RuntimeMethod* method)
-{
-	return ((  ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 (*) (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_gshared_inline)(__this, method);
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Equality_mEC832B8112587B3269F1EE3E5F42320B0CE170B9 (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___lhs0, Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___rhs1, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArConfig::.ctor(System.IntPtr)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_inline (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, intptr_t ___value0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArConfig::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArConfig&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Create_m165DEBEB687311E29D05FBB31CB1C31916DFDBAA (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* ___configOut1, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArConfig::.ctor(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig__ctor_m807FC812AF15E78B8FD5025A164FF214A030F793 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::get_IsNull()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_get_IsNull_mC16E8E4A5FD7562D365B3CED6F6195F6D3A4BA98 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) ;
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::Equals(System.Object)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_Equals_mAF04B9E9552EAF1D2DE31F107EF45BBC9CF8BBA4 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArConfig::Destroy(UnityEngine.XR.ARCore.ArConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Destroy_m28D7B99179AA968D94454EFF9FD67F44AE354DE3 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___config0, const RuntimeMethod* method) ;
-// System.Void UnityEngine.XR.ARCore.ArConfig::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Dispose_m7AFD805848963702EA520A205BF9E3AC79BFA37B (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>::get_HasValue()
-inline bool Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_inline (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C* __this, const RuntimeMethod* method)
-{
-	return ((  bool (*) (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C*, const RuntimeMethod*))Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_gshared_inline)(__this, method);
-}
-// T System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>::GetValueOrDefault()
-inline ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_inline (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C* __this, const RuntimeMethod* method)
-{
-	return ((  ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C (*) (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_gshared_inline)(__this, method);
-}
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Equality_m5078A53EB4B64DB5D3415C642CE14B353E370B7C (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___lhs0, Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___rhs1, const RuntimeMethod* method) ;
 // System.Void UnityEngine.XR.ARCore.ArRecordingConfig::.ctor(System.IntPtr)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArRecordingConfig__ctor_mFB056D108F9F2F1F95700E06ECF338AB67DE5543_inline (ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7* __this, intptr_t ___value0, const RuntimeMethod* method) ;
 // System.IntPtr UnityEngine.XR.ARCore.ArRecordingConfig::AsIntPtr()
@@ -6828,12 +6813,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArRecordingConfig_GetHashCode_mC90EE6
 // System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>::get_HasValue()
 inline bool Nullable_1_get_HasValue_mB2D03C2253145ECBE459264A5476C9DB7FE2DC95_inline (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623*, const RuntimeMethod*))Nullable_1_get_HasValue_mB2D03C2253145ECBE459264A5476C9DB7FE2DC95_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>::GetValueOrDefault()
 inline ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7 Nullable_1_GetValueOrDefault_m63BA6341EF0131341178244A39DD235C3ED95638_inline (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623* __this, const RuntimeMethod* method)
 {
-	return ((  ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7 (*) (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_m63BA6341EF0131341178244A39DD235C3ED95638_gshared_inline)(__this, method);
+	ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_mC057FBD944AF068B90EBDD0B496231A01B2A4228_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean UnityEngine.XR.ARCore.ArRecordingConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArRecordingConfig_op_Equality_mDE220C849425194A089D8B279FF4E7114F177F50 (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623 ___lhs0, Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623 ___rhs1, const RuntimeMethod* method) ;
@@ -6844,7 +6831,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArRecordingConfig__ctor_m1FC781FAD6F2638
 // System.Void System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>::.ctor(T)
 inline void Nullable_1__ctor_m6F7128C944C4D24ADCCB0A44A57F5F07FF547385 (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623* __this, ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623*, ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7, const RuntimeMethod*))Nullable_1__ctor_m6F7128C944C4D24ADCCB0A44A57F5F07FF547385_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Boolean UnityEngine.XR.ARCore.ArRecordingConfig::op_Inequality(System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArRecordingConfig>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArRecordingConfig_op_Inequality_m89D37B4D875994BCE36238FCE735F9BB792CACBF (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623 ___lhs0, Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623 ___rhs1, const RuntimeMethod* method) ;
@@ -6889,12 +6876,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArSession_Equals_m55E7D8A043929991C0F087
 // System.Boolean System.Nullable`1<UnityEngine.XR.ARCore.ArSession>::get_HasValue()
 inline bool Nullable_1_get_HasValue_mCBD2FF535AA3DA1FD9A2B6FF41312A05A56FFD2D_inline (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20*, const RuntimeMethod*))Nullable_1_get_HasValue_mCBD2FF535AA3DA1FD9A2B6FF41312A05A56FFD2D_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<UnityEngine.XR.ARCore.ArSession>::GetValueOrDefault()
 inline ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF Nullable_1_GetValueOrDefault_m01D847669976AD41BACDA9443110062EF84086E7_inline (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20* __this, const RuntimeMethod* method)
 {
-	return ((  ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF (*) (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_m01D847669976AD41BACDA9443110062EF84086E7_gshared_inline)(__this, method);
+	ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_GetValueOrDefault_mC057FBD944AF068B90EBDD0B496231A01B2A4228_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean System.String::IsNullOrEmpty(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool String_IsNullOrEmpty_mEA9E3FB005AC28FE02E69FCF95A7B8456192B478 (String_t* ___value0, const RuntimeMethod* method) ;
@@ -6941,49 +6930,51 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_depth_Release
 // System.Void UnityEngine.XR.ARSubsystems.TrackableChanges`1<UnityEngine.XR.ARSubsystems.XRPointCloud>::.ctor(System.Void*,System.Int32,System.Void*,System.Int32,System.Void*,System.Int32,T,System.Int32,Unity.Collections.Allocator)
 inline void TrackableChanges_1__ctor_m86FF832095618F3232DAC4FD1E9DD60AE252BFB3 (TrackableChanges_1_t33787F6E969DAC65E8C2FD57FE6AAC9119CFDB89* __this, void* ___addedPtr0, int32_t ___addedCount1, void* ___updatedPtr2, int32_t ___updatedCount3, void* ___removedPtr4, int32_t ___removedCount5, XRPointCloud_t99DB921A9C92F53CEA3EB29A64E2DECDA6EA7D8C ___defaultT6, int32_t ___stride7, int32_t ___allocator8, const RuntimeMethod* method)
 {
-	((  void (*) (TrackableChanges_1_t33787F6E969DAC65E8C2FD57FE6AAC9119CFDB89*, void*, int32_t, void*, int32_t, void*, int32_t, XRPointCloud_t99DB921A9C92F53CEA3EB29A64E2DECDA6EA7D8C, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_m86FF832095618F3232DAC4FD1E9DD60AE252BFB3_gshared)(__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, ___defaultT6, ___stride7, ___allocator8, method);
+	((  void (*) (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*, void*, int32_t, void*, int32_t, void*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, const RuntimeMethod*))TrackableChanges_1__ctor_m19BF1F09CAD376FA000FCA5EAF8AFF35FD898576_gshared)((TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD*)__this, ___addedPtr0, ___addedCount1, ___updatedPtr2, ___updatedCount3, ___removedPtr4, ___removedCount5, (Il2CppFullySharedGenericStruct)&___defaultT6, ___stride7, ___allocator8, method);
 }
 // System.Int32 UnityEngine.XR.ARCore.ARCoreXRDepthSubsystem/ARCoreProvider::UnityARCore_depth_getPointCloudPtrs(UnityEngine.XR.ARSubsystems.TrackableId,System.Void*&,System.Void*&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ARCoreProvider_UnityARCore_depth_getPointCloudPtrs_m7F05511D72EA4223143943B8AA5D31D9218AD6F3 (TrackableId_t49EAE8AA4B9584E314518723DC22B66496D47AD7 ___trackableId0, void** ___dataPtr1, void** ___identifierPtr2, const RuntimeMethod* method) ;
 // Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<UnityEngine.Quaternion>(System.Void*,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_t033CD013BF2CA1D8A5909650F2E75960C527E638 NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisQuaternion_tDA59F214EF07D7700B26E40E562F267AF7306974_mD7CEBD73999042AAC575D52A40749352CD4C0D60 (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_t033CD013BF2CA1D8A5909650F2E75960C527E638 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisQuaternion_tDA59F214EF07D7700B26E40E562F267AF7306974_mD7CEBD73999042AAC575D52A40749352CD4C0D60_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisIl2CppFullySharedGenericStruct_m6920C14D4E38FAB84BD2B5F148CE70DF7F224F52_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_t033CD013BF2CA1D8A5909650F2E75960C527E638, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // System.Void Unity.Collections.NativeArray`1<UnityEngine.Vector3>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_mD6D2D9E805E66DA9D5A8766ADB32AE63A4D306D0 (NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_mD6D2D9E805E66DA9D5A8766ADB32AE63A4D306D0_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreXRDepthSubsystem/ARCoreProvider/TransformPositionsJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisTransformPositionsJob_t48D0CD5B7C65104B1156232DE2C06967D161492E_mE59BBA1FC80C015E7C89A9330F9A4FA26914A4A0 (TransformPositionsJob_t48D0CD5B7C65104B1156232DE2C06967D161492E ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (TransformPositionsJob_t48D0CD5B7C65104B1156232DE2C06967D161492E, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisTransformPositionsJob_t48D0CD5B7C65104B1156232DE2C06967D161492E_mE59BBA1FC80C015E7C89A9330F9A4FA26914A4A0_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // System.Void Unity.Collections.NativeArray`1<System.Single>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_m4D540A81E1062EEC2C4B0697A34A4EEFB9BC9004 (NativeArray_1_t3848EE4B6647317212A754634DE6DBC90B99FBEF* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t3848EE4B6647317212A754634DE6DBC90B99FBEF*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m4D540A81E1062EEC2C4B0697A34A4EEFB9BC9004_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreXRDepthSubsystem/ARCoreProvider/ExtractConfidenceValuesJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisExtractConfidenceValuesJob_tE29B65C6210F79DA05CBFA12BAE229D43DBB99BB_m11EC48B463051D97A5C3A4C394A2345E0BB416AE (ExtractConfidenceValuesJob_tE29B65C6210F79DA05CBFA12BAE229D43DBB99BB ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (ExtractConfidenceValuesJob_tE29B65C6210F79DA05CBFA12BAE229D43DBB99BB, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisExtractConfidenceValuesJob_tE29B65C6210F79DA05CBFA12BAE229D43DBB99BB_m11EC48B463051D97A5C3A4C394A2345E0BB416AE_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // System.Void Unity.Collections.NativeArray`1<System.UInt64>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_mA8531DC1B7696C5771660F84BEFAAD1B126030D1 (NativeArray_1_t07975297AD7F7512193094A7C0703BA872EF7A7B* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t07975297AD7F7512193094A7C0703BA872EF7A7B*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_mA8531DC1B7696C5771660F84BEFAAD1B126030D1_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // Unity.Collections.NativeArray`1<T> Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::ConvertExistingDataToNativeArray<System.Int32>(System.Void*,System.Int32,Unity.Collections.Allocator)
 inline NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m5C4C6FA53CA05FE88CA7926E8B1C0DF717B63550 (void* ___dataPointer0, int32_t ___length1, int32_t ___allocator2, const RuntimeMethod* method)
 {
-	return ((  NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m5C4C6FA53CA05FE88CA7926E8B1C0DF717B63550_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 il2cppRetVal = ((  NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 (*) (void*, int32_t, int32_t, const RuntimeMethod*))NativeArrayUnsafeUtility_ConvertExistingDataToNativeArray_TisIl2CppFullySharedGenericStruct_m6920C14D4E38FAB84BD2B5F148CE70DF7F224F52_gshared)(___dataPointer0, ___length1, ___allocator2, method);
+	return il2cpp_codegen_cast_struct<NativeArray_1_tA833EB7E3E1C9AF82C37976AD964B8D4BAC38B2C, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18>(&il2cppRetVal);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ARCoreXRDepthSubsystem/ARCoreProvider/CopyIdentifiersJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisCopyIdentifiersJob_tFEF3E6776D39C124552268BED8D4CC16E24ABBE6_m7FF39ACAF76DFAE3F895A793273BACBC28C0C075 (CopyIdentifiersJob_tFEF3E6776D39C124552268BED8D4CC16E24ABBE6 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (CopyIdentifiersJob_tFEF3E6776D39C124552268BED8D4CC16E24ABBE6, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisCopyIdentifiersJob_tFEF3E6776D39C124552268BED8D4CC16E24ABBE6_m7FF39ACAF76DFAE3F895A793273BACBC28C0C075_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // System.Void UnityEngine.XR.ARSubsystems.XRPointCloudData::set_positions(Unity.Collections.NativeArray`1<UnityEngine.Vector3>)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void XRPointCloudData_set_positions_mDE6F539B73AEA3C49189F4210F9D01094A02F14D_inline (XRPointCloudData_t06BF6FA78C7ED8CBDCAAAFAC6548A309860E7C5B* __this, NativeArray_1_t97E2BFD61E13EEF2CDE34A313415FAD03AB993FD ___value0, const RuntimeMethod* method) ;
@@ -7004,7 +6995,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ARCoreProvider_UnityARCore_depth_Stop_m2
 // System.Void System.Func`1<System.Guid>::.ctor(System.Object,System.IntPtr)
 inline void Func_1__ctor_mF051C59A4536E246F8D503B6C2AFD4A633CF27E3 (Func_1_t795BA1461C14377291BD8B37CC2DF979C31BF318* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Func_1_t795BA1461C14377291BD8B37CC2DF979C31BF318*, RuntimeObject*, intptr_t, const RuntimeMethod*))Func_1__ctor_mF051C59A4536E246F8D503B6C2AFD4A633CF27E3_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431*, RuntimeObject*, intptr_t, const RuntimeMethod*))Func_1__ctor_mC73A4FCEBBAB90CB7B7AB16321F3F98FBBF12596_gshared)((Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.XR.ARCore.ARCoreXRDepthSubsystem/ARCoreProvider/CopyIdentifiersJob::Execute(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void CopyIdentifiersJob_Execute_mD5F4057E3560C7ABD74EBCEA89EFF89A64695D3C (CopyIdentifiersJob_tFEF3E6776D39C124552268BED8D4CC16E24ABBE6* IL2CPP_PARAMETER_RESTRICT __this, int32_t ___index0, const RuntimeMethod* method) ;
@@ -7025,14 +7016,18 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t HashCodeUtil_Combine_mBF0D491AE9389CA
 // T Unity.Collections.NativeSlice`1<System.Byte>::get_Item(System.Int32)
 inline uint8_t NativeSlice_1_get_Item_m78B246AADBB1E51D08787974BE76502C20890E72 (NativeSlice_1_tCEC4B2B900638EC1820BB61FE436766204DFD8DA* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	return ((  uint8_t (*) (NativeSlice_1_tCEC4B2B900638EC1820BB61FE436766204DFD8DA*, int32_t, const RuntimeMethod*))NativeSlice_1_get_Item_m78B246AADBB1E51D08787974BE76502C20890E72_gshared)(__this, ___index0, method);
+	uint8_t il2cppRetVal;
+	((  void (*) (NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52*, int32_t, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))NativeSlice_1_get_Item_mB5E7BDE4EDF7E31480A9785BE103CC7E17E0E3A8_gshared)((NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52*)__this, ___index0, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void UnityEngine.XR.ARCore.FlipVerticalJob::Execute(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void FlipVerticalJob_Execute_mD0741C407C244AEE8696FF8D8EAB2DCE8EB676EA (FlipVerticalJob_tAE462B1FCA2AC821363FF79C325761C26F3010D0* IL2CPP_PARAMETER_RESTRICT __this, int32_t ___row0, const RuntimeMethod* method) ;
 // T Unity.Collections.NativeSlice`1<System.Single>::get_Item(System.Int32)
 inline float NativeSlice_1_get_Item_m47F6910D5F656CCFB4EEC9B9A341CFF81CEFC974 (NativeSlice_1_t173266145AD9873C4FE45D91583856BC2DDCDF75* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	return ((  float (*) (NativeSlice_1_t173266145AD9873C4FE45D91583856BC2DDCDF75*, int32_t, const RuntimeMethod*))NativeSlice_1_get_Item_m47F6910D5F656CCFB4EEC9B9A341CFF81CEFC974_gshared)(__this, ___index0, method);
+	float il2cppRetVal;
+	((  void (*) (NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52*, int32_t, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))NativeSlice_1_get_Item_mB5E7BDE4EDF7E31480A9785BE103CC7E17E0E3A8_gshared)((NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52*)__this, ___index0, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void UnityEngine.XR.ARCore.ConvertRFloatToGrayscaleJob::Execute(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void ConvertRFloatToGrayscaleJob_Execute_mD576D88F5CA87BA7658352FF375620774927BE7E (ConvertRFloatToGrayscaleJob_tDB4C675A6D63668F3A0F84DAA2703ED1ECC0BBF9* IL2CPP_PARAMETER_RESTRICT __this, int32_t ___row0, const RuntimeMethod* method) ;
@@ -7045,32 +7040,33 @@ IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void ConvertStridedToGraysca
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.FlipVerticalJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisFlipVerticalJob_tAE462B1FCA2AC821363FF79C325761C26F3010D0_mE8320C0825ADE9E9E4E67E1995A8B32266D18095 (FlipVerticalJob_tAE462B1FCA2AC821363FF79C325761C26F3010D0 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (FlipVerticalJob_tAE462B1FCA2AC821363FF79C325761C26F3010D0, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisFlipVerticalJob_tAE462B1FCA2AC821363FF79C325761C26F3010D0_mE8320C0825ADE9E9E4E67E1995A8B32266D18095_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ConvertStridedToGrayscaleJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisConvertStridedToGrayscaleJob_tF6593F425AEC88BDEF7547C8BD7C3B7E90D4EF0E_m9BF203149CE1721FFE96B3477EFB0957C0AB34C3 (ConvertStridedToGrayscaleJob_tF6593F425AEC88BDEF7547C8BD7C3B7E90D4EF0E ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (ConvertStridedToGrayscaleJob_tF6593F425AEC88BDEF7547C8BD7C3B7E90D4EF0E, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisConvertStridedToGrayscaleJob_tF6593F425AEC88BDEF7547C8BD7C3B7E90D4EF0E_m9BF203149CE1721FFE96B3477EFB0957C0AB34C3_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ConvertARGB32ToGrayscaleJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisConvertARGB32ToGrayscaleJob_tF0EA2C0851FE8269BF7A5D567F73FF0B5DFE2C4B_m6A3B85CD2EDBCE404D18FBC9E1D402F2C7E14532 (ConvertARGB32ToGrayscaleJob_tF0EA2C0851FE8269BF7A5D567F73FF0B5DFE2C4B ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (ConvertARGB32ToGrayscaleJob_tF0EA2C0851FE8269BF7A5D567F73FF0B5DFE2C4B, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisConvertARGB32ToGrayscaleJob_tF0EA2C0851FE8269BF7A5D567F73FF0B5DFE2C4B_m6A3B85CD2EDBCE404D18FBC9E1D402F2C7E14532_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ConvertBGRA32ToGrayscaleJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisConvertBGRA32ToGrayscaleJob_t8611C9F20E256B04EAE3EE21587F4132A2ABCD5D_m8AD454E5E9187ECC250AD6FDD337B384FB6622FE (ConvertBGRA32ToGrayscaleJob_t8611C9F20E256B04EAE3EE21587F4132A2ABCD5D ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (ConvertBGRA32ToGrayscaleJob_t8611C9F20E256B04EAE3EE21587F4132A2ABCD5D, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisConvertBGRA32ToGrayscaleJob_t8611C9F20E256B04EAE3EE21587F4132A2ABCD5D_m8AD454E5E9187ECC250AD6FDD337B384FB6622FE_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // Unity.Collections.NativeSlice`1<U> Unity.Collections.NativeSlice`1<System.Byte>::SliceConvert<System.Single>()
 inline NativeSlice_1_t173266145AD9873C4FE45D91583856BC2DDCDF75 NativeSlice_1_SliceConvert_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m1B756A8DEBBAE105AF451C968E5E73C223A7A3E8 (NativeSlice_1_tCEC4B2B900638EC1820BB61FE436766204DFD8DA* __this, const RuntimeMethod* method)
 {
-	return ((  NativeSlice_1_t173266145AD9873C4FE45D91583856BC2DDCDF75 (*) (NativeSlice_1_tCEC4B2B900638EC1820BB61FE436766204DFD8DA*, const RuntimeMethod*))NativeSlice_1_SliceConvert_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m1B756A8DEBBAE105AF451C968E5E73C223A7A3E8_gshared)(__this, method);
+	NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52 il2cppRetVal = ((  NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52 (*) (NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52*, const RuntimeMethod*))NativeSlice_1_SliceConvert_TisIl2CppFullySharedGenericStruct_m95D4A04F6012B6943507CFAECA0DFAE7A1D26AB1_gshared)((NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52*)__this, method);
+	return il2cpp_codegen_cast_struct<NativeSlice_1_t173266145AD9873C4FE45D91583856BC2DDCDF75, NativeSlice_1_tA54E5D259EBCC7CD8512AA352C6F3709EB237B52>(&il2cppRetVal);
 }
 // Unity.Jobs.JobHandle Unity.Jobs.IJobParallelForExtensions::Schedule<UnityEngine.XR.ARCore.ConvertRFloatToGrayscaleJob>(T,System.Int32,System.Int32,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForExtensions_Schedule_TisConvertRFloatToGrayscaleJob_tDB4C675A6D63668F3A0F84DAA2703ED1ECC0BBF9_mD07826D3BC98D390AC6AA5F6521ED7A0B501ECA9 (ConvertRFloatToGrayscaleJob_tDB4C675A6D63668F3A0F84DAA2703ED1ECC0BBF9 ___jobData0, int32_t ___arrayLength1, int32_t ___innerloopBatchCount2, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn3, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (ConvertRFloatToGrayscaleJob_tDB4C675A6D63668F3A0F84DAA2703ED1ECC0BBF9, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisConvertRFloatToGrayscaleJob_tDB4C675A6D63668F3A0F84DAA2703ED1ECC0BBF9_mD07826D3BC98D390AC6AA5F6521ED7A0B501ECA9_gshared)(___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, int32_t, int32_t, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForExtensions_Schedule_TisIl2CppFullySharedGenericStruct_m364BAC197FCE9C0398886D7A55115738B4B2BDFD_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___arrayLength1, ___innerloopBatchCount2, ___dependsOn3, method);
 }
 // System.String System.String::Format(System.String,System.Object)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Format_mA8DBB4C2516B9723C5A41E6CB1E2FAF4BBE96DD8 (String_t* ___format0, RuntimeObject* ___arg01, const RuntimeMethod* method) ;
@@ -7081,7 +7077,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR InputDeviceMatcher_tF9BA551C8BB4AE41672366A7E
 // System.Void System.Nullable`1<UnityEngine.InputSystem.Layouts.InputDeviceMatcher>::.ctor(T)
 inline void Nullable_1__ctor_mD369CAC1BA03979662923E5D5E9FAF1F98E252EB (Nullable_1_t4EEC710224A7596AC94C3B6D292E4CB7D84B7F2C* __this, InputDeviceMatcher_tF9BA551C8BB4AE41672366A7EBEA951543E0C555 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_t4EEC710224A7596AC94C3B6D292E4CB7D84B7F2C*, InputDeviceMatcher_tF9BA551C8BB4AE41672366A7EBEA951543E0C555, const RuntimeMethod*))Nullable_1__ctor_mD369CAC1BA03979662923E5D5E9FAF1F98E252EB_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Void UnityEngine.InputSystem.InputSystem::RegisterLayout<UnityEngine.XR.ARSubsystems.HandheldARInputDevice>(System.String,System.Nullable`1<UnityEngine.InputSystem.Layouts.InputDeviceMatcher>)
 inline void InputSystem_RegisterLayout_TisHandheldARInputDevice_tDC70607D65788F0D6A7BA2EABA6D289D15DFDCE9_m4266B7546FF47CA395B17805454373B7AEDCC3B0 (String_t* ___name0, Nullable_1_t4EEC710224A7596AC94C3B6D292E4CB7D84B7F2C ___matches1, const RuntimeMethod* method)
@@ -7103,7 +7099,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Texture2D_tE6505BC111DD8A424A9DBE
 // System.Void System.Nullable`1<UnityEngine.Vector2>::.ctor(T)
 inline void Nullable_1__ctor_m5B4AD6C29FA5950EF6C215B9A459707DCC95EF73 (Nullable_1_tAC9037ECF4C188DFFE614617119CAC19A784F9FD* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_tAC9037ECF4C188DFFE614617119CAC19A784F9FD*, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7, const RuntimeMethod*))Nullable_1__ctor_m5B4AD6C29FA5950EF6C215B9A459707DCC95EF73_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // UnityEngine.XR.ARSubsystems.SerializableGuid UnityEngine.XR.ARCore.ManagedReferenceImage::AsSerializedGuid(System.Guid)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR SerializableGuid_tCEABDCED6CD954AC100159BDEFC5D414049C0378 ManagedReferenceImage_AsSerializedGuid_m11A3D420BD4FA6196F7AE1AAC40527B3FD393073 (ManagedReferenceImage_tACB6E8B16DD2F176EAB1A08349B2092C1194E7FE* __this, Guid_t ___guid0, const RuntimeMethod* method) ;
@@ -7130,20 +7126,70 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t XRReferenceImageLibrary_get_count_m4A
 // System.Void Unity.Collections.NativeArray`1<UnityEngine.XR.ARCore.ManagedReferenceImage>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_mFDD5F82C8B82F2D5F1D67E0C325DA2E04E3C24B0 (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_tA7A7D0942211548E9D94C540285A4463D32DC5FF*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_mFDD5F82C8B82F2D5F1D67E0C325DA2E04E3C24B0_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // UnityEngine.XR.ARSubsystems.XRReferenceImage UnityEngine.XR.ARSubsystems.XRReferenceImageLibrary::get_Item(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR XRReferenceImage_tB2544D6E18E55CD44F4EED1B0573A6A7154C1E2F XRReferenceImageLibrary_get_Item_mD4F21310DD927098ECA31AD41D783D6A3EC462D1 (XRReferenceImageLibrary_t039233790C16E76ED95AABD95D9A35014081EA42* __this, int32_t ___index0, const RuntimeMethod* method) ;
 // System.Boolean System.Nullable`1<System.IntPtr>::get_HasValue()
 inline bool Nullable_1_get_HasValue_mE2869A6464CFABCCBC9BA3B0BDC1DA9A54E1C57B_inline (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455*, const RuntimeMethod*))Nullable_1_get_HasValue_mE2869A6464CFABCCBC9BA3B0BDC1DA9A54E1C57B_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<System.IntPtr>::get_Value()
 inline intptr_t Nullable_1_get_Value_mC255DDF2E4EDF1B963EBC1C41D64B6CD1A2AECA2 (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455* __this, const RuntimeMethod* method)
 {
-	return ((  intptr_t (*) (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455*, const RuntimeMethod*))Nullable_1_get_Value_mC255DDF2E4EDF1B963EBC1C41D64B6CD1A2AECA2_gshared)(__this, method);
+	intptr_t il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_create(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_destroy(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getCameraId(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, ArString_tC06261461628907E722414E34002436529F6DA10*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getDepthSensorUsage(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getFacingDirection(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getFpsRange(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getImageDimensions(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getTextureDimensions(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_create(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_destroy(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_getDepthSensorUsage(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_setDepthSensorUsage(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_getTargetFps(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_setTargetFps(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArConfig_create(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*);
+#endif
+#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+IL2CPP_EXTERN_C void DEFAULT_CALL ArConfig_destroy(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C);
+#endif
 #if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_UnityARCore_INTERNAL
 IL2CPP_EXTERN_C void DEFAULT_CALL UnityARCore_refPoints_start();
 #endif
@@ -7519,54 +7565,6 @@ IL2CPP_EXTERN_C void DEFAULT_CALL UnityARCore_session_setConfigurationDirty();
 #if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_UnityARCore_INTERNAL
 IL2CPP_EXTERN_C void DEFAULT_CALL UnityARCore_session_setConfigCallback(Il2CppMethodPointer, intptr_t);
 #endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_create(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_destroy(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getCameraId(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, ArString_tC06261461628907E722414E34002436529F6DA10*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getDepthSensorUsage(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getFacingDirection(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getFpsRange(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getImageDimensions(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfig_getTextureDimensions(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_create(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_destroy(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_getDepthSensorUsage(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_setDepthSensorUsage(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_getTargetFps(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArCameraConfigFilter_setTargetFps(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArConfig_create(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*);
-#endif
-#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-IL2CPP_EXTERN_C void DEFAULT_CALL ArConfig_destroy(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C);
-#endif
 #if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_UnityARCore_INTERNAL
 IL2CPP_EXTERN_C void DEFAULT_CALL ArPresto_update();
 #endif
@@ -7647,6 +7645,1774 @@ IL2CPP_EXTERN_C int32_t DEFAULT_CALL UnityARCore_rco_retain_count(intptr_t);
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::.ctor(System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// ArCameraConfig(IntPtr value) => m_Self = value;
+		intptr_t L_0 = ___value0;
+		__this->___m_Self_0 = L_0;
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_AdjustorThunk (RuntimeObject* __this, intptr_t ___value0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_inline(_thisAdjusted, ___value0, method);
+}
+// UnityEngine.XR.ARCore.ArCameraConfig UnityEngine.XR.ARCore.ArCameraConfig::FromIntPtr(System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ArCameraConfig_FromIntPtr_mBCBEFFFEAEBB82AD1AFDDDA8B450F161938A83F8 (intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// public static ArCameraConfig FromIntPtr(IntPtr value) => new ArCameraConfig(value);
+		intptr_t L_0 = ___value0;
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1;
+		memset((&L_1), 0, sizeof(L_1));
+		ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_inline((&L_1), L_0, /*hidden argument*/NULL);
+		return L_1;
+	}
+}
+// UnityEngine.XR.ARCore.ArCameraConfig UnityEngine.XR.ARCore.ArCameraConfig::get_Null()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ArCameraConfig_get_Null_m24A947EA533C02BC3AE925CDE05BDF0748B053D2 (const RuntimeMethod* method) 
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		// public static ArCameraConfig Null => default;
+		il2cpp_codegen_initobj((&V_0), sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3));
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_0 = V_0;
+		return L_0;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::get_IsNull()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_get_IsNull_m0E09F4D2B8C7F7159FBF65FCA7486A8C79741ED6 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// public bool IsNull => m_Self == IntPtr.Zero;
+		intptr_t L_0 = __this->___m_Self_0;
+		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
+		bool L_2;
+		L_2 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_1, NULL);
+		return L_2;
+	}
+}
+IL2CPP_EXTERN_C  bool ArCameraConfig_get_IsNull_m0E09F4D2B8C7F7159FBF65FCA7486A8C79741ED6_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArCameraConfig_get_IsNull_m0E09F4D2B8C7F7159FBF65FCA7486A8C79741ED6(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfig::AsIntPtr()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
+{
+	{
+		// public IntPtr AsIntPtr() => m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C  intptr_t ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	intptr_t _returnValue;
+	_returnValue = ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_inline(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::.ctor(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_mE14FEFC3215FE2A052D06E5A43C619D320B9AA19 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	{
+		// public ArCameraConfig(ArSession session) => Create(session, out this);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfig_Create_m886224169A78B3D22AB043E40F1524CF667F28FC(L_0, __this, NULL);
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArCameraConfig__ctor_mE14FEFC3215FE2A052D06E5A43C619D320B9AA19_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	ArCameraConfig__ctor_mE14FEFC3215FE2A052D06E5A43C619D320B9AA19(_thisAdjusted, ___session0, method);
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Dispose_m165F78DBFE34B76060059B7BFC7EB367E0D626CC (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// if (m_Self != IntPtr.Zero)
+		intptr_t L_0 = __this->___m_Self_0;
+		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
+		bool L_2;
+		L_2 = IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B(L_0, L_1, NULL);
+		if (!L_2)
+		{
+			goto IL_001d;
+		}
+	}
+	{
+		// Destroy(this);
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_3 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
+		ArCameraConfig_Destroy_mABA8B48536BC128B2F42CA1F8C7381412C11046F(L_3, NULL);
+	}
+
+IL_001d:
+	{
+		// m_Self = default;
+		intptr_t* L_4 = (&__this->___m_Self_0);
+		il2cpp_codegen_initobj(L_4, sizeof(intptr_t));
+		// }
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArCameraConfig_Dispose_m165F78DBFE34B76060059B7BFC7EB367E0D626CC_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	ArCameraConfig_Dispose_m165F78DBFE34B76060059B7BFC7EB367E0D626CC(_thisAdjusted, method);
+}
+// System.String UnityEngine.XR.ARCore.ArCameraConfig::GetCameraId(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ArCameraConfig_GetCameraId_mE547D5D96CFA540BE2631831CB839D3D907DAC90 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	ArString_tC06261461628907E722414E34002436529F6DA10 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	ArString_tC06261461628907E722414E34002436529F6DA10 V_1;
+	memset((&V_1), 0, sizeof(V_1));
+	String_t* V_2 = NULL;
+	{
+		// GetCameraId(session, this, out var cameraId);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
+		ArCameraConfig_GetCameraId_mEDFA5672A4B0455D422FB0C4124606BF5792FE55(L_0, L_1, (&V_0), NULL);
+		// using (cameraId)
+		ArString_tC06261461628907E722414E34002436529F6DA10 L_2 = V_0;
+		V_1 = L_2;
+	}
+	{
+		auto __finallyBlock = il2cpp::utils::Finally([&]
+		{
+
+FINALLY_0020:
+			{// begin finally (depth: 1)
+				ArString_Dispose_m2D9E29EC3E98FE828F7FEAB806341561A8A193AA((&V_1), NULL);
+				return;
+			}// end finally (depth: 1)
+		});
+		try
+		{// begin try (depth: 1)
+			// return cameraId.ToString();
+			String_t* L_3;
+			L_3 = ArString_ToString_m58566F4EAB0BEC069B61795B57AF890F9AF05961((&V_0), NULL);
+			V_2 = L_3;
+			goto IL_002e;
+		}// end try (depth: 1)
+		catch(Il2CppExceptionWrapper& e)
+		{
+			__finallyBlock.StoreException(e.ex);
+		}
+	}
+
+IL_002e:
+	{
+		// }
+		String_t* L_4 = V_2;
+		return L_4;
+	}
+}
+IL2CPP_EXTERN_C  String_t* ArCameraConfig_GetCameraId_mE547D5D96CFA540BE2631831CB839D3D907DAC90_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	String_t* _returnValue;
+	_returnValue = ArCameraConfig_GetCameraId_mE547D5D96CFA540BE2631831CB839D3D907DAC90(_thisAdjusted, ___session0, method);
+	return _returnValue;
+}
+// UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage UnityEngine.XR.ARCore.ArCameraConfig::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetDepthSensorUsage_m5F136C8F9C5B3044C503580EB45DBC2671EC7C4F (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	int32_t V_0 = 0;
+	{
+		// GetDepthSensorUsage(session, this, out var value);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
+		ArCameraConfig_GetDepthSensorUsage_m1E6D173C6463759F5E3C80848B26598DC419C0DE(L_0, L_1, (&V_0), NULL);
+		// return value;
+		int32_t L_2 = V_0;
+		return L_2;
+	}
+}
+IL2CPP_EXTERN_C  int32_t ArCameraConfig_GetDepthSensorUsage_m5F136C8F9C5B3044C503580EB45DBC2671EC7C4F_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	int32_t _returnValue;
+	_returnValue = ArCameraConfig_GetDepthSensorUsage_m5F136C8F9C5B3044C503580EB45DBC2671EC7C4F(_thisAdjusted, ___session0, method);
+	return _returnValue;
+}
+// UnityEngine.XR.ARCore.ArCameraConfigFacingDirection UnityEngine.XR.ARCore.ArCameraConfig::GetFacingDirection(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetFacingDirection_m3C022FA6AC02ED9BBBE8B4923E9CA397E72FB7A4 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	int32_t V_0 = 0;
+	{
+		// GetFacingDirection(session, this, out var value);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
+		ArCameraConfig_GetFacingDirection_mF3A1BE5B912348463F8FECFE1EFD6C4660912114(L_0, L_1, (&V_0), NULL);
+		// return value;
+		int32_t L_2 = V_0;
+		return L_2;
+	}
+}
+IL2CPP_EXTERN_C  int32_t ArCameraConfig_GetFacingDirection_m3C022FA6AC02ED9BBBE8B4923E9CA397E72FB7A4_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	int32_t _returnValue;
+	_returnValue = ArCameraConfig_GetFacingDirection_m3C022FA6AC02ED9BBBE8B4923E9CA397E72FB7A4(_thisAdjusted, ___session0, method);
+	return _returnValue;
+}
+// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetFpsRange(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetFpsRange_mF9215E84CF0CF2EB05D2ACD0CFDE02899C9F2533 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	int32_t V_0 = 0;
+	int32_t V_1 = 0;
+	{
+		// GetFpsRange(session, this, out var min, out var max);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
+		ArCameraConfig_GetFpsRange_m288AE232C4A22D6FC87AE2EFA38B4611CE222087(L_0, L_1, (&V_0), (&V_1), NULL);
+		// return (min, max);
+		int32_t L_2 = V_0;
+		int32_t L_3 = V_1;
+		ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D L_4;
+		memset((&L_4), 0, sizeof(L_4));
+		ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477((&L_4), L_2, L_3, /*hidden argument*/ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
+		return L_4;
+	}
+}
+IL2CPP_EXTERN_C  ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetFpsRange_mF9215E84CF0CF2EB05D2ACD0CFDE02899C9F2533_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D _returnValue;
+	_returnValue = ArCameraConfig_GetFpsRange_mF9215E84CF0CF2EB05D2ACD0CFDE02899C9F2533(_thisAdjusted, ___session0, method);
+	return _returnValue;
+}
+// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetImageDimensions(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetImageDimensions_m3746D40ABD8902AEA59C72E1F6B23635A1A2C2C6 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	int32_t V_0 = 0;
+	int32_t V_1 = 0;
+	{
+		// GetImageDimensions(session, this, out var width, out var height);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
+		ArCameraConfig_GetImageDimensions_m00F158B234F449E732FA04FE3F2962A6B6D3BB7C(L_0, L_1, (&V_0), (&V_1), NULL);
+		// return (width, height);
+		int32_t L_2 = V_0;
+		int32_t L_3 = V_1;
+		ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D L_4;
+		memset((&L_4), 0, sizeof(L_4));
+		ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477((&L_4), L_2, L_3, /*hidden argument*/ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
+		return L_4;
+	}
+}
+IL2CPP_EXTERN_C  ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetImageDimensions_m3746D40ABD8902AEA59C72E1F6B23635A1A2C2C6_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D _returnValue;
+	_returnValue = ArCameraConfig_GetImageDimensions_m3746D40ABD8902AEA59C72E1F6B23635A1A2C2C6(_thisAdjusted, ___session0, method);
+	return _returnValue;
+}
+// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetTextureDimensions(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetTextureDimensions_mA0E9C970FDEE0847B4FC7AABC35D82B0259648AE (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	int32_t V_0 = 0;
+	int32_t V_1 = 0;
+	{
+		// GetTextureDimensions(session, this, out var width, out var height);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
+		ArCameraConfig_GetTextureDimensions_mC2ED0976D9D803C8067E13BE4C5311C3300FAAB7(L_0, L_1, (&V_0), (&V_1), NULL);
+		// return (width, height);
+		int32_t L_2 = V_0;
+		int32_t L_3 = V_1;
+		ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D L_4;
+		memset((&L_4), 0, sizeof(L_4));
+		ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477((&L_4), L_2, L_3, /*hidden argument*/ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
+		return L_4;
+	}
+}
+IL2CPP_EXTERN_C  ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetTextureDimensions_mA0E9C970FDEE0847B4FC7AABC35D82B0259648AE_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D _returnValue;
+	_returnValue = ArCameraConfig_GetTextureDimensions_mA0E9C970FDEE0847B4FC7AABC35D82B0259648AE(_thisAdjusted, ___session0, method);
+	return _returnValue;
+}
+// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfig::op_Explicit(UnityEngine.XR.ARCore.ArCameraConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArCameraConfig_op_Explicit_m94CDC0BE7224BA7B163E8E27129C92963FFB7F87 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___cameraConfig0, const RuntimeMethod* method) 
+{
+	{
+		// public static explicit operator IntPtr(ArCameraConfig cameraConfig) => cameraConfig.AsIntPtr();
+		intptr_t L_0;
+		L_0 = ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_inline((&___cameraConfig0), NULL);
+		return L_0;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::Equals(UnityEngine.XR.ARCore.ArCameraConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___other0, const RuntimeMethod* method) 
+{
+	{
+		// public bool Equals(ArCameraConfig other) => m_Self == other.m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = ___other0;
+		intptr_t L_2 = L_1.___m_Self_0;
+		bool L_3;
+		L_3 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_2, NULL);
+		return L_3;
+	}
+}
+IL2CPP_EXTERN_C  bool ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9_AdjustorThunk (RuntimeObject* __this, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___other0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9(_thisAdjusted, ___other0, method);
+	return _returnValue;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::Equals(System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_Equals_m475848DB0C28F764CAFC0F44E27B06BEB7564041 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		// public override bool Equals(object obj) => obj is ArCameraConfig other && Equals(other);
+		RuntimeObject* L_0 = ___obj0;
+		if (!((RuntimeObject*)IsInstSealed((RuntimeObject*)L_0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3_il2cpp_TypeInfo_var)))
+		{
+			goto IL_0017;
+		}
+	}
+	{
+		RuntimeObject* L_1 = ___obj0;
+		V_0 = ((*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)((ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)UnBox(L_1, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3_il2cpp_TypeInfo_var))));
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_2 = V_0;
+		bool L_3;
+		L_3 = ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9(__this, L_2, NULL);
+		return L_3;
+	}
+
+IL_0017:
+	{
+		return (bool)0;
+	}
+}
+IL2CPP_EXTERN_C  bool ArCameraConfig_Equals_m475848DB0C28F764CAFC0F44E27B06BEB7564041_AdjustorThunk (RuntimeObject* __this, RuntimeObject* ___obj0, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArCameraConfig_Equals_m475848DB0C28F764CAFC0F44E27B06BEB7564041(_thisAdjusted, ___obj0, method);
+	return _returnValue;
+}
+// System.Int32 UnityEngine.XR.ARCore.ArCameraConfig::GetHashCode()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetHashCode_m12BD55CF30C1466B45155A17224C4AA9AB16C4E0 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
+{
+	{
+		// public override int GetHashCode() => m_Self.GetHashCode();
+		intptr_t* L_0 = (&__this->___m_Self_0);
+		int32_t L_1;
+		L_1 = IntPtr_GetHashCode_m669B16AD7483C1C396E48F41D9CAC4B719E38F3D(L_0, NULL);
+		return L_1;
+	}
+}
+IL2CPP_EXTERN_C  int32_t ArCameraConfig_GetHashCode_m12BD55CF30C1466B45155A17224C4AA9AB16C4E0_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
+	int32_t _returnValue;
+	_returnValue = ArCameraConfig_GetHashCode_m12BD55CF30C1466B45155A17224C4AA9AB16C4E0(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Equality(UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Equality_m84667F11E490E27DE28189D00CA36C0575DEBDCD (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___lhs0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator ==(ArCameraConfig lhs, ArCameraConfig rhs) => lhs.Equals(rhs);
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_0 = ___rhs1;
+		bool L_1;
+		L_1 = ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9((&___lhs0), L_0, NULL);
+		return L_1;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Inequality(UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Inequality_mF85ED6F7896064432D80B39BF4A42F794108230E (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___lhs0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator !=(ArCameraConfig lhs, ArCameraConfig rhs) => !lhs.Equals(rhs);
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_0 = ___rhs1;
+		bool L_1;
+		L_1 = ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9((&___lhs0), L_0, NULL);
+		return (bool)((((int32_t)L_1) == ((int32_t)0))? 1 : 0);
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Equality_mCE55DA201D1AB39471354684350E00BB06DBFA5C (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___lhs0, Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___rhs1, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B3_0;
+	memset((&G_B3_0), 0, sizeof(G_B3_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B5_0;
+	memset((&G_B5_0), 0, sizeof(G_B5_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B4_0;
+	memset((&G_B4_0), 0, sizeof(G_B4_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_0;
+	memset((&G_B6_0), 0, sizeof(G_B6_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_1;
+	memset((&G_B6_1), 0, sizeof(G_B6_1));
+	{
+		// public static bool operator ==(ArCameraConfig? lhs, ArCameraConfig? rhs) => NativeObject.ArePointersEqual(lhs?.m_Self, rhs?.m_Self);
+		bool L_0;
+		L_0 = Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_inline((&___lhs0), Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_RuntimeMethod_var);
+		if (L_0)
+		{
+			goto IL_0014;
+		}
+	}
+	{
+		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_1 = V_0;
+		G_B3_0 = L_1;
+		goto IL_0025;
+	}
+
+IL_0014:
+	{
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_2;
+		L_2 = Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_inline((&___lhs0), Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_RuntimeMethod_var);
+		intptr_t L_3 = L_2.___m_Self_0;
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_4;
+		memset((&L_4), 0, sizeof(L_4));
+		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_4), L_3, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		G_B3_0 = L_4;
+	}
+
+IL_0025:
+	{
+		bool L_5;
+		L_5 = Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_inline((&___rhs1), Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_RuntimeMethod_var);
+		G_B4_0 = G_B3_0;
+		if (L_5)
+		{
+			G_B5_0 = G_B3_0;
+			goto IL_0039;
+		}
+	}
+	{
+		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_6 = V_0;
+		G_B6_0 = L_6;
+		G_B6_1 = G_B4_0;
+		goto IL_004a;
+	}
+
+IL_0039:
+	{
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_7;
+		L_7 = Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_inline((&___rhs1), Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_RuntimeMethod_var);
+		intptr_t L_8 = L_7.___m_Self_0;
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_9;
+		memset((&L_9), 0, sizeof(L_9));
+		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_9), L_8, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		G_B6_0 = L_9;
+		G_B6_1 = G_B5_0;
+	}
+
+IL_004a:
+	{
+		bool L_10;
+		L_10 = NativeObject_ArePointersEqual_m78CCE35C1493CF89AD67B679A45687843777B576(G_B6_1, G_B6_0, NULL);
+		return L_10;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Inequality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Inequality_m0122056A9A2B35072F4B6E815FF762268D32DE32 (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___lhs0, Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator !=(ArCameraConfig? lhs, ArCameraConfig? rhs) => !(lhs == rhs);
+		Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB L_0 = ___lhs0;
+		Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB L_1 = ___rhs1;
+		bool L_2;
+		L_2 = ArCameraConfig_op_Equality_mCE55DA201D1AB39471354684350E00BB06DBFA5C(L_0, L_1, NULL);
+		return (bool)((((int32_t)L_2) == ((int32_t)0))? 1 : 0);
+	}
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Create_m886224169A78B3D22AB043E40F1524CF667F28FC (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* ___value1, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_create", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfig_create)(___session0, ___value1);
+	#else
+	il2cppPInvokeFunc(___session0, ___value1);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Destroy(UnityEngine.XR.ARCore.ArCameraConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Destroy_mABA8B48536BC128B2F42CA1F8C7381412C11046F (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self0, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_destroy", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfig_destroy)(___self0);
+	#else
+	il2cppPInvokeFunc(___self0);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetCameraId(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArString&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetCameraId_mEDFA5672A4B0455D422FB0C4124606BF5792FE55 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, ArString_tC06261461628907E722414E34002436529F6DA10* ___valueOut2, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, ArString_tC06261461628907E722414E34002436529F6DA10*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(ArString_tC06261461628907E722414E34002436529F6DA10*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getCameraId", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getCameraId)(___session0, ___self1, ___valueOut2);
+	#else
+	il2cppPInvokeFunc(___session0, ___self1, ___valueOut2);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetDepthSensorUsage_m1E6D173C6463759F5E3C80848B26598DC419C0DE (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___valueOut2, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getDepthSensorUsage", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getDepthSensorUsage)(___session0, ___self1, ___valueOut2);
+	#else
+	il2cppPInvokeFunc(___session0, ___self1, ___valueOut2);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetFacingDirection(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfigFacingDirection&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetFacingDirection_mF3A1BE5B912348463F8FECFE1EFD6C4660912114 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___valueOut2, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getFacingDirection", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getFacingDirection)(___session0, ___self1, ___valueOut2);
+	#else
+	il2cppPInvokeFunc(___session0, ___self1, ___valueOut2);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetFpsRange(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetFpsRange_m288AE232C4A22D6FC87AE2EFA38B4611CE222087 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___minFps2, int32_t* ___maxFps3, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*) + sizeof(int32_t*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getFpsRange", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getFpsRange)(___session0, ___self1, ___minFps2, ___maxFps3);
+	#else
+	il2cppPInvokeFunc(___session0, ___self1, ___minFps2, ___maxFps3);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetImageDimensions(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetImageDimensions_m00F158B234F449E732FA04FE3F2962A6B6D3BB7C (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___width2, int32_t* ___height3, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*) + sizeof(int32_t*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getImageDimensions", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getImageDimensions)(___session0, ___self1, ___width2, ___height3);
+	#else
+	il2cppPInvokeFunc(___session0, ___self1, ___width2, ___height3);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetTextureDimensions(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetTextureDimensions_mC2ED0976D9D803C8067E13BE4C5311C3300FAAB7 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___width2, int32_t* ___height3, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*) + sizeof(int32_t*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getTextureDimensions", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getTextureDimensions)(___session0, ___self1, ___width2, ___height3);
+	#else
+	il2cppPInvokeFunc(___session0, ___self1, ___width2, ___height3);
+	#endif
+
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// UnityEngine.XR.ARCore.ArCameraConfig UnityEngine.XR.ARCore.XRCameraConfigurationExtensions::AsArCameraConfig(UnityEngine.XR.ARSubsystems.XRCameraConfiguration)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 XRCameraConfigurationExtensions_AsArCameraConfig_m9D94625F0D83F9421073FEEBC143F5AB4F80E6D5 (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 ___cameraConfiguration0, const RuntimeMethod* method) 
+{
+	{
+		// ArCameraConfig.FromIntPtr(cameraConfiguration.nativeConfigurationHandle);
+		intptr_t L_0;
+		L_0 = XRCameraConfiguration_get_nativeConfigurationHandle_mD9C92AE35660E0441A296301336578BA11313155_inline((&___cameraConfiguration0), NULL);
+		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1;
+		L_1 = ArCameraConfig_FromIntPtr_mBCBEFFFEAEBB82AD1AFDDDA8B450F161938A83F8(L_0, NULL);
+		return L_1;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::.ctor(System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// ArCameraConfigFilter(IntPtr value) => m_Self = value;
+		intptr_t L_0 = ___value0;
+		__this->___m_Self_0 = L_0;
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_AdjustorThunk (RuntimeObject* __this, intptr_t ___value0, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_inline(_thisAdjusted, ___value0, method);
+}
+// UnityEngine.XR.ARCore.ArCameraConfigFilter UnityEngine.XR.ARCore.ArCameraConfigFilter::FromIntPtr(System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ArCameraConfigFilter_FromIntPtr_m3216CCE246F8D70DDA692B47E294EF62C43559A7 (intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// public static ArCameraConfigFilter FromIntPtr(IntPtr value) => new ArCameraConfigFilter(value);
+		intptr_t L_0 = ___value0;
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1;
+		memset((&L_1), 0, sizeof(L_1));
+		ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_inline((&L_1), L_0, /*hidden argument*/NULL);
+		return L_1;
+	}
+}
+// UnityEngine.XR.ARCore.ArCameraConfigFilter UnityEngine.XR.ARCore.ArCameraConfigFilter::get_Null()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ArCameraConfigFilter_get_Null_m14F7F5F8AAE885AA0E25261991DB627EF6ADA4E0 (const RuntimeMethod* method) 
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		// public static ArCameraConfigFilter Null => default;
+		il2cpp_codegen_initobj((&V_0), sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607));
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_0 = V_0;
+		return L_0;
+	}
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::.ctor(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mF486A6AFC61683CFC3E52B7E5494E983D4DE83E7 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	{
+		// public ArCameraConfigFilter(ArSession session) => Create(session, out this);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfigFilter_Create_m142C7ADE353D6E38316A3A6EE50CB56FC883AC07(L_0, __this, NULL);
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArCameraConfigFilter__ctor_mF486A6AFC61683CFC3E52B7E5494E983D4DE83E7_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	ArCameraConfigFilter__ctor_mF486A6AFC61683CFC3E52B7E5494E983D4DE83E7(_thisAdjusted, ___session0, method);
+}
+// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfigFilter::AsIntPtr()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
+{
+	{
+		// public IntPtr AsIntPtr() => m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C  intptr_t ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	intptr_t _returnValue;
+	_returnValue = ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_inline(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::get_IsNull()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_get_IsNull_m0C4936F2612BC0BB7B4BAF08F9F0947D69EDC383 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// public bool IsNull => m_Self == IntPtr.Zero;
+		intptr_t L_0 = __this->___m_Self_0;
+		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
+		bool L_2;
+		L_2 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_1, NULL);
+		return L_2;
+	}
+}
+IL2CPP_EXTERN_C  bool ArCameraConfigFilter_get_IsNull_m0C4936F2612BC0BB7B4BAF08F9F0947D69EDC383_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArCameraConfigFilter_get_IsNull_m0C4936F2612BC0BB7B4BAF08F9F0947D69EDC383(_thisAdjusted, method);
+	return _returnValue;
+}
+// UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage UnityEngine.XR.ARCore.ArCameraConfigFilter::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetDepthSensorUsage_mAD042C592CA038A62E72173B8B0E9224067C7C12 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	int32_t V_0 = 0;
+	{
+		// GetDepthSensorUsage(session, this, out var usage);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
+		ArCameraConfigFilter_GetDepthSensorUsage_mD6B774F26D0C2DE2202A91A98F6DBACF90D98E61(L_0, L_1, (&V_0), NULL);
+		// return usage;
+		int32_t L_2 = V_0;
+		return L_2;
+	}
+}
+IL2CPP_EXTERN_C  int32_t ArCameraConfigFilter_GetDepthSensorUsage_mAD042C592CA038A62E72173B8B0E9224067C7C12_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	int32_t _returnValue;
+	_returnValue = ArCameraConfigFilter_GetDepthSensorUsage_mAD042C592CA038A62E72173B8B0E9224067C7C12(_thisAdjusted, ___session0, method);
+	return _returnValue;
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetDepthSensorUsage_m92C45E574F2383B585B96C7FEC9FF2CCEABC68E3 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___depthSensorUsage1, const RuntimeMethod* method) 
+{
+	{
+		// SetDepthSensorUsage(session, this, depthSensorUsage);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
+		int32_t L_2 = ___depthSensorUsage1;
+		ArCameraConfigFilter_SetDepthSensorUsage_m5B7D3EC70DBB599EE5F6F6A682D6D55011D30555(L_0, L_1, L_2, NULL);
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArCameraConfigFilter_SetDepthSensorUsage_m92C45E574F2383B585B96C7FEC9FF2CCEABC68E3_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___depthSensorUsage1, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	ArCameraConfigFilter_SetDepthSensorUsage_m92C45E574F2383B585B96C7FEC9FF2CCEABC68E3(_thisAdjusted, ___session0, ___depthSensorUsage1, method);
+}
+// UnityEngine.XR.ARCore.ArCameraConfigTargetFps UnityEngine.XR.ARCore.ArCameraConfigFilter::GetTargetFps(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetTargetFps_m8A00967A664541D6702D5256F048DC56EBB74983 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	int32_t V_0 = 0;
+	{
+		// GetTargetFps(session, this, out var value);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
+		ArCameraConfigFilter_GetTargetFps_m9973098C5F69BF6DBEB4694352ADF354C213BC02(L_0, L_1, (&V_0), NULL);
+		// return value;
+		int32_t L_2 = V_0;
+		return L_2;
+	}
+}
+IL2CPP_EXTERN_C  int32_t ArCameraConfigFilter_GetTargetFps_m8A00967A664541D6702D5256F048DC56EBB74983_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	int32_t _returnValue;
+	_returnValue = ArCameraConfigFilter_GetTargetFps_m8A00967A664541D6702D5256F048DC56EBB74983(_thisAdjusted, ___session0, method);
+	return _returnValue;
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigTargetFps)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetTargetFps_mD09E6CDC671DB61E9FC443F99A26EF4C716C9766 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___targetFps1, const RuntimeMethod* method) 
+{
+	{
+		// SetTargetFps(session, this, targetFps);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
+		int32_t L_2 = ___targetFps1;
+		ArCameraConfigFilter_SetTargetFps_mABECEE8F72881F7B6F0CD21C0916DCB68B949FCF(L_0, L_1, L_2, NULL);
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArCameraConfigFilter_SetTargetFps_mD09E6CDC671DB61E9FC443F99A26EF4C716C9766_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___targetFps1, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	ArCameraConfigFilter_SetTargetFps_mD09E6CDC671DB61E9FC443F99A26EF4C716C9766(_thisAdjusted, ___session0, ___targetFps1, method);
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Dispose_m71514EB30557871157FCA62921F794E10EC3BD59 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// if (m_Self != IntPtr.Zero)
+		intptr_t L_0 = __this->___m_Self_0;
+		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
+		bool L_2;
+		L_2 = IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B(L_0, L_1, NULL);
+		if (!L_2)
+		{
+			goto IL_001d;
+		}
+	}
+	{
+		// Destroy(this);
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_3 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
+		ArCameraConfigFilter_Destroy_m9EAD8BB21D88A11EE1ED2E885E92B06FE96BEA6F(L_3, NULL);
+	}
+
+IL_001d:
+	{
+		// m_Self = IntPtr.Zero;
+		intptr_t L_4 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
+		__this->___m_Self_0 = L_4;
+		// }
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArCameraConfigFilter_Dispose_m71514EB30557871157FCA62921F794E10EC3BD59_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	ArCameraConfigFilter_Dispose_m71514EB30557871157FCA62921F794E10EC3BD59(_thisAdjusted, method);
+}
+// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Explicit(UnityEngine.XR.ARCore.ArCameraConfigFilter)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArCameraConfigFilter_op_Explicit_m89BE76307F2F39AB124E955E03228A45AD6F50A7 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter0, const RuntimeMethod* method) 
+{
+	{
+		// public static explicit operator IntPtr(ArCameraConfigFilter filter) => filter.AsIntPtr();
+		intptr_t L_0;
+		L_0 = ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_inline((&___filter0), NULL);
+		return L_0;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::Equals(UnityEngine.XR.ARCore.ArCameraConfigFilter)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___other0, const RuntimeMethod* method) 
+{
+	{
+		// public bool Equals(ArCameraConfigFilter other) => m_Self == other.m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = ___other0;
+		intptr_t L_2 = L_1.___m_Self_0;
+		bool L_3;
+		L_3 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_2, NULL);
+		return L_3;
+	}
+}
+IL2CPP_EXTERN_C  bool ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494_AdjustorThunk (RuntimeObject* __this, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___other0, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494(_thisAdjusted, ___other0, method);
+	return _returnValue;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::Equals(System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_Equals_mF6B858B3A8FC33E7912163F338B1CC71C59744ED (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		// public override bool Equals(object obj) => obj is ArCameraConfigFilter other && Equals(other);
+		RuntimeObject* L_0 = ___obj0;
+		if (!((RuntimeObject*)IsInstSealed((RuntimeObject*)L_0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607_il2cpp_TypeInfo_var)))
+		{
+			goto IL_0017;
+		}
+	}
+	{
+		RuntimeObject* L_1 = ___obj0;
+		V_0 = ((*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)((ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)UnBox(L_1, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607_il2cpp_TypeInfo_var))));
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_2 = V_0;
+		bool L_3;
+		L_3 = ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494(__this, L_2, NULL);
+		return L_3;
+	}
+
+IL_0017:
+	{
+		return (bool)0;
+	}
+}
+IL2CPP_EXTERN_C  bool ArCameraConfigFilter_Equals_mF6B858B3A8FC33E7912163F338B1CC71C59744ED_AdjustorThunk (RuntimeObject* __this, RuntimeObject* ___obj0, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArCameraConfigFilter_Equals_mF6B858B3A8FC33E7912163F338B1CC71C59744ED(_thisAdjusted, ___obj0, method);
+	return _returnValue;
+}
+// System.Int32 UnityEngine.XR.ARCore.ArCameraConfigFilter::GetHashCode()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetHashCode_mAB06AE4573E43FB7802536BD3809666832F1348A (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
+{
+	{
+		// public override int GetHashCode() => m_Self.GetHashCode();
+		intptr_t* L_0 = (&__this->___m_Self_0);
+		int32_t L_1;
+		L_1 = IntPtr_GetHashCode_m669B16AD7483C1C396E48F41D9CAC4B719E38F3D(L_0, NULL);
+		return L_1;
+	}
+}
+IL2CPP_EXTERN_C  int32_t ArCameraConfigFilter_GetHashCode_mAB06AE4573E43FB7802536BD3809666832F1348A_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
+	int32_t _returnValue;
+	_returnValue = ArCameraConfigFilter_GetHashCode_mAB06AE4573E43FB7802536BD3809666832F1348A(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Equality(UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigFilter)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Equality_mA7C1718FBD058D7E2DB53C134BCE698FDF0E9136 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___lhs0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator ==(ArCameraConfigFilter lhs, ArCameraConfigFilter rhs) => lhs.Equals(rhs);
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_0 = ___rhs1;
+		bool L_1;
+		L_1 = ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494((&___lhs0), L_0, NULL);
+		return L_1;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Inequality(UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigFilter)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Inequality_m334D48DAF3A4F5F757C12A61B95913F3E560B362 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___lhs0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator !=(ArCameraConfigFilter lhs, ArCameraConfigFilter rhs) => !lhs.Equals(rhs);
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_0 = ___rhs1;
+		bool L_1;
+		L_1 = ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494((&___lhs0), L_0, NULL);
+		return (bool)((((int32_t)L_1) == ((int32_t)0))? 1 : 0);
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Equality_mEC832B8112587B3269F1EE3E5F42320B0CE170B9 (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___lhs0, Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___rhs1, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B3_0;
+	memset((&G_B3_0), 0, sizeof(G_B3_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B5_0;
+	memset((&G_B5_0), 0, sizeof(G_B5_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B4_0;
+	memset((&G_B4_0), 0, sizeof(G_B4_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_0;
+	memset((&G_B6_0), 0, sizeof(G_B6_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_1;
+	memset((&G_B6_1), 0, sizeof(G_B6_1));
+	{
+		// public static bool operator ==(ArCameraConfigFilter? lhs, ArCameraConfigFilter? rhs) => NativeObject.ArePointersEqual(lhs?.m_Self, rhs?.m_Self);
+		bool L_0;
+		L_0 = Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_inline((&___lhs0), Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_RuntimeMethod_var);
+		if (L_0)
+		{
+			goto IL_0014;
+		}
+	}
+	{
+		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_1 = V_0;
+		G_B3_0 = L_1;
+		goto IL_0025;
+	}
+
+IL_0014:
+	{
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_2;
+		L_2 = Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_inline((&___lhs0), Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_RuntimeMethod_var);
+		intptr_t L_3 = L_2.___m_Self_0;
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_4;
+		memset((&L_4), 0, sizeof(L_4));
+		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_4), L_3, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		G_B3_0 = L_4;
+	}
+
+IL_0025:
+	{
+		bool L_5;
+		L_5 = Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_inline((&___rhs1), Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_RuntimeMethod_var);
+		G_B4_0 = G_B3_0;
+		if (L_5)
+		{
+			G_B5_0 = G_B3_0;
+			goto IL_0039;
+		}
+	}
+	{
+		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_6 = V_0;
+		G_B6_0 = L_6;
+		G_B6_1 = G_B4_0;
+		goto IL_004a;
+	}
+
+IL_0039:
+	{
+		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_7;
+		L_7 = Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_inline((&___rhs1), Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_RuntimeMethod_var);
+		intptr_t L_8 = L_7.___m_Self_0;
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_9;
+		memset((&L_9), 0, sizeof(L_9));
+		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_9), L_8, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		G_B6_0 = L_9;
+		G_B6_1 = G_B5_0;
+	}
+
+IL_004a:
+	{
+		bool L_10;
+		L_10 = NativeObject_ArePointersEqual_m78CCE35C1493CF89AD67B679A45687843777B576(G_B6_1, G_B6_0, NULL);
+		return L_10;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Inequality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Inequality_m077FD4EF3B102E15565FE92111F8D6858BD2CEC6 (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___lhs0, Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator !=(ArCameraConfigFilter? lhs, ArCameraConfigFilter? rhs) => !(lhs == rhs);
+		Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D L_0 = ___lhs0;
+		Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D L_1 = ___rhs1;
+		bool L_2;
+		L_2 = ArCameraConfigFilter_op_Equality_mEC832B8112587B3269F1EE3E5F42320B0CE170B9(L_0, L_1, NULL);
+		return (bool)((((int32_t)L_2) == ((int32_t)0))? 1 : 0);
+	}
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Create_m142C7ADE353D6E38316A3A6EE50CB56FC883AC07 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* ___filterOut1, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_create", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_create)(___session0, ___filterOut1);
+	#else
+	il2cppPInvokeFunc(___session0, ___filterOut1);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Destroy(UnityEngine.XR.ARCore.ArCameraConfigFilter)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Destroy_m9EAD8BB21D88A11EE1ED2E885E92B06FE96BEA6F (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___self0, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_destroy", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_destroy)(___self0);
+	#else
+	il2cppPInvokeFunc(___self0);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_GetDepthSensorUsage_mD6B774F26D0C2DE2202A91A98F6DBACF90D98E61 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t* ___valueOut2, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607) + sizeof(int32_t*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_getDepthSensorUsage", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_getDepthSensorUsage)(___session0, ___filter1, ___valueOut2);
+	#else
+	il2cppPInvokeFunc(___session0, ___filter1, ___valueOut2);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetDepthSensorUsage_m5B7D3EC70DBB599EE5F6F6A682D6D55011D30555 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t ___value2, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607) + sizeof(int32_t);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_setDepthSensorUsage", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_setDepthSensorUsage)(___session0, ___filter1, ___value2);
+	#else
+	il2cppPInvokeFunc(___session0, ___filter1, ___value2);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::GetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigTargetFps&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_GetTargetFps_m9973098C5F69BF6DBEB4694352ADF354C213BC02 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t* ___valueOut2, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607) + sizeof(int32_t*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_getTargetFps", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_getTargetFps)(___session0, ___filter1, ___valueOut2);
+	#else
+	il2cppPInvokeFunc(___session0, ___filter1, ___valueOut2);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigTargetFps)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetTargetFps_mABECEE8F72881F7B6F0CD21C0916DCB68B949FCF (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t ___value2, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607) + sizeof(int32_t);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_setTargetFps", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_setTargetFps)(___session0, ___filter1, ___value2);
+	#else
+	il2cppPInvokeFunc(___session0, ___filter1, ___value2);
+	#endif
+
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// System.Void UnityEngine.XR.ARCore.ArConfig::.ctor(System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// ArConfig(IntPtr value) => m_Self = value;
+		intptr_t L_0 = ___value0;
+		__this->___m_Self_0 = L_0;
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_AdjustorThunk (RuntimeObject* __this, intptr_t ___value0, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
+	ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_inline(_thisAdjusted, ___value0, method);
+}
+// System.Void UnityEngine.XR.ARCore.ArConfig::.ctor(UnityEngine.XR.ARCore.ArSession)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig__ctor_m807FC812AF15E78B8FD5025A164FF214A030F793 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
+{
+	{
+		// public ArConfig(ArSession session) => Create(session, out this);
+		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
+		ArConfig_Create_m165DEBEB687311E29D05FBB31CB1C31916DFDBAA(L_0, __this, NULL);
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArConfig__ctor_m807FC812AF15E78B8FD5025A164FF214A030F793_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
+	ArConfig__ctor_m807FC812AF15E78B8FD5025A164FF214A030F793(_thisAdjusted, ___session0, method);
+}
+// UnityEngine.XR.ARCore.ArConfig UnityEngine.XR.ARCore.ArConfig::FromIntPtr(System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ArConfig_FromIntPtr_mE9B04C63D4EE5D8223D76D67FE5DCF2C7071D2AF (intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// public static ArConfig FromIntPtr(IntPtr value) => new ArConfig(value);
+		intptr_t L_0 = ___value0;
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_1;
+		memset((&L_1), 0, sizeof(L_1));
+		ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_inline((&L_1), L_0, /*hidden argument*/NULL);
+		return L_1;
+	}
+}
+// UnityEngine.XR.ARCore.ArConfig UnityEngine.XR.ARCore.ArConfig::get_Null()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ArConfig_get_Null_mCAF6C746D44A04E3AE94752CD94D2A4564CB48CE (const RuntimeMethod* method) 
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		// public static ArConfig Null => default;
+		il2cpp_codegen_initobj((&V_0), sizeof(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C));
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_0 = V_0;
+		return L_0;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::get_IsNull()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_get_IsNull_mC16E8E4A5FD7562D365B3CED6F6195F6D3A4BA98 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// public bool IsNull => m_Self == IntPtr.Zero;
+		intptr_t L_0 = __this->___m_Self_0;
+		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
+		bool L_2;
+		L_2 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_1, NULL);
+		return L_2;
+	}
+}
+IL2CPP_EXTERN_C  bool ArConfig_get_IsNull_mC16E8E4A5FD7562D365B3CED6F6195F6D3A4BA98_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArConfig_get_IsNull_mC16E8E4A5FD7562D365B3CED6F6195F6D3A4BA98(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.IntPtr UnityEngine.XR.ARCore.ArConfig::AsIntPtr()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
+{
+	{
+		// public IntPtr AsIntPtr() => m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C  intptr_t ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
+	intptr_t _returnValue;
+	_returnValue = ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_inline(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.IntPtr UnityEngine.XR.ARCore.ArConfig::op_Explicit(UnityEngine.XR.ARCore.ArConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArConfig_op_Explicit_mCCBCE6CB895992DB341D46AE4141049A24D16639 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___config0, const RuntimeMethod* method) 
+{
+	{
+		// public static explicit operator IntPtr(ArConfig config) => config.AsIntPtr();
+		intptr_t L_0;
+		L_0 = ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_inline((&___config0), NULL);
+		return L_0;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::Equals(UnityEngine.XR.ARCore.ArConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___other0, const RuntimeMethod* method) 
+{
+	{
+		// public bool Equals(ArConfig other) => m_Self == other.m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_1 = ___other0;
+		intptr_t L_2 = L_1.___m_Self_0;
+		bool L_3;
+		L_3 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_2, NULL);
+		return L_3;
+	}
+}
+IL2CPP_EXTERN_C  bool ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572_AdjustorThunk (RuntimeObject* __this, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___other0, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572(_thisAdjusted, ___other0, method);
+	return _returnValue;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::Equals(System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_Equals_mAF04B9E9552EAF1D2DE31F107EF45BBC9CF8BBA4 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		// public override bool Equals(object obj) => obj is ArConfig other && Equals(other);
+		RuntimeObject* L_0 = ___obj0;
+		if (!((RuntimeObject*)IsInstSealed((RuntimeObject*)L_0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C_il2cpp_TypeInfo_var)))
+		{
+			goto IL_0017;
+		}
+	}
+	{
+		RuntimeObject* L_1 = ___obj0;
+		V_0 = ((*(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*)((ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*)(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*)UnBox(L_1, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C_il2cpp_TypeInfo_var))));
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_2 = V_0;
+		bool L_3;
+		L_3 = ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572(__this, L_2, NULL);
+		return L_3;
+	}
+
+IL_0017:
+	{
+		return (bool)0;
+	}
+}
+IL2CPP_EXTERN_C  bool ArConfig_Equals_mAF04B9E9552EAF1D2DE31F107EF45BBC9CF8BBA4_AdjustorThunk (RuntimeObject* __this, RuntimeObject* ___obj0, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
+	bool _returnValue;
+	_returnValue = ArConfig_Equals_mAF04B9E9552EAF1D2DE31F107EF45BBC9CF8BBA4(_thisAdjusted, ___obj0, method);
+	return _returnValue;
+}
+// System.Int32 UnityEngine.XR.ARCore.ArConfig::GetHashCode()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArConfig_GetHashCode_m2AA440E48A34FDA2186E99FDF0630578AB433DC4 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
+{
+	{
+		// public override int GetHashCode() => m_Self.GetHashCode();
+		intptr_t* L_0 = (&__this->___m_Self_0);
+		int32_t L_1;
+		L_1 = IntPtr_GetHashCode_m669B16AD7483C1C396E48F41D9CAC4B719E38F3D(L_0, NULL);
+		return L_1;
+	}
+}
+IL2CPP_EXTERN_C  int32_t ArConfig_GetHashCode_m2AA440E48A34FDA2186E99FDF0630578AB433DC4_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
+	int32_t _returnValue;
+	_returnValue = ArConfig_GetHashCode_m2AA440E48A34FDA2186E99FDF0630578AB433DC4(_thisAdjusted, method);
+	return _returnValue;
+}
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Equality(UnityEngine.XR.ARCore.ArConfig,UnityEngine.XR.ARCore.ArConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Equality_mE6B7E1ACCC7A3F8835FDB29C2652183F5ACAB162 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___lhs0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator ==(ArConfig lhs, ArConfig rhs) => lhs.Equals(rhs);
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_0 = ___rhs1;
+		bool L_1;
+		L_1 = ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572((&___lhs0), L_0, NULL);
+		return L_1;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Inequality(UnityEngine.XR.ARCore.ArConfig,UnityEngine.XR.ARCore.ArConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Inequality_mF17E9CAD6C39547693DB6105CBAB4AD9C1CC511B (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___lhs0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator !=(ArConfig lhs, ArConfig rhs) => !lhs.Equals(rhs);
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_0 = ___rhs1;
+		bool L_1;
+		L_1 = ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572((&___lhs0), L_0, NULL);
+		return (bool)((((int32_t)L_1) == ((int32_t)0))? 1 : 0);
+	}
+}
+// System.Void UnityEngine.XR.ARCore.ArConfig::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Dispose_m7AFD805848963702EA520A205BF9E3AC79BFA37B (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// if (m_Self != IntPtr.Zero)
+		intptr_t L_0 = __this->___m_Self_0;
+		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
+		bool L_2;
+		L_2 = IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B(L_0, L_1, NULL);
+		if (!L_2)
+		{
+			goto IL_001d;
+		}
+	}
+	{
+		// Destroy(this);
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_3 = (*(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*)__this);
+		ArConfig_Destroy_m28D7B99179AA968D94454EFF9FD67F44AE354DE3(L_3, NULL);
+	}
+
+IL_001d:
+	{
+		// m_Self = IntPtr.Zero;;
+		intptr_t L_4 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
+		__this->___m_Self_0 = L_4;
+		// }
+		return;
+	}
+}
+IL2CPP_EXTERN_C  void ArConfig_Dispose_m7AFD805848963702EA520A205BF9E3AC79BFA37B_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
+{
+	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
+	int32_t _offset = 1;
+	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
+	ArConfig_Dispose_m7AFD805848963702EA520A205BF9E3AC79BFA37B(_thisAdjusted, method);
+}
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Equality_m5078A53EB4B64DB5D3415C642CE14B353E370B7C (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___lhs0, Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___rhs1, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B3_0;
+	memset((&G_B3_0), 0, sizeof(G_B3_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B5_0;
+	memset((&G_B5_0), 0, sizeof(G_B5_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B4_0;
+	memset((&G_B4_0), 0, sizeof(G_B4_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_0;
+	memset((&G_B6_0), 0, sizeof(G_B6_0));
+	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_1;
+	memset((&G_B6_1), 0, sizeof(G_B6_1));
+	{
+		// public static bool operator ==(ArConfig? lhs, ArConfig? rhs) => NativeObject.ArePointersEqual(lhs?.m_Self, rhs?.m_Self);
+		bool L_0;
+		L_0 = Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_inline((&___lhs0), Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_RuntimeMethod_var);
+		if (L_0)
+		{
+			goto IL_0014;
+		}
+	}
+	{
+		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_1 = V_0;
+		G_B3_0 = L_1;
+		goto IL_0025;
+	}
+
+IL_0014:
+	{
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_2;
+		L_2 = Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_inline((&___lhs0), Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_RuntimeMethod_var);
+		intptr_t L_3 = L_2.___m_Self_0;
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_4;
+		memset((&L_4), 0, sizeof(L_4));
+		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_4), L_3, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		G_B3_0 = L_4;
+	}
+
+IL_0025:
+	{
+		bool L_5;
+		L_5 = Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_inline((&___rhs1), Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_RuntimeMethod_var);
+		G_B4_0 = G_B3_0;
+		if (L_5)
+		{
+			G_B5_0 = G_B3_0;
+			goto IL_0039;
+		}
+	}
+	{
+		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_6 = V_0;
+		G_B6_0 = L_6;
+		G_B6_1 = G_B4_0;
+		goto IL_004a;
+	}
+
+IL_0039:
+	{
+		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_7;
+		L_7 = Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_inline((&___rhs1), Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_RuntimeMethod_var);
+		intptr_t L_8 = L_7.___m_Self_0;
+		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_9;
+		memset((&L_9), 0, sizeof(L_9));
+		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_9), L_8, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
+		G_B6_0 = L_9;
+		G_B6_1 = G_B5_0;
+	}
+
+IL_004a:
+	{
+		bool L_10;
+		L_10 = NativeObject_ArePointersEqual_m78CCE35C1493CF89AD67B679A45687843777B576(G_B6_1, G_B6_0, NULL);
+		return L_10;
+	}
+}
+// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Inequality(System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Inequality_m9F0E103ACB9A3EBC2D02B926BE22986213116EB9 (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___lhs0, Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___rhs1, const RuntimeMethod* method) 
+{
+	{
+		// public static bool operator !=(ArConfig? lhs, ArConfig? rhs) => !(lhs == rhs);
+		Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C L_0 = ___lhs0;
+		Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C L_1 = ___rhs1;
+		bool L_2;
+		L_2 = ArConfig_op_Equality_m5078A53EB4B64DB5D3415C642CE14B353E370B7C(L_0, L_1, NULL);
+		return (bool)((((int32_t)L_2) == ((int32_t)0))? 1 : 0);
+	}
+}
+// System.Void UnityEngine.XR.ARCore.ArConfig::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArConfig&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Create_m165DEBEB687311E29D05FBB31CB1C31916DFDBAA (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* ___configOut1, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArConfig_create", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArConfig_create)(___session0, ___configOut1);
+	#else
+	il2cppPInvokeFunc(___session0, ___configOut1);
+	#endif
+
+}
+// System.Void UnityEngine.XR.ARCore.ArConfig::Destroy(UnityEngine.XR.ARCore.ArConfig)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Destroy_m28D7B99179AA968D94454EFF9FD67F44AE354DE3 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___config0, const RuntimeMethod* method) 
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc) (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C);
+	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	static PInvokeFunc il2cppPInvokeFunc;
+	if (il2cppPInvokeFunc == NULL)
+	{
+		int parameterSize = sizeof(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C);
+		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArConfig_destroy", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
+		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
+	}
+	#endif
+
+	// Native function invocation
+	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
+	reinterpret_cast<PInvokeFunc>(ArConfig_destroy)(___config0);
+	#else
+	il2cppPInvokeFunc(___config0);
+	#endif
+
+}
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -20023,1774 +21789,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CameraPermissionsResultCallbackDelegate_
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::.ctor(System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// ArCameraConfig(IntPtr value) => m_Self = value;
-		intptr_t L_0 = ___value0;
-		__this->___m_Self_0 = L_0;
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_AdjustorThunk (RuntimeObject* __this, intptr_t ___value0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_inline(_thisAdjusted, ___value0, method);
-}
-// UnityEngine.XR.ARCore.ArCameraConfig UnityEngine.XR.ARCore.ArCameraConfig::FromIntPtr(System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ArCameraConfig_FromIntPtr_mBCBEFFFEAEBB82AD1AFDDDA8B450F161938A83F8 (intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// public static ArCameraConfig FromIntPtr(IntPtr value) => new ArCameraConfig(value);
-		intptr_t L_0 = ___value0;
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1;
-		memset((&L_1), 0, sizeof(L_1));
-		ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_inline((&L_1), L_0, /*hidden argument*/NULL);
-		return L_1;
-	}
-}
-// UnityEngine.XR.ARCore.ArCameraConfig UnityEngine.XR.ARCore.ArCameraConfig::get_Null()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ArCameraConfig_get_Null_m24A947EA533C02BC3AE925CDE05BDF0748B053D2 (const RuntimeMethod* method) 
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		// public static ArCameraConfig Null => default;
-		il2cpp_codegen_initobj((&V_0), sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3));
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_0 = V_0;
-		return L_0;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::get_IsNull()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_get_IsNull_m0E09F4D2B8C7F7159FBF65FCA7486A8C79741ED6 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		// public bool IsNull => m_Self == IntPtr.Zero;
-		intptr_t L_0 = __this->___m_Self_0;
-		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
-		bool L_2;
-		L_2 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_1, NULL);
-		return L_2;
-	}
-}
-IL2CPP_EXTERN_C  bool ArCameraConfig_get_IsNull_m0E09F4D2B8C7F7159FBF65FCA7486A8C79741ED6_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArCameraConfig_get_IsNull_m0E09F4D2B8C7F7159FBF65FCA7486A8C79741ED6(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfig::AsIntPtr()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr AsIntPtr() => m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
-		return L_0;
-	}
-}
-IL2CPP_EXTERN_C  intptr_t ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	intptr_t _returnValue;
-	_returnValue = ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_inline(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::.ctor(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_mE14FEFC3215FE2A052D06E5A43C619D320B9AA19 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	{
-		// public ArCameraConfig(ArSession session) => Create(session, out this);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfig_Create_m886224169A78B3D22AB043E40F1524CF667F28FC(L_0, __this, NULL);
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArCameraConfig__ctor_mE14FEFC3215FE2A052D06E5A43C619D320B9AA19_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	ArCameraConfig__ctor_mE14FEFC3215FE2A052D06E5A43C619D320B9AA19(_thisAdjusted, ___session0, method);
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Dispose_m165F78DBFE34B76060059B7BFC7EB367E0D626CC (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		// if (m_Self != IntPtr.Zero)
-		intptr_t L_0 = __this->___m_Self_0;
-		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
-		bool L_2;
-		L_2 = IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B(L_0, L_1, NULL);
-		if (!L_2)
-		{
-			goto IL_001d;
-		}
-	}
-	{
-		// Destroy(this);
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_3 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
-		ArCameraConfig_Destroy_mABA8B48536BC128B2F42CA1F8C7381412C11046F(L_3, NULL);
-	}
-
-IL_001d:
-	{
-		// m_Self = default;
-		intptr_t* L_4 = (&__this->___m_Self_0);
-		il2cpp_codegen_initobj(L_4, sizeof(intptr_t));
-		// }
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArCameraConfig_Dispose_m165F78DBFE34B76060059B7BFC7EB367E0D626CC_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	ArCameraConfig_Dispose_m165F78DBFE34B76060059B7BFC7EB367E0D626CC(_thisAdjusted, method);
-}
-// System.String UnityEngine.XR.ARCore.ArCameraConfig::GetCameraId(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ArCameraConfig_GetCameraId_mE547D5D96CFA540BE2631831CB839D3D907DAC90 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	ArString_tC06261461628907E722414E34002436529F6DA10 V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	ArString_tC06261461628907E722414E34002436529F6DA10 V_1;
-	memset((&V_1), 0, sizeof(V_1));
-	String_t* V_2 = NULL;
-	{
-		// GetCameraId(session, this, out var cameraId);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
-		ArCameraConfig_GetCameraId_mEDFA5672A4B0455D422FB0C4124606BF5792FE55(L_0, L_1, (&V_0), NULL);
-		// using (cameraId)
-		ArString_tC06261461628907E722414E34002436529F6DA10 L_2 = V_0;
-		V_1 = L_2;
-	}
-	{
-		auto __finallyBlock = il2cpp::utils::Finally([&]
-		{
-
-FINALLY_0020:
-			{// begin finally (depth: 1)
-				ArString_Dispose_m2D9E29EC3E98FE828F7FEAB806341561A8A193AA((&V_1), NULL);
-				return;
-			}// end finally (depth: 1)
-		});
-		try
-		{// begin try (depth: 1)
-			// return cameraId.ToString();
-			String_t* L_3;
-			L_3 = ArString_ToString_m58566F4EAB0BEC069B61795B57AF890F9AF05961((&V_0), NULL);
-			V_2 = L_3;
-			goto IL_002e;
-		}// end try (depth: 1)
-		catch(Il2CppExceptionWrapper& e)
-		{
-			__finallyBlock.StoreException(e.ex);
-		}
-	}
-
-IL_002e:
-	{
-		// }
-		String_t* L_4 = V_2;
-		return L_4;
-	}
-}
-IL2CPP_EXTERN_C  String_t* ArCameraConfig_GetCameraId_mE547D5D96CFA540BE2631831CB839D3D907DAC90_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	String_t* _returnValue;
-	_returnValue = ArCameraConfig_GetCameraId_mE547D5D96CFA540BE2631831CB839D3D907DAC90(_thisAdjusted, ___session0, method);
-	return _returnValue;
-}
-// UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage UnityEngine.XR.ARCore.ArCameraConfig::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetDepthSensorUsage_m5F136C8F9C5B3044C503580EB45DBC2671EC7C4F (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	int32_t V_0 = 0;
-	{
-		// GetDepthSensorUsage(session, this, out var value);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
-		ArCameraConfig_GetDepthSensorUsage_m1E6D173C6463759F5E3C80848B26598DC419C0DE(L_0, L_1, (&V_0), NULL);
-		// return value;
-		int32_t L_2 = V_0;
-		return L_2;
-	}
-}
-IL2CPP_EXTERN_C  int32_t ArCameraConfig_GetDepthSensorUsage_m5F136C8F9C5B3044C503580EB45DBC2671EC7C4F_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	int32_t _returnValue;
-	_returnValue = ArCameraConfig_GetDepthSensorUsage_m5F136C8F9C5B3044C503580EB45DBC2671EC7C4F(_thisAdjusted, ___session0, method);
-	return _returnValue;
-}
-// UnityEngine.XR.ARCore.ArCameraConfigFacingDirection UnityEngine.XR.ARCore.ArCameraConfig::GetFacingDirection(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetFacingDirection_m3C022FA6AC02ED9BBBE8B4923E9CA397E72FB7A4 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	int32_t V_0 = 0;
-	{
-		// GetFacingDirection(session, this, out var value);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
-		ArCameraConfig_GetFacingDirection_mF3A1BE5B912348463F8FECFE1EFD6C4660912114(L_0, L_1, (&V_0), NULL);
-		// return value;
-		int32_t L_2 = V_0;
-		return L_2;
-	}
-}
-IL2CPP_EXTERN_C  int32_t ArCameraConfig_GetFacingDirection_m3C022FA6AC02ED9BBBE8B4923E9CA397E72FB7A4_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	int32_t _returnValue;
-	_returnValue = ArCameraConfig_GetFacingDirection_m3C022FA6AC02ED9BBBE8B4923E9CA397E72FB7A4(_thisAdjusted, ___session0, method);
-	return _returnValue;
-}
-// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetFpsRange(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetFpsRange_mF9215E84CF0CF2EB05D2ACD0CFDE02899C9F2533 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	int32_t V_0 = 0;
-	int32_t V_1 = 0;
-	{
-		// GetFpsRange(session, this, out var min, out var max);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
-		ArCameraConfig_GetFpsRange_m288AE232C4A22D6FC87AE2EFA38B4611CE222087(L_0, L_1, (&V_0), (&V_1), NULL);
-		// return (min, max);
-		int32_t L_2 = V_0;
-		int32_t L_3 = V_1;
-		ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D L_4;
-		memset((&L_4), 0, sizeof(L_4));
-		ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477((&L_4), L_2, L_3, /*hidden argument*/ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
-		return L_4;
-	}
-}
-IL2CPP_EXTERN_C  ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetFpsRange_mF9215E84CF0CF2EB05D2ACD0CFDE02899C9F2533_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D _returnValue;
-	_returnValue = ArCameraConfig_GetFpsRange_mF9215E84CF0CF2EB05D2ACD0CFDE02899C9F2533(_thisAdjusted, ___session0, method);
-	return _returnValue;
-}
-// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetImageDimensions(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetImageDimensions_m3746D40ABD8902AEA59C72E1F6B23635A1A2C2C6 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	int32_t V_0 = 0;
-	int32_t V_1 = 0;
-	{
-		// GetImageDimensions(session, this, out var width, out var height);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
-		ArCameraConfig_GetImageDimensions_m00F158B234F449E732FA04FE3F2962A6B6D3BB7C(L_0, L_1, (&V_0), (&V_1), NULL);
-		// return (width, height);
-		int32_t L_2 = V_0;
-		int32_t L_3 = V_1;
-		ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D L_4;
-		memset((&L_4), 0, sizeof(L_4));
-		ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477((&L_4), L_2, L_3, /*hidden argument*/ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
-		return L_4;
-	}
-}
-IL2CPP_EXTERN_C  ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetImageDimensions_m3746D40ABD8902AEA59C72E1F6B23635A1A2C2C6_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D _returnValue;
-	_returnValue = ArCameraConfig_GetImageDimensions_m3746D40ABD8902AEA59C72E1F6B23635A1A2C2C6(_thisAdjusted, ___session0, method);
-	return _returnValue;
-}
-// System.ValueTuple`2<System.Int32,System.Int32> UnityEngine.XR.ARCore.ArCameraConfig::GetTextureDimensions(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetTextureDimensions_mA0E9C970FDEE0847B4FC7AABC35D82B0259648AE (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	int32_t V_0 = 0;
-	int32_t V_1 = 0;
-	{
-		// GetTextureDimensions(session, this, out var width, out var height);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = (*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)__this);
-		ArCameraConfig_GetTextureDimensions_mC2ED0976D9D803C8067E13BE4C5311C3300FAAB7(L_0, L_1, (&V_0), (&V_1), NULL);
-		// return (width, height);
-		int32_t L_2 = V_0;
-		int32_t L_3 = V_1;
-		ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D L_4;
-		memset((&L_4), 0, sizeof(L_4));
-		ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477((&L_4), L_2, L_3, /*hidden argument*/ValueTuple_2__ctor_mF5D8FB18DBF2C4B2F879F8E8E12D8FB8FCDB5477_RuntimeMethod_var);
-		return L_4;
-	}
-}
-IL2CPP_EXTERN_C  ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D ArCameraConfig_GetTextureDimensions_mA0E9C970FDEE0847B4FC7AABC35D82B0259648AE_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	ValueTuple_2_t973F7AB0EF5DD3619E518A966941F10D8098F52D _returnValue;
-	_returnValue = ArCameraConfig_GetTextureDimensions_mA0E9C970FDEE0847B4FC7AABC35D82B0259648AE(_thisAdjusted, ___session0, method);
-	return _returnValue;
-}
-// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfig::op_Explicit(UnityEngine.XR.ARCore.ArCameraConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArCameraConfig_op_Explicit_m94CDC0BE7224BA7B163E8E27129C92963FFB7F87 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___cameraConfig0, const RuntimeMethod* method) 
-{
-	{
-		// public static explicit operator IntPtr(ArCameraConfig cameraConfig) => cameraConfig.AsIntPtr();
-		intptr_t L_0;
-		L_0 = ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_inline((&___cameraConfig0), NULL);
-		return L_0;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::Equals(UnityEngine.XR.ARCore.ArCameraConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___other0, const RuntimeMethod* method) 
-{
-	{
-		// public bool Equals(ArCameraConfig other) => m_Self == other.m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1 = ___other0;
-		intptr_t L_2 = L_1.___m_Self_0;
-		bool L_3;
-		L_3 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_2, NULL);
-		return L_3;
-	}
-}
-IL2CPP_EXTERN_C  bool ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9_AdjustorThunk (RuntimeObject* __this, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___other0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9(_thisAdjusted, ___other0, method);
-	return _returnValue;
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::Equals(System.Object)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_Equals_m475848DB0C28F764CAFC0F44E27B06BEB7564041 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		// public override bool Equals(object obj) => obj is ArCameraConfig other && Equals(other);
-		RuntimeObject* L_0 = ___obj0;
-		if (!((RuntimeObject*)IsInstSealed((RuntimeObject*)L_0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3_il2cpp_TypeInfo_var)))
-		{
-			goto IL_0017;
-		}
-	}
-	{
-		RuntimeObject* L_1 = ___obj0;
-		V_0 = ((*(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)((ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*)UnBox(L_1, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3_il2cpp_TypeInfo_var))));
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_2 = V_0;
-		bool L_3;
-		L_3 = ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9(__this, L_2, NULL);
-		return L_3;
-	}
-
-IL_0017:
-	{
-		return (bool)0;
-	}
-}
-IL2CPP_EXTERN_C  bool ArCameraConfig_Equals_m475848DB0C28F764CAFC0F44E27B06BEB7564041_AdjustorThunk (RuntimeObject* __this, RuntimeObject* ___obj0, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArCameraConfig_Equals_m475848DB0C28F764CAFC0F44E27B06BEB7564041(_thisAdjusted, ___obj0, method);
-	return _returnValue;
-}
-// System.Int32 UnityEngine.XR.ARCore.ArCameraConfig::GetHashCode()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfig_GetHashCode_m12BD55CF30C1466B45155A17224C4AA9AB16C4E0 (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
-{
-	{
-		// public override int GetHashCode() => m_Self.GetHashCode();
-		intptr_t* L_0 = (&__this->___m_Self_0);
-		int32_t L_1;
-		L_1 = IntPtr_GetHashCode_m669B16AD7483C1C396E48F41D9CAC4B719E38F3D(L_0, NULL);
-		return L_1;
-	}
-}
-IL2CPP_EXTERN_C  int32_t ArCameraConfig_GetHashCode_m12BD55CF30C1466B45155A17224C4AA9AB16C4E0_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*>(__this + _offset);
-	int32_t _returnValue;
-	_returnValue = ArCameraConfig_GetHashCode_m12BD55CF30C1466B45155A17224C4AA9AB16C4E0(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Equality(UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Equality_m84667F11E490E27DE28189D00CA36C0575DEBDCD (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___lhs0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator ==(ArCameraConfig lhs, ArCameraConfig rhs) => lhs.Equals(rhs);
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_0 = ___rhs1;
-		bool L_1;
-		L_1 = ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9((&___lhs0), L_0, NULL);
-		return L_1;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Inequality(UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Inequality_mF85ED6F7896064432D80B39BF4A42F794108230E (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___lhs0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator !=(ArCameraConfig lhs, ArCameraConfig rhs) => !lhs.Equals(rhs);
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_0 = ___rhs1;
-		bool L_1;
-		L_1 = ArCameraConfig_Equals_m970EB204E68B633C9E34D1ED6A06EDCCD7E461E9((&___lhs0), L_0, NULL);
-		return (bool)((((int32_t)L_1) == ((int32_t)0))? 1 : 0);
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Equality_mCE55DA201D1AB39471354684350E00BB06DBFA5C (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___lhs0, Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___rhs1, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_RuntimeMethod_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B3_0;
-	memset((&G_B3_0), 0, sizeof(G_B3_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B5_0;
-	memset((&G_B5_0), 0, sizeof(G_B5_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B4_0;
-	memset((&G_B4_0), 0, sizeof(G_B4_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_0;
-	memset((&G_B6_0), 0, sizeof(G_B6_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_1;
-	memset((&G_B6_1), 0, sizeof(G_B6_1));
-	{
-		// public static bool operator ==(ArCameraConfig? lhs, ArCameraConfig? rhs) => NativeObject.ArePointersEqual(lhs?.m_Self, rhs?.m_Self);
-		bool L_0;
-		L_0 = Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_inline((&___lhs0), Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_RuntimeMethod_var);
-		if (L_0)
-		{
-			goto IL_0014;
-		}
-	}
-	{
-		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_1 = V_0;
-		G_B3_0 = L_1;
-		goto IL_0025;
-	}
-
-IL_0014:
-	{
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_2;
-		L_2 = Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_inline((&___lhs0), Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_RuntimeMethod_var);
-		intptr_t L_3 = L_2.___m_Self_0;
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_4;
-		memset((&L_4), 0, sizeof(L_4));
-		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_4), L_3, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		G_B3_0 = L_4;
-	}
-
-IL_0025:
-	{
-		bool L_5;
-		L_5 = Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_inline((&___rhs1), Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_RuntimeMethod_var);
-		G_B4_0 = G_B3_0;
-		if (L_5)
-		{
-			G_B5_0 = G_B3_0;
-			goto IL_0039;
-		}
-	}
-	{
-		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_6 = V_0;
-		G_B6_0 = L_6;
-		G_B6_1 = G_B4_0;
-		goto IL_004a;
-	}
-
-IL_0039:
-	{
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_7;
-		L_7 = Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_inline((&___rhs1), Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_RuntimeMethod_var);
-		intptr_t L_8 = L_7.___m_Self_0;
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_9;
-		memset((&L_9), 0, sizeof(L_9));
-		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_9), L_8, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		G_B6_0 = L_9;
-		G_B6_1 = G_B5_0;
-	}
-
-IL_004a:
-	{
-		bool L_10;
-		L_10 = NativeObject_ArePointersEqual_m78CCE35C1493CF89AD67B679A45687843777B576(G_B6_1, G_B6_0, NULL);
-		return L_10;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfig::op_Inequality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfig>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfig_op_Inequality_m0122056A9A2B35072F4B6E815FF762268D32DE32 (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___lhs0, Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator !=(ArCameraConfig? lhs, ArCameraConfig? rhs) => !(lhs == rhs);
-		Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB L_0 = ___lhs0;
-		Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB L_1 = ___rhs1;
-		bool L_2;
-		L_2 = ArCameraConfig_op_Equality_mCE55DA201D1AB39471354684350E00BB06DBFA5C(L_0, L_1, NULL);
-		return (bool)((((int32_t)L_2) == ((int32_t)0))? 1 : 0);
-	}
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Create_m886224169A78B3D22AB043E40F1524CF667F28FC (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* ___value1, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_create", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfig_create)(___session0, ___value1);
-	#else
-	il2cppPInvokeFunc(___session0, ___value1);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::Destroy(UnityEngine.XR.ARCore.ArCameraConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_Destroy_mABA8B48536BC128B2F42CA1F8C7381412C11046F (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self0, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_destroy", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfig_destroy)(___self0);
-	#else
-	il2cppPInvokeFunc(___self0);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetCameraId(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArString&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetCameraId_mEDFA5672A4B0455D422FB0C4124606BF5792FE55 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, ArString_tC06261461628907E722414E34002436529F6DA10* ___valueOut2, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, ArString_tC06261461628907E722414E34002436529F6DA10*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(ArString_tC06261461628907E722414E34002436529F6DA10*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getCameraId", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getCameraId)(___session0, ___self1, ___valueOut2);
-	#else
-	il2cppPInvokeFunc(___session0, ___self1, ___valueOut2);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetDepthSensorUsage_m1E6D173C6463759F5E3C80848B26598DC419C0DE (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___valueOut2, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getDepthSensorUsage", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getDepthSensorUsage)(___session0, ___self1, ___valueOut2);
-	#else
-	il2cppPInvokeFunc(___session0, ___self1, ___valueOut2);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetFacingDirection(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,UnityEngine.XR.ARCore.ArCameraConfigFacingDirection&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetFacingDirection_mF3A1BE5B912348463F8FECFE1EFD6C4660912114 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___valueOut2, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getFacingDirection", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getFacingDirection)(___session0, ___self1, ___valueOut2);
-	#else
-	il2cppPInvokeFunc(___session0, ___self1, ___valueOut2);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetFpsRange(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetFpsRange_m288AE232C4A22D6FC87AE2EFA38B4611CE222087 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___minFps2, int32_t* ___maxFps3, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*) + sizeof(int32_t*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getFpsRange", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getFpsRange)(___session0, ___self1, ___minFps2, ___maxFps3);
-	#else
-	il2cppPInvokeFunc(___session0, ___self1, ___minFps2, ___maxFps3);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetImageDimensions(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetImageDimensions_m00F158B234F449E732FA04FE3F2962A6B6D3BB7C (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___width2, int32_t* ___height3, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*) + sizeof(int32_t*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getImageDimensions", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getImageDimensions)(___session0, ___self1, ___width2, ___height3);
-	#else
-	il2cppPInvokeFunc(___session0, ___self1, ___width2, ___height3);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfig::GetTextureDimensions(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfig,System.Int32&,System.Int32&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfig_GetTextureDimensions_mC2ED0976D9D803C8067E13BE4C5311C3300FAAB7 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 ___self1, int32_t* ___width2, int32_t* ___height3, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3, int32_t*, int32_t*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3) + sizeof(int32_t*) + sizeof(int32_t*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfig_getTextureDimensions", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfig_getTextureDimensions)(___session0, ___self1, ___width2, ___height3);
-	#else
-	il2cppPInvokeFunc(___session0, ___self1, ___width2, ___height3);
-	#endif
-
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// UnityEngine.XR.ARCore.ArCameraConfig UnityEngine.XR.ARCore.XRCameraConfigurationExtensions::AsArCameraConfig(UnityEngine.XR.ARSubsystems.XRCameraConfiguration)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 XRCameraConfigurationExtensions_AsArCameraConfig_m9D94625F0D83F9421073FEEBC143F5AB4F80E6D5 (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63 ___cameraConfiguration0, const RuntimeMethod* method) 
-{
-	{
-		// ArCameraConfig.FromIntPtr(cameraConfiguration.nativeConfigurationHandle);
-		intptr_t L_0;
-		L_0 = XRCameraConfiguration_get_nativeConfigurationHandle_mD9C92AE35660E0441A296301336578BA11313155_inline((&___cameraConfiguration0), NULL);
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_1;
-		L_1 = ArCameraConfig_FromIntPtr_mBCBEFFFEAEBB82AD1AFDDDA8B450F161938A83F8(L_0, NULL);
-		return L_1;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::.ctor(System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// ArCameraConfigFilter(IntPtr value) => m_Self = value;
-		intptr_t L_0 = ___value0;
-		__this->___m_Self_0 = L_0;
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_AdjustorThunk (RuntimeObject* __this, intptr_t ___value0, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_inline(_thisAdjusted, ___value0, method);
-}
-// UnityEngine.XR.ARCore.ArCameraConfigFilter UnityEngine.XR.ARCore.ArCameraConfigFilter::FromIntPtr(System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ArCameraConfigFilter_FromIntPtr_m3216CCE246F8D70DDA692B47E294EF62C43559A7 (intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// public static ArCameraConfigFilter FromIntPtr(IntPtr value) => new ArCameraConfigFilter(value);
-		intptr_t L_0 = ___value0;
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1;
-		memset((&L_1), 0, sizeof(L_1));
-		ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_inline((&L_1), L_0, /*hidden argument*/NULL);
-		return L_1;
-	}
-}
-// UnityEngine.XR.ARCore.ArCameraConfigFilter UnityEngine.XR.ARCore.ArCameraConfigFilter::get_Null()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ArCameraConfigFilter_get_Null_m14F7F5F8AAE885AA0E25261991DB627EF6ADA4E0 (const RuntimeMethod* method) 
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		// public static ArCameraConfigFilter Null => default;
-		il2cpp_codegen_initobj((&V_0), sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607));
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_0 = V_0;
-		return L_0;
-	}
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::.ctor(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mF486A6AFC61683CFC3E52B7E5494E983D4DE83E7 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	{
-		// public ArCameraConfigFilter(ArSession session) => Create(session, out this);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfigFilter_Create_m142C7ADE353D6E38316A3A6EE50CB56FC883AC07(L_0, __this, NULL);
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArCameraConfigFilter__ctor_mF486A6AFC61683CFC3E52B7E5494E983D4DE83E7_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	ArCameraConfigFilter__ctor_mF486A6AFC61683CFC3E52B7E5494E983D4DE83E7(_thisAdjusted, ___session0, method);
-}
-// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfigFilter::AsIntPtr()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr AsIntPtr() => m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
-		return L_0;
-	}
-}
-IL2CPP_EXTERN_C  intptr_t ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	intptr_t _returnValue;
-	_returnValue = ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_inline(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::get_IsNull()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_get_IsNull_m0C4936F2612BC0BB7B4BAF08F9F0947D69EDC383 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		// public bool IsNull => m_Self == IntPtr.Zero;
-		intptr_t L_0 = __this->___m_Self_0;
-		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
-		bool L_2;
-		L_2 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_1, NULL);
-		return L_2;
-	}
-}
-IL2CPP_EXTERN_C  bool ArCameraConfigFilter_get_IsNull_m0C4936F2612BC0BB7B4BAF08F9F0947D69EDC383_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArCameraConfigFilter_get_IsNull_m0C4936F2612BC0BB7B4BAF08F9F0947D69EDC383(_thisAdjusted, method);
-	return _returnValue;
-}
-// UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage UnityEngine.XR.ARCore.ArCameraConfigFilter::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetDepthSensorUsage_mAD042C592CA038A62E72173B8B0E9224067C7C12 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	int32_t V_0 = 0;
-	{
-		// GetDepthSensorUsage(session, this, out var usage);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
-		ArCameraConfigFilter_GetDepthSensorUsage_mD6B774F26D0C2DE2202A91A98F6DBACF90D98E61(L_0, L_1, (&V_0), NULL);
-		// return usage;
-		int32_t L_2 = V_0;
-		return L_2;
-	}
-}
-IL2CPP_EXTERN_C  int32_t ArCameraConfigFilter_GetDepthSensorUsage_mAD042C592CA038A62E72173B8B0E9224067C7C12_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	int32_t _returnValue;
-	_returnValue = ArCameraConfigFilter_GetDepthSensorUsage_mAD042C592CA038A62E72173B8B0E9224067C7C12(_thisAdjusted, ___session0, method);
-	return _returnValue;
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetDepthSensorUsage_m92C45E574F2383B585B96C7FEC9FF2CCEABC68E3 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___depthSensorUsage1, const RuntimeMethod* method) 
-{
-	{
-		// SetDepthSensorUsage(session, this, depthSensorUsage);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
-		int32_t L_2 = ___depthSensorUsage1;
-		ArCameraConfigFilter_SetDepthSensorUsage_m5B7D3EC70DBB599EE5F6F6A682D6D55011D30555(L_0, L_1, L_2, NULL);
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArCameraConfigFilter_SetDepthSensorUsage_m92C45E574F2383B585B96C7FEC9FF2CCEABC68E3_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___depthSensorUsage1, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	ArCameraConfigFilter_SetDepthSensorUsage_m92C45E574F2383B585B96C7FEC9FF2CCEABC68E3(_thisAdjusted, ___session0, ___depthSensorUsage1, method);
-}
-// UnityEngine.XR.ARCore.ArCameraConfigTargetFps UnityEngine.XR.ARCore.ArCameraConfigFilter::GetTargetFps(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetTargetFps_m8A00967A664541D6702D5256F048DC56EBB74983 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	int32_t V_0 = 0;
-	{
-		// GetTargetFps(session, this, out var value);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
-		ArCameraConfigFilter_GetTargetFps_m9973098C5F69BF6DBEB4694352ADF354C213BC02(L_0, L_1, (&V_0), NULL);
-		// return value;
-		int32_t L_2 = V_0;
-		return L_2;
-	}
-}
-IL2CPP_EXTERN_C  int32_t ArCameraConfigFilter_GetTargetFps_m8A00967A664541D6702D5256F048DC56EBB74983_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	int32_t _returnValue;
-	_returnValue = ArCameraConfigFilter_GetTargetFps_m8A00967A664541D6702D5256F048DC56EBB74983(_thisAdjusted, ___session0, method);
-	return _returnValue;
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigTargetFps)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetTargetFps_mD09E6CDC671DB61E9FC443F99A26EF4C716C9766 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___targetFps1, const RuntimeMethod* method) 
-{
-	{
-		// SetTargetFps(session, this, targetFps);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
-		int32_t L_2 = ___targetFps1;
-		ArCameraConfigFilter_SetTargetFps_mABECEE8F72881F7B6F0CD21C0916DCB68B949FCF(L_0, L_1, L_2, NULL);
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArCameraConfigFilter_SetTargetFps_mD09E6CDC671DB61E9FC443F99A26EF4C716C9766_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, int32_t ___targetFps1, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	ArCameraConfigFilter_SetTargetFps_mD09E6CDC671DB61E9FC443F99A26EF4C716C9766(_thisAdjusted, ___session0, ___targetFps1, method);
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Dispose_m71514EB30557871157FCA62921F794E10EC3BD59 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		// if (m_Self != IntPtr.Zero)
-		intptr_t L_0 = __this->___m_Self_0;
-		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
-		bool L_2;
-		L_2 = IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B(L_0, L_1, NULL);
-		if (!L_2)
-		{
-			goto IL_001d;
-		}
-	}
-	{
-		// Destroy(this);
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_3 = (*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)__this);
-		ArCameraConfigFilter_Destroy_m9EAD8BB21D88A11EE1ED2E885E92B06FE96BEA6F(L_3, NULL);
-	}
-
-IL_001d:
-	{
-		// m_Self = IntPtr.Zero;
-		intptr_t L_4 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
-		__this->___m_Self_0 = L_4;
-		// }
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArCameraConfigFilter_Dispose_m71514EB30557871157FCA62921F794E10EC3BD59_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	ArCameraConfigFilter_Dispose_m71514EB30557871157FCA62921F794E10EC3BD59(_thisAdjusted, method);
-}
-// System.IntPtr UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Explicit(UnityEngine.XR.ARCore.ArCameraConfigFilter)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArCameraConfigFilter_op_Explicit_m89BE76307F2F39AB124E955E03228A45AD6F50A7 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter0, const RuntimeMethod* method) 
-{
-	{
-		// public static explicit operator IntPtr(ArCameraConfigFilter filter) => filter.AsIntPtr();
-		intptr_t L_0;
-		L_0 = ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_inline((&___filter0), NULL);
-		return L_0;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::Equals(UnityEngine.XR.ARCore.ArCameraConfigFilter)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___other0, const RuntimeMethod* method) 
-{
-	{
-		// public bool Equals(ArCameraConfigFilter other) => m_Self == other.m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_1 = ___other0;
-		intptr_t L_2 = L_1.___m_Self_0;
-		bool L_3;
-		L_3 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_2, NULL);
-		return L_3;
-	}
-}
-IL2CPP_EXTERN_C  bool ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494_AdjustorThunk (RuntimeObject* __this, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___other0, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494(_thisAdjusted, ___other0, method);
-	return _returnValue;
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::Equals(System.Object)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_Equals_mF6B858B3A8FC33E7912163F338B1CC71C59744ED (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		// public override bool Equals(object obj) => obj is ArCameraConfigFilter other && Equals(other);
-		RuntimeObject* L_0 = ___obj0;
-		if (!((RuntimeObject*)IsInstSealed((RuntimeObject*)L_0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607_il2cpp_TypeInfo_var)))
-		{
-			goto IL_0017;
-		}
-	}
-	{
-		RuntimeObject* L_1 = ___obj0;
-		V_0 = ((*(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)((ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*)UnBox(L_1, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607_il2cpp_TypeInfo_var))));
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_2 = V_0;
-		bool L_3;
-		L_3 = ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494(__this, L_2, NULL);
-		return L_3;
-	}
-
-IL_0017:
-	{
-		return (bool)0;
-	}
-}
-IL2CPP_EXTERN_C  bool ArCameraConfigFilter_Equals_mF6B858B3A8FC33E7912163F338B1CC71C59744ED_AdjustorThunk (RuntimeObject* __this, RuntimeObject* ___obj0, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArCameraConfigFilter_Equals_mF6B858B3A8FC33E7912163F338B1CC71C59744ED(_thisAdjusted, ___obj0, method);
-	return _returnValue;
-}
-// System.Int32 UnityEngine.XR.ARCore.ArCameraConfigFilter::GetHashCode()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArCameraConfigFilter_GetHashCode_mAB06AE4573E43FB7802536BD3809666832F1348A (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
-{
-	{
-		// public override int GetHashCode() => m_Self.GetHashCode();
-		intptr_t* L_0 = (&__this->___m_Self_0);
-		int32_t L_1;
-		L_1 = IntPtr_GetHashCode_m669B16AD7483C1C396E48F41D9CAC4B719E38F3D(L_0, NULL);
-		return L_1;
-	}
-}
-IL2CPP_EXTERN_C  int32_t ArCameraConfigFilter_GetHashCode_mAB06AE4573E43FB7802536BD3809666832F1348A_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*>(__this + _offset);
-	int32_t _returnValue;
-	_returnValue = ArCameraConfigFilter_GetHashCode_mAB06AE4573E43FB7802536BD3809666832F1348A(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Equality(UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigFilter)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Equality_mA7C1718FBD058D7E2DB53C134BCE698FDF0E9136 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___lhs0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator ==(ArCameraConfigFilter lhs, ArCameraConfigFilter rhs) => lhs.Equals(rhs);
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_0 = ___rhs1;
-		bool L_1;
-		L_1 = ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494((&___lhs0), L_0, NULL);
-		return L_1;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Inequality(UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigFilter)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Inequality_m334D48DAF3A4F5F757C12A61B95913F3E560B362 (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___lhs0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator !=(ArCameraConfigFilter lhs, ArCameraConfigFilter rhs) => !lhs.Equals(rhs);
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_0 = ___rhs1;
-		bool L_1;
-		L_1 = ArCameraConfigFilter_Equals_m7A03616AACBC45070F8F65ACE805CF16ADF65494((&___lhs0), L_0, NULL);
-		return (bool)((((int32_t)L_1) == ((int32_t)0))? 1 : 0);
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Equality_mEC832B8112587B3269F1EE3E5F42320B0CE170B9 (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___lhs0, Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___rhs1, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_RuntimeMethod_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B3_0;
-	memset((&G_B3_0), 0, sizeof(G_B3_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B5_0;
-	memset((&G_B5_0), 0, sizeof(G_B5_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B4_0;
-	memset((&G_B4_0), 0, sizeof(G_B4_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_0;
-	memset((&G_B6_0), 0, sizeof(G_B6_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_1;
-	memset((&G_B6_1), 0, sizeof(G_B6_1));
-	{
-		// public static bool operator ==(ArCameraConfigFilter? lhs, ArCameraConfigFilter? rhs) => NativeObject.ArePointersEqual(lhs?.m_Self, rhs?.m_Self);
-		bool L_0;
-		L_0 = Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_inline((&___lhs0), Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_RuntimeMethod_var);
-		if (L_0)
-		{
-			goto IL_0014;
-		}
-	}
-	{
-		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_1 = V_0;
-		G_B3_0 = L_1;
-		goto IL_0025;
-	}
-
-IL_0014:
-	{
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_2;
-		L_2 = Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_inline((&___lhs0), Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_RuntimeMethod_var);
-		intptr_t L_3 = L_2.___m_Self_0;
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_4;
-		memset((&L_4), 0, sizeof(L_4));
-		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_4), L_3, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		G_B3_0 = L_4;
-	}
-
-IL_0025:
-	{
-		bool L_5;
-		L_5 = Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_inline((&___rhs1), Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_RuntimeMethod_var);
-		G_B4_0 = G_B3_0;
-		if (L_5)
-		{
-			G_B5_0 = G_B3_0;
-			goto IL_0039;
-		}
-	}
-	{
-		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_6 = V_0;
-		G_B6_0 = L_6;
-		G_B6_1 = G_B4_0;
-		goto IL_004a;
-	}
-
-IL_0039:
-	{
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_7;
-		L_7 = Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_inline((&___rhs1), Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_RuntimeMethod_var);
-		intptr_t L_8 = L_7.___m_Self_0;
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_9;
-		memset((&L_9), 0, sizeof(L_9));
-		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_9), L_8, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		G_B6_0 = L_9;
-		G_B6_1 = G_B5_0;
-	}
-
-IL_004a:
-	{
-		bool L_10;
-		L_10 = NativeObject_ArePointersEqual_m78CCE35C1493CF89AD67B679A45687843777B576(G_B6_1, G_B6_0, NULL);
-		return L_10;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArCameraConfigFilter::op_Inequality(System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>,System.Nullable`1<UnityEngine.XR.ARCore.ArCameraConfigFilter>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArCameraConfigFilter_op_Inequality_m077FD4EF3B102E15565FE92111F8D6858BD2CEC6 (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___lhs0, Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator !=(ArCameraConfigFilter? lhs, ArCameraConfigFilter? rhs) => !(lhs == rhs);
-		Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D L_0 = ___lhs0;
-		Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D L_1 = ___rhs1;
-		bool L_2;
-		L_2 = ArCameraConfigFilter_op_Equality_mEC832B8112587B3269F1EE3E5F42320B0CE170B9(L_0, L_1, NULL);
-		return (bool)((((int32_t)L_2) == ((int32_t)0))? 1 : 0);
-	}
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Create_m142C7ADE353D6E38316A3A6EE50CB56FC883AC07 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* ___filterOut1, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_create", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_create)(___session0, ___filterOut1);
-	#else
-	il2cppPInvokeFunc(___session0, ___filterOut1);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::Destroy(UnityEngine.XR.ARCore.ArCameraConfigFilter)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_Destroy_m9EAD8BB21D88A11EE1ED2E885E92B06FE96BEA6F (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___self0, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_destroy", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_destroy)(___self0);
-	#else
-	il2cppPInvokeFunc(___self0);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::GetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_GetDepthSensorUsage_mD6B774F26D0C2DE2202A91A98F6DBACF90D98E61 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t* ___valueOut2, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607) + sizeof(int32_t*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_getDepthSensorUsage", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_getDepthSensorUsage)(___session0, ___filter1, ___valueOut2);
-	#else
-	il2cppPInvokeFunc(___session0, ___filter1, ___valueOut2);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetDepthSensorUsage(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigDepthSensorUsage)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetDepthSensorUsage_m5B7D3EC70DBB599EE5F6F6A682D6D55011D30555 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t ___value2, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607) + sizeof(int32_t);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_setDepthSensorUsage", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_setDepthSensorUsage)(___session0, ___filter1, ___value2);
-	#else
-	il2cppPInvokeFunc(___session0, ___filter1, ___value2);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::GetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigTargetFps&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_GetTargetFps_m9973098C5F69BF6DBEB4694352ADF354C213BC02 (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t* ___valueOut2, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607) + sizeof(int32_t*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_getTargetFps", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_getTargetFps)(___session0, ___filter1, ___valueOut2);
-	#else
-	il2cppPInvokeFunc(___session0, ___filter1, ___valueOut2);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArCameraConfigFilter::SetTargetFps(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArCameraConfigFilter,UnityEngine.XR.ARCore.ArCameraConfigTargetFps)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArCameraConfigFilter_SetTargetFps_mABECEE8F72881F7B6F0CD21C0916DCB68B949FCF (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 ___filter1, int32_t ___value2, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607, int32_t);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607) + sizeof(int32_t);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArCameraConfigFilter_setTargetFps", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArCameraConfigFilter_setTargetFps)(___session0, ___filter1, ___value2);
-	#else
-	il2cppPInvokeFunc(___session0, ___filter1, ___value2);
-	#endif
-
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
-// System.Void UnityEngine.XR.ARCore.ArConfig::.ctor(System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// ArConfig(IntPtr value) => m_Self = value;
-		intptr_t L_0 = ___value0;
-		__this->___m_Self_0 = L_0;
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_AdjustorThunk (RuntimeObject* __this, intptr_t ___value0, const RuntimeMethod* method)
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
-	ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_inline(_thisAdjusted, ___value0, method);
-}
-// System.Void UnityEngine.XR.ARCore.ArConfig::.ctor(UnityEngine.XR.ARCore.ArSession)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig__ctor_m807FC812AF15E78B8FD5025A164FF214A030F793 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method) 
-{
-	{
-		// public ArConfig(ArSession session) => Create(session, out this);
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = ___session0;
-		ArConfig_Create_m165DEBEB687311E29D05FBB31CB1C31916DFDBAA(L_0, __this, NULL);
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArConfig__ctor_m807FC812AF15E78B8FD5025A164FF214A030F793_AdjustorThunk (RuntimeObject* __this, ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, const RuntimeMethod* method)
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
-	ArConfig__ctor_m807FC812AF15E78B8FD5025A164FF214A030F793(_thisAdjusted, ___session0, method);
-}
-// UnityEngine.XR.ARCore.ArConfig UnityEngine.XR.ARCore.ArConfig::FromIntPtr(System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ArConfig_FromIntPtr_mE9B04C63D4EE5D8223D76D67FE5DCF2C7071D2AF (intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// public static ArConfig FromIntPtr(IntPtr value) => new ArConfig(value);
-		intptr_t L_0 = ___value0;
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_1;
-		memset((&L_1), 0, sizeof(L_1));
-		ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_inline((&L_1), L_0, /*hidden argument*/NULL);
-		return L_1;
-	}
-}
-// UnityEngine.XR.ARCore.ArConfig UnityEngine.XR.ARCore.ArConfig::get_Null()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ArConfig_get_Null_mCAF6C746D44A04E3AE94752CD94D2A4564CB48CE (const RuntimeMethod* method) 
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		// public static ArConfig Null => default;
-		il2cpp_codegen_initobj((&V_0), sizeof(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C));
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_0 = V_0;
-		return L_0;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::get_IsNull()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_get_IsNull_mC16E8E4A5FD7562D365B3CED6F6195F6D3A4BA98 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		// public bool IsNull => m_Self == IntPtr.Zero;
-		intptr_t L_0 = __this->___m_Self_0;
-		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
-		bool L_2;
-		L_2 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_1, NULL);
-		return L_2;
-	}
-}
-IL2CPP_EXTERN_C  bool ArConfig_get_IsNull_mC16E8E4A5FD7562D365B3CED6F6195F6D3A4BA98_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArConfig_get_IsNull_mC16E8E4A5FD7562D365B3CED6F6195F6D3A4BA98(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.IntPtr UnityEngine.XR.ARCore.ArConfig::AsIntPtr()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr AsIntPtr() => m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
-		return L_0;
-	}
-}
-IL2CPP_EXTERN_C  intptr_t ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
-	intptr_t _returnValue;
-	_returnValue = ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_inline(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.IntPtr UnityEngine.XR.ARCore.ArConfig::op_Explicit(UnityEngine.XR.ARCore.ArConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR intptr_t ArConfig_op_Explicit_mCCBCE6CB895992DB341D46AE4141049A24D16639 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___config0, const RuntimeMethod* method) 
-{
-	{
-		// public static explicit operator IntPtr(ArConfig config) => config.AsIntPtr();
-		intptr_t L_0;
-		L_0 = ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_inline((&___config0), NULL);
-		return L_0;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::Equals(UnityEngine.XR.ARCore.ArConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___other0, const RuntimeMethod* method) 
-{
-	{
-		// public bool Equals(ArConfig other) => m_Self == other.m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_1 = ___other0;
-		intptr_t L_2 = L_1.___m_Self_0;
-		bool L_3;
-		L_3 = IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271(L_0, L_2, NULL);
-		return L_3;
-	}
-}
-IL2CPP_EXTERN_C  bool ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572_AdjustorThunk (RuntimeObject* __this, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___other0, const RuntimeMethod* method)
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572(_thisAdjusted, ___other0, method);
-	return _returnValue;
-}
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::Equals(System.Object)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_Equals_mAF04B9E9552EAF1D2DE31F107EF45BBC9CF8BBA4 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	{
-		// public override bool Equals(object obj) => obj is ArConfig other && Equals(other);
-		RuntimeObject* L_0 = ___obj0;
-		if (!((RuntimeObject*)IsInstSealed((RuntimeObject*)L_0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C_il2cpp_TypeInfo_var)))
-		{
-			goto IL_0017;
-		}
-	}
-	{
-		RuntimeObject* L_1 = ___obj0;
-		V_0 = ((*(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*)((ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*)(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*)UnBox(L_1, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C_il2cpp_TypeInfo_var))));
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_2 = V_0;
-		bool L_3;
-		L_3 = ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572(__this, L_2, NULL);
-		return L_3;
-	}
-
-IL_0017:
-	{
-		return (bool)0;
-	}
-}
-IL2CPP_EXTERN_C  bool ArConfig_Equals_mAF04B9E9552EAF1D2DE31F107EF45BBC9CF8BBA4_AdjustorThunk (RuntimeObject* __this, RuntimeObject* ___obj0, const RuntimeMethod* method)
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
-	bool _returnValue;
-	_returnValue = ArConfig_Equals_mAF04B9E9552EAF1D2DE31F107EF45BBC9CF8BBA4(_thisAdjusted, ___obj0, method);
-	return _returnValue;
-}
-// System.Int32 UnityEngine.XR.ARCore.ArConfig::GetHashCode()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ArConfig_GetHashCode_m2AA440E48A34FDA2186E99FDF0630578AB433DC4 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
-{
-	{
-		// public override int GetHashCode() => m_Self.GetHashCode();
-		intptr_t* L_0 = (&__this->___m_Self_0);
-		int32_t L_1;
-		L_1 = IntPtr_GetHashCode_m669B16AD7483C1C396E48F41D9CAC4B719E38F3D(L_0, NULL);
-		return L_1;
-	}
-}
-IL2CPP_EXTERN_C  int32_t ArConfig_GetHashCode_m2AA440E48A34FDA2186E99FDF0630578AB433DC4_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
-	int32_t _returnValue;
-	_returnValue = ArConfig_GetHashCode_m2AA440E48A34FDA2186E99FDF0630578AB433DC4(_thisAdjusted, method);
-	return _returnValue;
-}
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Equality(UnityEngine.XR.ARCore.ArConfig,UnityEngine.XR.ARCore.ArConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Equality_mE6B7E1ACCC7A3F8835FDB29C2652183F5ACAB162 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___lhs0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator ==(ArConfig lhs, ArConfig rhs) => lhs.Equals(rhs);
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_0 = ___rhs1;
-		bool L_1;
-		L_1 = ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572((&___lhs0), L_0, NULL);
-		return L_1;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Inequality(UnityEngine.XR.ARCore.ArConfig,UnityEngine.XR.ARCore.ArConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Inequality_mF17E9CAD6C39547693DB6105CBAB4AD9C1CC511B (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___lhs0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator !=(ArConfig lhs, ArConfig rhs) => !lhs.Equals(rhs);
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_0 = ___rhs1;
-		bool L_1;
-		L_1 = ArConfig_Equals_mCE8CA68F242CF012255732C5387E953EFB7C7572((&___lhs0), L_0, NULL);
-		return (bool)((((int32_t)L_1) == ((int32_t)0))? 1 : 0);
-	}
-}
-// System.Void UnityEngine.XR.ARCore.ArConfig::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Dispose_m7AFD805848963702EA520A205BF9E3AC79BFA37B (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&IntPtr_t_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		// if (m_Self != IntPtr.Zero)
-		intptr_t L_0 = __this->___m_Self_0;
-		intptr_t L_1 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
-		bool L_2;
-		L_2 = IntPtr_op_Inequality_m90EFC9C4CAD9A33E309F2DDF98EE4E1DD253637B(L_0, L_1, NULL);
-		if (!L_2)
-		{
-			goto IL_001d;
-		}
-	}
-	{
-		// Destroy(this);
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_3 = (*(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*)__this);
-		ArConfig_Destroy_m28D7B99179AA968D94454EFF9FD67F44AE354DE3(L_3, NULL);
-	}
-
-IL_001d:
-	{
-		// m_Self = IntPtr.Zero;;
-		intptr_t L_4 = ((IntPtr_t_StaticFields*)il2cpp_codegen_static_fields_for(IntPtr_t_il2cpp_TypeInfo_var))->___Zero_1;
-		__this->___m_Self_0 = L_4;
-		// }
-		return;
-	}
-}
-IL2CPP_EXTERN_C  void ArConfig_Dispose_m7AFD805848963702EA520A205BF9E3AC79BFA37B_AdjustorThunk (RuntimeObject* __this, const RuntimeMethod* method)
-{
-	ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* _thisAdjusted;
-	int32_t _offset = 1;
-	_thisAdjusted = reinterpret_cast<ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*>(__this + _offset);
-	ArConfig_Dispose_m7AFD805848963702EA520A205BF9E3AC79BFA37B(_thisAdjusted, method);
-}
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Equality(System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Equality_m5078A53EB4B64DB5D3415C642CE14B353E370B7C (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___lhs0, Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___rhs1, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_RuntimeMethod_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 V_0;
-	memset((&V_0), 0, sizeof(V_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B3_0;
-	memset((&G_B3_0), 0, sizeof(G_B3_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B5_0;
-	memset((&G_B5_0), 0, sizeof(G_B5_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B4_0;
-	memset((&G_B4_0), 0, sizeof(G_B4_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_0;
-	memset((&G_B6_0), 0, sizeof(G_B6_0));
-	Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 G_B6_1;
-	memset((&G_B6_1), 0, sizeof(G_B6_1));
-	{
-		// public static bool operator ==(ArConfig? lhs, ArConfig? rhs) => NativeObject.ArePointersEqual(lhs?.m_Self, rhs?.m_Self);
-		bool L_0;
-		L_0 = Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_inline((&___lhs0), Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_RuntimeMethod_var);
-		if (L_0)
-		{
-			goto IL_0014;
-		}
-	}
-	{
-		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_1 = V_0;
-		G_B3_0 = L_1;
-		goto IL_0025;
-	}
-
-IL_0014:
-	{
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_2;
-		L_2 = Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_inline((&___lhs0), Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_RuntimeMethod_var);
-		intptr_t L_3 = L_2.___m_Self_0;
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_4;
-		memset((&L_4), 0, sizeof(L_4));
-		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_4), L_3, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		G_B3_0 = L_4;
-	}
-
-IL_0025:
-	{
-		bool L_5;
-		L_5 = Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_inline((&___rhs1), Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_RuntimeMethod_var);
-		G_B4_0 = G_B3_0;
-		if (L_5)
-		{
-			G_B5_0 = G_B3_0;
-			goto IL_0039;
-		}
-	}
-	{
-		il2cpp_codegen_initobj((&V_0), sizeof(Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455));
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_6 = V_0;
-		G_B6_0 = L_6;
-		G_B6_1 = G_B4_0;
-		goto IL_004a;
-	}
-
-IL_0039:
-	{
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_7;
-		L_7 = Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_inline((&___rhs1), Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_RuntimeMethod_var);
-		intptr_t L_8 = L_7.___m_Self_0;
-		Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455 L_9;
-		memset((&L_9), 0, sizeof(L_9));
-		Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8((&L_9), L_8, /*hidden argument*/Nullable_1__ctor_m343D2D34D5EC299A8A8BFE3BB11C60FDC27383B8_RuntimeMethod_var);
-		G_B6_0 = L_9;
-		G_B6_1 = G_B5_0;
-	}
-
-IL_004a:
-	{
-		bool L_10;
-		L_10 = NativeObject_ArePointersEqual_m78CCE35C1493CF89AD67B679A45687843777B576(G_B6_1, G_B6_0, NULL);
-		return L_10;
-	}
-}
-// System.Boolean UnityEngine.XR.ARCore.ArConfig::op_Inequality(System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>,System.Nullable`1<UnityEngine.XR.ARCore.ArConfig>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArConfig_op_Inequality_m9F0E103ACB9A3EBC2D02B926BE22986213116EB9 (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___lhs0, Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C ___rhs1, const RuntimeMethod* method) 
-{
-	{
-		// public static bool operator !=(ArConfig? lhs, ArConfig? rhs) => !(lhs == rhs);
-		Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C L_0 = ___lhs0;
-		Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C L_1 = ___rhs1;
-		bool L_2;
-		L_2 = ArConfig_op_Equality_m5078A53EB4B64DB5D3415C642CE14B353E370B7C(L_0, L_1, NULL);
-		return (bool)((((int32_t)L_2) == ((int32_t)0))? 1 : 0);
-	}
-}
-// System.Void UnityEngine.XR.ARCore.ArConfig::Create(UnityEngine.XR.ARCore.ArSession,UnityEngine.XR.ARCore.ArConfig&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Create_m165DEBEB687311E29D05FBB31CB1C31916DFDBAA (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF ___session0, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* ___configOut1, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF, ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF) + sizeof(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C*);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArConfig_create", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArConfig_create)(___session0, ___configOut1);
-	#else
-	il2cppPInvokeFunc(___session0, ___configOut1);
-	#endif
-
-}
-// System.Void UnityEngine.XR.ARCore.ArConfig::Destroy(UnityEngine.XR.ARCore.ArConfig)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ArConfig_Destroy_m28D7B99179AA968D94454EFF9FD67F44AE354DE3 (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C ___config0, const RuntimeMethod* method) 
-{
-	typedef void (DEFAULT_CALL *PInvokeFunc) (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C);
-	#if !FORCE_PINVOKE_INTERNAL && !FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	static PInvokeFunc il2cppPInvokeFunc;
-	if (il2cppPInvokeFunc == NULL)
-	{
-		int parameterSize = sizeof(ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C);
-		il2cppPInvokeFunc = il2cpp_codegen_resolve_pinvoke<PInvokeFunc>(IL2CPP_NATIVE_STRING("arcore_sdk_c"), "ArConfig_destroy", IL2CPP_CALL_DEFAULT, CHARSET_NOT_SPECIFIED, parameterSize, false);
-		IL2CPP_ASSERT(il2cppPInvokeFunc != NULL);
-	}
-	#endif
-
-	// Native function invocation
-	#if FORCE_PINVOKE_INTERNAL || FORCE_PINVOKE_arcore_sdk_c_INTERNAL
-	reinterpret_cast<PInvokeFunc>(ArConfig_destroy)(___config0);
-	#else
-	il2cppPInvokeFunc(___config0);
-	#endif
-
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
 // System.Boolean UnityEngine.XR.ARCore.ArPlaybackStatusExtensions::Playing(UnityEngine.XR.ARCore.ArPlaybackStatus)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ArPlaybackStatusExtensions_Playing_mAD99AB9C7F2F95BF0E0DEE2B7B47AE416BE4491A (int32_t ___status0, const RuntimeMethod* method) 
 {
@@ -25677,6 +25675,65 @@ IL_0032:
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_inline (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// ArCameraConfig(IntPtr value) => m_Self = value;
+		intptr_t L_0 = ___value0;
+		__this->___m_Self_0 = L_0;
+		return;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_inline (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
+{
+	{
+		// public IntPtr AsIntPtr() => m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t XRCameraConfiguration_get_nativeConfigurationHandle_mD9C92AE35660E0441A296301336578BA11313155_inline (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63* __this, const RuntimeMethod* method) 
+{
+	{
+		// public IntPtr nativeConfigurationHandle => m_NativeConfigurationHandle;
+		intptr_t L_0 = __this->___m_NativeConfigurationHandle_2;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_inline (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// ArCameraConfigFilter(IntPtr value) => m_Self = value;
+		intptr_t L_0 = ___value0;
+		__this->___m_Self_0 = L_0;
+		return;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_inline (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
+{
+	{
+		// public IntPtr AsIntPtr() => m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_inline (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, intptr_t ___value0, const RuntimeMethod* method) 
+{
+	{
+		// ArConfig(IntPtr value) => m_Self = value;
+		intptr_t L_0 = ___value0;
+		__this->___m_Self_0 = L_0;
+		return;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_inline (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
+{
+	{
+		// public IntPtr AsIntPtr() => m_Self;
+		intptr_t L_0 = __this->___m_Self_0;
+		return L_0;
+	}
+}
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Api_get_loaderPresent_mA5AF7546F25C9A370DB1E9CF82C5E5BC2B58C301_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -25809,14 +25866,6 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArSession_t5038012861AFE90255CCD3
 	{
 		// public ArSession arSession => m_Session;
 		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = __this->___m_Session_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArConfig_AsIntPtr_m9CFB8A76A4BB209848A58B8CB8CC7481BF763A42_inline (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr AsIntPtr() => m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
 		return L_0;
 	}
 }
@@ -26709,57 +26758,6 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void CameraPermissionsResultCallb
 	typedef void (*FunctionPointerType) (RuntimeObject*, bool, intptr_t, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___granted0, ___context1, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArCameraConfig__ctor_m03B7CCBE0A6A9F8C9CF14EBBCB1517566DA47015_inline (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// ArCameraConfig(IntPtr value) => m_Self = value;
-		intptr_t L_0 = ___value0;
-		__this->___m_Self_0 = L_0;
-		return;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArCameraConfig_AsIntPtr_m319C668BCFE412C0D53FF26D97EDB93249B39444_inline (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr AsIntPtr() => m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t XRCameraConfiguration_get_nativeConfigurationHandle_mD9C92AE35660E0441A296301336578BA11313155_inline (XRCameraConfiguration_t36D3B10519762ADD407F4A4F171D120CE2B3BD63* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr nativeConfigurationHandle => m_NativeConfigurationHandle;
-		intptr_t L_0 = __this->___m_NativeConfigurationHandle_2;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArCameraConfigFilter__ctor_mAFDDE747B063B59B3DA2DD79FC20A16D497C07FA_inline (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// ArCameraConfigFilter(IntPtr value) => m_Self = value;
-		intptr_t L_0 = ___value0;
-		__this->___m_Self_0 = L_0;
-		return;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t ArCameraConfigFilter_AsIntPtr_mC26AD4E33C4D07ED7C4970BC7C75456AC84D62BF_inline (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr AsIntPtr() => m_Self;
-		intptr_t L_0 = __this->___m_Self_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArConfig__ctor_m0E326EEBB3B5154A7BA864AF3B31CA153C4AC072_inline (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C* __this, intptr_t ___value0, const RuntimeMethod* method) 
-{
-	{
-		// ArConfig(IntPtr value) => m_Self = value;
-		intptr_t L_0 = ___value0;
-		__this->___m_Self_0 = L_0;
-		return;
-	}
-}
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ArRecordingConfig__ctor_mFB056D108F9F2F1F95700E06ECF338AB67DE5543_inline (ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7* __this, intptr_t ___value0, const RuntimeMethod* method) 
 {
 	{
@@ -26903,6 +26901,25 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR uint64_t TrackableId_get_subId2_m
 		return L_0;
 	}
 }
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, const RuntimeMethod* method) 
+{
+	{
+		bool L_0 = *(bool*)il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1),0));
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Nullable_1_GetValueOrDefault_mC057FBD944AF068B90EBDD0B496231A01B2A4228_gshared_inline (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, Il2CppFullySharedGenericStruct* il2cppRetVal, const RuntimeMethod* method) 
+{
+	// sizeof(T)
+	const uint32_t SizeOf_T_tF1352992D99D495C6F2BE3DC43F8A00BAD6B2EAA = il2cpp_codegen_sizeof(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 0));
+	// T
+	const Il2CppFullySharedGenericStruct L_0 = alloca(SizeOf_T_tF1352992D99D495C6F2BE3DC43F8A00BAD6B2EAA);
+	{
+		il2cpp_codegen_memcpy(L_0, il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1),1)), SizeOf_T_tF1352992D99D495C6F2BE3DC43F8A00BAD6B2EAA);
+		il2cpp_codegen_memcpy(il2cppRetVal, L_0, SizeOf_T_tF1352992D99D495C6F2BE3DC43F8A00BAD6B2EAA);
+		return;
+	}
+}
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* SubsystemWithProvider_3_get_provider_m963D70D839CE42A2C17A2C183A61C25F0E2C6732_gshared_inline (SubsystemWithProvider_3_t548D9C2A4778C7ADB62496A2A07F8B7563309893* __this, const RuntimeMethod* method) 
 {
 	{
@@ -26910,12 +26927,12 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* SubsystemWithProvi
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m651DBA72A6EDCD23A701202FF8EADFDAA47EE0AC_gshared_inline (Action_1_t9F90E7000DF8062F6211B6C752125F079812471A* __this, ARCoreBeforeGetCameraConfigurationEventArgs_t9368C5A015241C02E50D864D77FDFC2D223FA451 ___obj0, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___obj0, const RuntimeMethod* method) 
 {
-	typedef void (*FunctionPointerType) (RuntimeObject*, ARCoreBeforeGetCameraConfigurationEventArgs_t9368C5A015241C02E50D864D77FDFC2D223FA451, const RuntimeMethod*);
+	typedef void (*FunctionPointerType) (RuntimeObject*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___obj0, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E TrackableChanges_1_get_removed_mB692C4B8E9682871345D028184FD08CA66224E56_gshared_inline (TrackableChanges_1_t03BF8B384A61E7421A4748384189C50C3A2C323F* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_t7A26520FDE477098D7B2CC8D14E778889D50A15E TrackableChanges_1_get_removed_mAB913A3B635F6ABE4EF7A3CD18B3C120DD5F2738_gshared_inline (TrackableChanges_1_t766C81F173FAD10AE2354632C3ED8BC00F0F55FD* __this, const RuntimeMethod* method) 
 {
 	{
 		// public NativeArray<TrackableId> removed => m_Removed;
@@ -26923,19 +26940,24 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR NativeArray_1_t7A26520FDE477098D7
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) 
 {
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* V_0 = NULL;
+	// sizeof(T)
+	const uint32_t SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E = il2cpp_codegen_sizeof(il2cpp_rgctx_data(method->klass->rgctx_data, 9));
+	// T
+	const Il2CppFullySharedGenericAny L_8 = alloca(SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+	const Il2CppFullySharedGenericAny L_9 = L_8;
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* V_0 = NULL;
 	int32_t V_1 = 0;
 	{
 		int32_t L_0 = (int32_t)__this->____version_3;
 		__this->____version_3 = ((int32_t)il2cpp_codegen_add(L_0, 1));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_1 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)__this->____items_1;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_1 = (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)__this->____items_1;
 		V_0 = L_1;
 		int32_t L_2 = (int32_t)__this->____size_2;
 		V_1 = L_2;
 		int32_t L_3 = V_1;
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_4 = V_0;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_4 = V_0;
 		NullCheck(L_4);
 		if ((!(((uint32_t)L_3) < ((uint32_t)((int32_t)(((RuntimeArray*)L_4)->max_length))))))
 		{
@@ -26945,120 +26967,33 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631
 	{
 		int32_t L_5 = V_1;
 		__this->____size_2 = ((int32_t)il2cpp_codegen_add(L_5, 1));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_6 = V_0;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_6 = V_0;
 		int32_t L_7 = V_1;
-		RuntimeObject* L_8 = ___item0;
+		il2cpp_codegen_memcpy(L_8, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? ___item0 : &___item0), SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
 		NullCheck(L_6);
-		(L_6)->SetAt(static_cast<il2cpp_array_size_t>(L_7), (RuntimeObject*)L_8);
+		il2cpp_codegen_memcpy((L_6)->GetAddressAt(static_cast<il2cpp_array_size_t>(L_7)), L_8, SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+		Il2CppCodeGenWriteBarrierForClass(il2cpp_rgctx_data(method->klass->rgctx_data, 9), (void**)(L_6)->GetAddressAt(static_cast<il2cpp_array_size_t>(L_7)), (void*)L_8);
 		return;
 	}
 
 IL_0034:
 	{
-		RuntimeObject* L_9 = ___item0;
-		((  void (*) (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D*, RuntimeObject*, const RuntimeMethod*))il2cpp_codegen_get_method_pointer(il2cpp_rgctx_method(method->klass->rgctx_data, 11)))(__this, L_9, il2cpp_rgctx_method(method->klass->rgctx_data, 11));
+		il2cpp_codegen_memcpy(L_9, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? ___item0 : &___item0), SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+		InvokerActionInvoker1< Il2CppFullySharedGenericAny >::Invoke(il2cpp_codegen_get_direct_method_pointer(il2cpp_rgctx_method(method->klass->rgctx_data, 14)), il2cpp_rgctx_method(method->klass->rgctx_data, 14), __this, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? L_9: *(void**)L_9));
 		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_2_Invoke_mB2DD87F61EB655A33F6277F1E277246CE23B6625_gshared_inline (Action_2_t5BCD350E28ADACED656596CC308132ED74DA0915* __this, RuntimeObject* ___arg10, bool ___arg21, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_2_Invoke_m6343941059117DF354182855F996EB3D08B4C06C_gshared_inline (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___arg10, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___arg21, const RuntimeMethod* method) 
 {
-	typedef void (*FunctionPointerType) (RuntimeObject*, RuntimeObject*, bool, const RuntimeMethod*);
+	typedef void (*FunctionPointerType) (RuntimeObject*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___arg10, ___arg21, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline (const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline (const RuntimeMethod* method) 
 {
+	il2cpp_rgctx_method_init(method);
 	{
-		il2cpp_codegen_runtime_class_init_inline(il2cpp_rgctx_data(method->rgctx_data, 0));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_0 = ((EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE_StaticFields*)il2cpp_codegen_static_fields_for(il2cpp_rgctx_data(method->rgctx_data, 0)))->___Value_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m3EB72A68DE319EE2E509526622CB15EC302F6B35_gshared_inline (Action_1_t50A1540EA73609CB8D3B72EE418EEFE3BFD8F892* __this, ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938 ___obj0, const RuntimeMethod* method) 
-{
-	typedef void (*FunctionPointerType) (RuntimeObject*, ARCoreBeforeSetConfigurationEventArgs_tF91B773E2C89D6954A1C4332EDC8FA09A5E22938, const RuntimeMethod*);
-	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___obj0, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mCF2FD8B3055FA87FC9C504F2122B3B0FAEDE3EC9_gshared_inline (Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1B40BC28* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mA507D4FD19F95E12475B17F94BE4EB6C372377C3_gshared_inline (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 Nullable_1_GetValueOrDefault_m8501B079BD9E7FB8FFE8EC773DFFF64838CB8088_gshared_inline (Nullable_1_tB29F6BAFAACFB3AD14B88B19C702A0BC506567CB* __this, const RuntimeMethod* method) 
-{
-	{
-		ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3 L_0 = (ArCameraConfig_tC1402F42CDCEC197CCA18D24AE3D1C8435CAD3B3)__this->___value_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m799E4A25AEDA0F9D651D6826F60302C61FBC16E9_gshared_inline (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 Nullable_1_GetValueOrDefault_mDE50C59DD08E921F1B5D70CE7E75D94D1AF9F007_gshared_inline (Nullable_1_t844903D35012AA1B9C0F9302540745BD414B533D* __this, const RuntimeMethod* method) 
-{
-	{
-		ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607 L_0 = (ArCameraConfigFilter_tF665AEAE3CDEB76E6485508096A093A9E0E0B607)__this->___value_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m8C460A6248B213E929B4C4830E0F68A2ABFCF58C_gshared_inline (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C Nullable_1_GetValueOrDefault_mF74C76EA10257852B764361623B176EA75CC38CF_gshared_inline (Nullable_1_t7A8E8D44426819ABCFA4473CB8690BCB94D7339C* __this, const RuntimeMethod* method) 
-{
-	{
-		ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C L_0 = (ArConfig_tC991F7E3046E638B111BDBE5A2B25C4F363C4F1C)__this->___value_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mB2D03C2253145ECBE459264A5476C9DB7FE2DC95_gshared_inline (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7 Nullable_1_GetValueOrDefault_m63BA6341EF0131341178244A39DD235C3ED95638_gshared_inline (Nullable_1_tA4D2F908DB62F3FFD6720EF02AE705EE23515623* __this, const RuntimeMethod* method) 
-{
-	{
-		ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7 L_0 = (ArRecordingConfig_t46B304221BC1B32639872CBE344043803C9AA8A7)__this->___value_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mCBD2FF535AA3DA1FD9A2B6FF41312A05A56FFD2D_gshared_inline (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF Nullable_1_GetValueOrDefault_m01D847669976AD41BACDA9443110062EF84086E7_gshared_inline (Nullable_1_tE365948A6658D3AE2A7E24C88184C810A2C72E20* __this, const RuntimeMethod* method) 
-{
-	{
-		ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF L_0 = (ArSession_t5038012861AFE90255CCD3F97A7819940B50ECFF)__this->___value_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mE2869A6464CFABCCBC9BA3B0BDC1DA9A54E1C57B_gshared_inline (Nullable_1_t02905B3413B8A12DF3D51046F80F708B11A08455* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
+		il2cpp_codegen_runtime_class_init_inline(il2cpp_rgctx_data(method->rgctx_data, 2));
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_0 = ((EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80_StaticFields*)il2cpp_codegen_static_fields_for(il2cpp_rgctx_data(method->rgctx_data, 2)))->___Value_0;
 		return L_0;
 	}
 }
